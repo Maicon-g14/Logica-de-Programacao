@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 18</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_20_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_20_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h3>
+<a id="user-content-instituto-de-computação---unicamp" class="anchor" href="#instituto-de-computa%C3%A7%C3%A3o---unicamp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Instituto de Computação - Unicamp</h3>
+
+<h3>
+<a id="user-content-mc102---algoritmos-e-programação-de-computadores" class="anchor" href="#mc102---algoritmos-e-programa%C3%A7%C3%A3o-de-computadores" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MC102 - Algoritmos e Programação de Computadores</h3>
+
+<h1>
+<a id="user-content-laboratório-id---title" class="anchor" href="#laborat%C3%B3rio-id---title" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Laboratório 20 - Sudoku</h1>
+<p>Prazo de entrega: <strong>01/07/2018 23:59:59</strong></p>
+<p>Peso: <strong>2</strong></p>
+
+<p><em>Professor:</em> Eduardo C. Xavier<br>
+<em>Monitor:</em> Alexsandro Alexandrino<br>
+<em>Monitor:</em> Ramon Nepomuceno</p>
+
+<hr>
+
+<h2>
+<a id="user-content-descrição" class="anchor" href="#descri%C3%A7%C3%A3o" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Descrição</h2>
+
+<p>Sudoku (数独) é um quebra-cabeça baseado na disposição lógica de 
+números. Foi criado por Howard Garns, um projetista e arquiteto de 74 
+anos aposentado. O objetivo do jogo é dispor números de 1 até 9 em cada 
+uma das células vazias numa grade 9x9, constituída por 9 subgrades 3x3 
+chamadas de regiões (Figura 1). O quebra-cabeça contém algumas pistas 
+iniciais, que são números inseridos em algumas células, de maneira a 
+permitir uma indução ou dedução dos números em células que estejam 
+vazias. Cada coluna, linha e região só pode ter um número dentre os 
+números de 1 até 9. Resolver o problema requer apenas raciocínio lógico e
+ algum tempo. <a href="https://pt.wikipedia.org/wiki/Sudoku">Wikipedia</a></p>
+
+<p>Os numerais no jogo sudoku são usados por comodidade; as relações 
+aritméticas entre numerais são absolutamente irrelevantes. Qualquer 
+combinação de símbolos distintos como letras, formas, ou cores podem ser
+ usadas no jogo sem alterar as regras. Por exemplo, algumas variações 
+usam letras, como Scramblets da Penny Press e Sudoku Words da Knight 
+Features Syndicate. Dell Magazines, que fez as primeiras publicações do 
+jogo, têm utilizado números desde a sua primeira publicação em 1979. <a href="https://pt.wikipedia.org/wiki/Sudoku#Funcionamento">Wikipedia</a></p>
+
+<h6>
+<a id="user-content-figura-1-um-típico-problema-de-sudoku" class="anchor" href="#figura-1-um-t%C3%ADpico-problema-de-sudoku" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>Figura 1</strong>: Um típico problema de sudoku</h6>
+
+<ul>
+<li><p><strong>(a)</strong> O problema original
+<a href="https://susy.ic.unicamp.br:9999/mc102wy/20/250px-Sudoku-by-L2G-20050714.svg.png" target="_blank"><img src="enunciado_20_files/250px-Sudoku-by-L2G-20050714.png" style="max-width:100%;" width="252"></a></p></li>
+<li><p><strong>(b)</strong> A solução destacada em vermelho
+<a href="https://susy.ic.unicamp.br:9999/mc102wy/20/250px-Sudoku-by-L2G-20050714_solution.svg.png" target="_blank"><img src="enunciado_20_files/250px-Sudoku-by-L2G-20050714_solution.png" style="max-width:100%;" width="252"></a></p></li>
+</ul>
+
+<p>Nesse laboratório, o objetivo é implementar uma função recursiva que resolve um determinado jogo do Sudoku.</p>
+
+<p>Uma ideia de algoritmo para resolver o problema é: encontrar uma 
+posição vazia corrente, e enumerar os possíveis valores que podem ser 
+atribuídos para esta posição.
+Para cada um destes valores, atribuir ele na posição vazia e chamar 
+recursivamente a função para que uma nova posição vazia seja avaliada.
+Se for possível encontrar uma solução então imprimimos a solução. Caso 
+não seja possível, tentamos o próximo valor possível para
+a posição corrente.
+Esse algoritmo é chamado de <em>Backtracking</em> e pode ser implementado com uma função recursiva. Veja um exemplo do comportamento dessa solução:</p>
+
+<p><a href="https://youtu.be/DhVNhjiJMFw" title="Exemplo de comportamento do Backtracking"><img src="enunciado_20_files/sample.gif" alt="Exemplo de comportamento do Backtracking" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="user-content-função" class="anchor" href="#fun%C3%A7%C3%A3o" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Função</h2>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-c">#!/usr/bin/env python3</span>
+
+<span class="pl-c"># Funcao: print_sudoku</span>
+<span class="pl-c"># Essa funcao ja esta implementada no arquivo lab20_main.py</span>
+<span class="pl-c"># A funcao imprime o tabuleiro atual do sudoku de forma animada, isto e,</span>
+<span class="pl-c"># imprime o tabuleiro e espera 0.1s antes de fazer outra modificacao.</span>
+<span class="pl-c"># Voce deve chamar essa funcao a cada modificacao na matriz resposta, assim</span>
+<span class="pl-c"># voce tera uma animacao similar a apresentada no enunciado.</span>
+<span class="pl-c"># Essa funcao nao tem efeito na execucao no Susy, logo nao ha necessidade de</span>
+<span class="pl-c"># remover as chamadas para submissao.</span>
+<span class="pl-k">from</span> lab20_main <span class="pl-k">import</span> print_sudoku
+
+<span class="pl-c"># O aluno pode criar outras funcoes que ache necessario</span>
+
+<span class="pl-c"># Funcao: resolve</span>
+<span class="pl-c"># Resolve o Sudoku da matriz resposta.</span>
+<span class="pl-c"># Retorna True se encontrar uma resposta, False caso contrario</span>
+<span class="pl-k">def</span> <span class="pl-en">resolve</span>(<span class="pl-smi">resposta</span>):
+    <span class="pl-c"># Implementar a funcao e trocar o valor de retorno</span>
+    print_sudoku(resposta)
+    <span class="pl-k">return</span> <span class="pl-c1">False</span></pre></div>
+
+<h2>
+<a id="user-content-submissão" class="anchor" href="#submiss%C3%A3o" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Submissão</h2>
+
+<p>Neste laboratório você não precisará se preocupar em ler a entrada a partir da entrada padrão, nem em escrever a saída.
+O código fornecido no arquivo <code>lab20_main.py</code> se encarrega dessa parte.Seu trabalho é apenas implementar a função descrita.</p>
+
+<p>Você também <strong>não deve</strong> submeter o arquivo <code>lab20_main.py</code> para o <em>SuSy</em>, somente o arquivo <code>lab20.py</code>.</p>
+<p>As sessões abaixo, de <a href="#entrada">Entrada</a> e <a href="#sa%C3%ADda">Saída</a>, descrevem os formatos de entrada e saída, mas você não precisa se preocupar com eles.</p>
+
+<h2>
+<a id="user-content-entrada" class="anchor" href="#entrada" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Entrada</h2>
+
+<p>A entrada do programa será de 9x9 dígitos de 0 a 9, onde 0 representa
+ as posições com valores indefinidos que devem ser resolvidas.</p>
+
+<h2>
+<a id="user-content-saída" class="anchor" href="#sa%C3%ADda" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Saída</h2>
+
+<p>A saída do programa é composta da grade antes e depois da solução, com separadores <code>-</code> e <code>|</code> para linhas e colunas, respectivamente.</p>
+
+<p>Caso não seja encontrada uma solução, o programa irá imprimir <code>Nao foi encontrada uma solucao.</code>.
+Você pode considerar que todos os testes possuem exatamente uma solução válida.</p>
+
+<h2>
+<a id="user-content-exemplos" class="anchor" href="#exemplos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Exemplos</h2>
+
+<h6>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h6>
+
+<ul>
+<li>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/20/dados/arq01.in">Entrada</a></p>
+
+<pre><code>5 3 0 0 7 0 0 0 0
+6 0 0 1 9 5 0 0 0
+0 9 8 0 0 0 0 6 0
+8 0 0 0 6 0 0 0 3
+4 0 0 8 0 3 0 0 1
+7 0 0 0 2 0 0 0 6
+0 6 0 0 0 0 2 8 0
+0 0 0 4 1 9 0 0 5
+0 0 0 0 8 0 0 7 9
+</code></pre>
+</li>
+<li>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/20/dados/arq01.res">Saída</a></p>
+
+<pre><code>-------------------------------------
+| 5 | 3 |   |   | 7 |   |   |   |   |
+-------------------------------------
+| 6 |   |   | 1 | 9 | 5 |   |   |   |
+-------------------------------------
+|   | 9 | 8 |   |   |   |   | 6 |   |
+-------------------------------------
+| 8 |   |   |   | 6 |   |   |   | 3 |
+-------------------------------------
+| 4 |   |   | 8 |   | 3 |   |   | 1 |
+-------------------------------------
+| 7 |   |   |   | 2 |   |   |   | 6 |
+-------------------------------------
+|   | 6 |   |   |   |   | 2 | 8 |   |
+-------------------------------------
+|   |   |   | 4 | 1 | 9 |   |   | 5 |
+-------------------------------------
+|   |   |   |   | 8 |   |   | 7 | 9 |
+-------------------------------------
+-------------------------------------
+| 5 | 3 | 4 | 6 | 7 | 8 | 9 | 1 | 2 |
+-------------------------------------
+| 6 | 7 | 2 | 1 | 9 | 5 | 3 | 4 | 8 |
+-------------------------------------
+| 1 | 9 | 8 | 3 | 4 | 2 | 5 | 6 | 7 |
+-------------------------------------
+| 8 | 5 | 9 | 7 | 6 | 1 | 4 | 2 | 3 |
+-------------------------------------
+| 4 | 2 | 6 | 8 | 5 | 3 | 7 | 9 | 1 |
+-------------------------------------
+| 7 | 1 | 3 | 9 | 2 | 4 | 8 | 5 | 6 |
+-------------------------------------
+| 9 | 6 | 1 | 5 | 3 | 7 | 2 | 8 | 4 |
+-------------------------------------
+| 2 | 8 | 7 | 4 | 1 | 9 | 6 | 3 | 5 |
+-------------------------------------
+| 3 | 4 | 5 | 2 | 8 | 6 | 1 | 7 | 9 |
+-------------------------------------
+</code></pre>
+</li>
+</ul>
+
+<p>Para mais exemplos, consulte os
+<a href="https://susy.ic.unicamp.br:9999/mc102wy/20/dados/testes.html">testes abertos no Susy</a>.</p>
+
+<h2>
+<a id="user-content-observações" class="anchor" href="#observa%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Observações</h2>
+
+<ul>
+<li>Você <strong>não deve</strong> submeter o arquivo <code>lab20_main.py</code> para o <em>SuSy</em>, somente o arquivo <code>lab20.py</code>.</li><li>O número máximo de submissões é <strong>10</strong>.</li><li>Para a realização dos testes do SuSy, a execução do código se dará da seguinte forma: (Linux e OSX)<br>
+<code>python3 lab20_main.py</code>.</li><li>Você deve incluir, no início
+ do seu programa, uma breve descrição dos objetivos do programa, da 
+entrada e da saída, além do seu nome e do seu RA.</li>
+<li>Indente corretamente o seu código e inclua comentários no decorrer do seu programa.</li>
+</ul>
+
+    </article>
+
+
+</body></html>

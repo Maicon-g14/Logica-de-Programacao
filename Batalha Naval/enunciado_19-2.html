@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 19-2</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_19-2_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_19-2_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h3>
+<a id="user-content-instituto-de-computação---unicamp" class="anchor" href="#instituto-de-computa%C3%A7%C3%A3o---unicamp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Instituto de Computação - Unicamp</h3>
+<h3>
+<a id="user-content-mc102---algoritmos-e-programação-de-computadores" class="anchor" href="#mc102---algoritmos-e-programa%C3%A7%C3%A3o-de-computadores" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MC102 - Algoritmos e Programação de Computadores</h3>
+<h1>
+<a id="user-content-laboratório-id---title" class="anchor" href="#laborat%C3%B3rio-id---title" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Laboratório 19-2 - Batalha Naval</h1><p>Prazo de entrega: <strong>24/06/2018 23:59:59</strong></p><p>Peso: <strong>2</strong></p>
+<p><em>Professor:</em> Eduardo C. Xavier<br>
+<em>Monitor:</em> Alexsandro Alexandrino<br>
+<em>Monitor:</em> Ramon Nepomuceno</p>
+<hr>
+<p>Batalha naval é um jogo de tabuleiro de dois jogadores. O objetivo de
+cada jogador é adivinhar onde estão os navios do oponente e os
+destruir. Ganha o jogo quem destruir todos os navios do oponente primeiro.</p>
+<p>Neste laboratório vocês deverão implementar um programa que simula 
+uma versão modificada do jogo Batalha naval para dois jogadores.</p>
+<p>Cada jogador tem um tabuleiro próprio com <strong>L</strong> linhas, indexadas de
+<strong>1</strong> até <strong>L</strong>, e <strong>C</strong> colunas, indexadas de <strong>1</strong> até <strong>C</strong>.
+Os dois jogadores colocam a mesma quantidade de navios em seus
+respectivos tabuleiros.
+Além disso, assumimos que os navios não possuem uma forma geométrica 
+definida ou dimensões iguais.
+Dois navios não podem estar encostados um no outro, i.e., não há duas 
+posições vizinhas (horizontalmente ou verticalmente) que pertençam a 
+navios diferentes. Dada uma posição <code>(l,c)</code> do tabuleiro, definimos como sendo suas posições <strong>vizinhas</strong> aquelas que estão imediatamente acima <code>(l-1,c)</code>, abaixo <code>(l+1,c)</code>, à esquerda <code>(l,c-1)</code> e à direita <code>(l,c+1)</code>.</p>
+<p>Um tabuleiro contém caracteres <code>-</code> (hífen) representando a água ou caracteres <code>@</code> (arroba) representando parte de um navio.
+Um navio é determinado pelo conjunto de caracteres <code>@</code> que 
+são alcançáveis entre si. Dizemos que uma posição (l₀,c₀) é alcançável 
+por uma posição (lᵢ,cᵢ) se existe um caminho entre (l₀,c₀) e (lᵢ,cᵢ) 
+formada pelas posições (l₀,c₀), (l₁,c₁),(l₂,c₂), ..., (lᵢ,cᵢ) (todas 
+contendo o caractere <code>@</code>), tal que todo par de posições ((lₓ₋₁,cₓ₋₁),(lₓ,cₓ)), para 1 ≤ x ≤ i, são vizinhas.</p>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/19-2/tabuleiro.png" target="_blank"><img src="enunciado_19-2_files/tabuleiro.png" alt="Tabuleiro" style="max-width:100%;"></a></p>
+<p><strong>Figura 1</strong> - Exemplo de um tabuleiro 10x20 com 5 navios.</p>
+<p>Na figura acima, note que a posição <code>(3,10)</code>, por exemplo, é alcançável pelas posições <code>(5,3)</code>, <code>(8,18)</code>, e todas as outras posições destacadas em verde claro. Ela não é alcançável, por exemplo, pelas posições <code>(1,1)</code>, <code>(3,15)</code>, nem por todas as outras posições que não estão destacadas em verde claro. Note ainda que as posições <code>(3,15)</code> e <code>(4,14)</code> não são alcançáveis entre si pois elas não são vizinhas.</p>
+<p>Depois que todos os navios são posicionados, o jogo começa.
+Uma jogada de um jogador consiste na indicação de uma posição do
+tabuleiro do adversário onde deve ser lançado um ataque.
+Os jogadores fazem jogadas revezando entre si, e o jogador 1 sempre começa jogando.
+Se um ataque acertar qualquer posição ocupada por um navio, o navio é <strong>completamente</strong> destruído.
+Os jogadores alternam ataques, e o jogo só termina quando um jogador
+destruir todos os navios do adversário.</p>
+<h2>
+<a id="user-content-entrada" class="anchor" href="#entrada" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Entrada</h2>
+<p>A primeira linha determina o tamanho <code>LxC</code> do tabuleiro, que representa o número de linhas e colunas, respectivamente.<br>
+<code>1 &lt; L,C ≤ 100</code></p>
+<p>Em seguida são apresentados os tabuleiros iniciais de cada um dos jogadores.
+Primeiramente é apresentado o tabuleiro inicial do jogador 1, contendo  <strong>L</strong> linhas com <strong>C</strong> colunas cada.
+Em seguida temos outras <strong>L</strong> linhas com <strong>C</strong> colunas cada representando o tabuleiro inicial do jogador 2.
+Os tabuleiros contêm caracteres <code>-</code> e <code>@</code> apenas.</p>
+<p>Após a entrada correspondente aos tabuleiros dos jogadores temos
+outras linhas indicando as jogadas de ataques.
+Cada uma destas linhas  tem o formato <code>l,c</code> indicando a 
+coordenada do ataque do jogador da vez. Lembre-se que a primeira jogada é
+ sempre do jogador 1 e os jogadores alternam os ataques.</p>
+<h2>
+<a id="user-content-saída" class="anchor" href="#sa%C3%ADda" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Saída</h2>
+<p>Para cada jogada, deve ser impresso um texto que identifica o jogador
+que fez o ataque no formato <code>Ataque em (l,c) do jogador I</code> onde <code>I</code> deve
+ser substituído pelo número do jogador que fez o ataque e <code>(l,c)</code> pela coordenada do ataque.
+Em seguida deve ser impresso o tabuleiro do jogador atacado.
+Caso um navio tenha sido destruído devem ser impressos os caracteres <code>-</code>, correspondentes a água, em seu lugar.</p>
+<p>O programa encerra quando um jogador destruir todos os navios do
+adversário. Você pode assumir que toda entrada terminará em tal situação.</p>
+<p><strong>OBS:</strong><br>
+Se um navio é acertado por uma jogada, ele é destruído,
+ou seja, todas suas posições devem ser marcadas como destruídas.
+Assim, qualquer jogada que acerte uma posição de um navio que já afundou
+não deve ter efeito algum no tabuleiro do adversário.</p>
+<h2>
+<a id="user-content-exemplos" class="anchor" href="#exemplos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Exemplos</h2>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/19-2/dados/arq01.in">Entrada</a></p>
+<pre><code>10x20
+@@------------------
+@-------------------
+--@@@@@@@@@@@-@@----
+--@----@----@@-@@---
+--@-@@-@-@-@-@@-@@--
+--@-@@-@-@-@--@@-@@-
+--@----@-@-@---@@-@@
+--@@@@@@-@@@----@@--
+--------------------
+--------------------
+--------------------
+--------------------
+--@@----@@@-@@@@@@--
+@@-@@---@-@-@----@--
+-@@-@@--@-@-@-@@-@--
+--@@-@@-@-@-@-@@-@--
+---@@-@@----@----@--
+----@@-@@@@@@@@@@@--
+-------------------@
+------------------@@
+10,20
+1,2
+9,20
+2,1
+3,3
+8,18
+8,8
+8,8
+3,1
+5,12
+5,3
+5,10
+6,15
+7,20
+7,20
+3,15
+3,10
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/19-2/dados/arq01.res">Saída</a></p>
+<pre><code>Ataque em (10,20) do jogador 1
+--------------------
+--------------------
+--@@----@@@-@@@@@@--
+@@-@@---@-@-@----@--
+-@@-@@--@-@-@-@@-@--
+--@@-@@-@-@-@-@@-@--
+---@@-@@----@----@--
+----@@-@@@@@@@@@@@--
+--------------------
+--------------------
+Ataque em (1,2) do jogador 2
+--------------------
+--------------------
+--@@@@@@@@@@@-@@----
+--@----@----@@-@@---
+--@-@@-@-@-@-@@-@@--
+--@-@@-@-@-@--@@-@@-
+--@----@-@-@---@@-@@
+--@@@@@@-@@@----@@--
+--------------------
+--------------------
+Ataque em (9,20) do jogador 1
+--------------------
+--------------------
+--@@----@@@-@@@@@@--
+@@-@@---@-@-@----@--
+-@@-@@--@-@-@-@@-@--
+--@@-@@-@-@-@-@@-@--
+---@@-@@----@----@--
+----@@-@@@@@@@@@@@--
+--------------------
+--------------------
+Ataque em (2,1) do jogador 2
+--------------------
+--------------------
+--@@@@@@@@@@@-@@----
+--@----@----@@-@@---
+--@-@@-@-@-@-@@-@@--
+--@-@@-@-@-@--@@-@@-
+--@----@-@-@---@@-@@
+--@@@@@@-@@@----@@--
+--------------------
+--------------------
+Ataque em (3,3) do jogador 1
+--------------------
+--------------------
+--------@@@---------
+@@------@-@---------
+-@@-----@-@---@@----
+--@@----@-@---@@----
+---@@---------------
+----@@--------------
+--------------------
+--------------------
+Ataque em (8,18) do jogador 2
+--------------------
+--------------------
+--------------@@----
+---------------@@---
+----@@---@-@----@@--
+----@@---@-@-----@@-
+---------@-@------@@
+---------@@@--------
+--------------------
+--------------------
+Ataque em (8,8) do jogador 1
+--------------------
+--------------------
+--------@@@---------
+@@------@-@---------
+-@@-----@-@---@@----
+--@@----@-@---@@----
+---@@---------------
+----@@--------------
+--------------------
+--------------------
+Ataque em (8,8) do jogador 2
+--------------------
+--------------------
+--------------@@----
+---------------@@---
+----@@---@-@----@@--
+----@@---@-@-----@@-
+---------@-@------@@
+---------@@@--------
+--------------------
+--------------------
+Ataque em (3,1) do jogador 1
+--------------------
+--------------------
+--------@@@---------
+@@------@-@---------
+-@@-----@-@---@@----
+--@@----@-@---@@----
+---@@---------------
+----@@--------------
+--------------------
+--------------------
+Ataque em (5,12) do jogador 2
+--------------------
+--------------------
+--------------@@----
+---------------@@---
+----@@----------@@--
+----@@-----------@@-
+------------------@@
+--------------------
+--------------------
+--------------------
+Ataque em (5,3) do jogador 1
+--------------------
+--------------------
+--------@@@---------
+--------@-@---------
+--------@-@---@@----
+--------@-@---@@----
+--------------------
+--------------------
+--------------------
+--------------------
+Ataque em (5,10) do jogador 2
+--------------------
+--------------------
+--------------@@----
+---------------@@---
+----@@----------@@--
+----@@-----------@@-
+------------------@@
+--------------------
+--------------------
+--------------------
+Ataque em (6,15) do jogador 1
+--------------------
+--------------------
+--------@@@---------
+--------@-@---------
+--------@-@---------
+--------@-@---------
+--------------------
+--------------------
+--------------------
+--------------------
+Ataque em (7,20) do jogador 2
+--------------------
+--------------------
+--------------------
+--------------------
+----@@--------------
+----@@--------------
+--------------------
+--------------------
+--------------------
+--------------------
+Ataque em (7,20) do jogador 1
+--------------------
+--------------------
+--------@@@---------
+--------@-@---------
+--------@-@---------
+--------@-@---------
+--------------------
+--------------------
+--------------------
+--------------------
+Ataque em (3,15) do jogador 2
+--------------------
+--------------------
+--------------------
+--------------------
+----@@--------------
+----@@--------------
+--------------------
+--------------------
+--------------------
+--------------------
+Ataque em (3,10) do jogador 1
+--------------------
+--------------------
+--------------------
+--------------------
+--------------------
+--------------------
+--------------------
+--------------------
+--------------------
+--------------------
+</code></pre>
+<p>Para mais exemplos, consulte os <a href="https://susy.ic.unicamp.br:9999/mc102wy/19-2/dados/testes.html">testes abertos no Susy</a>.</p>
+<h2>
+<a id="user-content-observações" class="anchor" href="#observa%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Observações</h2>
+<ul>
+<li>O número máximo de submissões é <strong>10</strong>;</li><li>O seu programa deve estar completamente contido em um único arquivo denominado <code>lab19-2.py</code>;</li><li>Para a realização dos testes do SuSy, execute o programa da seguinte forma:<br>
+<code>python3 lab19-2.py</code>;</li><li>Você deve incluir, no início do
+ seu programa, uma breve descrição dos objetivos do programa, da entrada
+ e da saída, além do seu nome e do seu RA;</li>
+<li>Indente corretamente o seu código e inclua comentários no decorrer do seu programa.</li>
+</ul>
+
+    </article>
+
+
+</body></html>

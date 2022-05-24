@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html><div id="tenten-safe-area-provider" style="all: initial;"></div><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>MC102 - Lab05</title>
+
+    <link rel="stylesheet" type="text/css" href="MC102%20-%20Lab05_files/2s2018-mc102.css">
+</head>
+
+<body>
+
+<header>
+    MC102 - Algoritmos e Programação de Computadores
+</header>
+
+<div class="topnav">
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/index.html"><b>MC102</b></a>
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-1s2018"><b>Oferecimento anterior</b></a>
+</div>
+
+<h1>Tarefa de laboratório 05</h1>
+
+<p><code style="font-size:300%">#ilovepython ;-)</code></p>
+
+<p>Em textos disponíveis na Internet é muito comum o uso
+de <a href="https://en.wikipedia.org/wiki/Hashtag">hashtags</a>
+e <a href="https://en.wikipedia.org/wiki/Emoticon">emoticons</a>. Um
+pesquisador da área de linguística está
+interessado em medir o quanto o uso destes elementos é
+importante para a interpretação destes textos. Para isso
+ele irá entregar os textos originais para um grupo de leitores
+e os mesmos textos sem emoticons e hashtags para outro
+grupo. Finalmente, ele irá comparar as impressões dos
+grupos sobre os textos.</p>
+
+<p>Sua tarefa será escrever a versão inicial de um programa em Python 
+para auxiliar o pesquisador a filtrar os textos. Adotaremos as seguintes
+ regras simplificadas para a classificação dos elementos:</p>
+
+<ul>
+  <li><p> <b>Palavras:</b> sequência de letras (sem acento).
+    <br>
+    Exemplos: <code>UNICAMP&nbsp;algoritmos&nbsp;programacao</code></p>
+    
+  </li><li><p> <b>Números:</b> sequência de dígitos precedidos ou não do sinal negativo (<code>-</code>). Não trataremos números reais, complexos ou com pontos indicando a separação em grupos de três dígitos.
+      <br>
+    Exemplos: <code>2018&nbsp;-100000</code></p>
+    
+  </li><li><p><b>Hashtag:</b> caractere <code>#</code> seguido de letras.
+      <br>
+      Exemplos: <code>#python&nbsp;#unicamp&nbsp;#amoviajar</code></p>
+      
+  </li><li><p><b>Emoticons:</b> grupo de dois ou mais caracteres que
+      não se enquadram nas descrições
+      anteriores. São compostos principalmente por caracteres
+      de pontuação, mas podem conter letras,
+      números ou serem precedidos por <code>#</code>.
+      <br>
+      Exemplos: <code>:-)&nbsp;#:-)&nbsp;:D&nbsp;&lt;3</code>  
+	
+</p></li></ul>
+
+<h2>Descrição da entrada</h2>
+
+<p>Nesta versão inicial, a entrada já virá pré-processada como uma 
+sequência de N+1 linhas, com a primeira linha contendo o número N e as 
+demais os elementos a serem classificados. Veja o exemplo abaixo:</p>
+
+<pre><code>5
+#ilovepython
+&lt;3    
+happy
+hacking
+:-)
+</code></pre>
+
+<p>Note que uma entrada contendo apenas o número 0 é uma entrada válida.</p>
+
+<h2>Descrição da saída</h2>
+
+<p>A saída conterá os elementos que foram classificados como palavras 
+simples ou números seguida de um pequeno relatório do número de hashtags
+ ou emoticons removidos, quando for o caso. </p>
+
+<ul>
+  <li><p><b>Hashtags:</b></p>
+    <ul><li>Caso <code>&lt;h&gt; &gt; 1</code> hashtags tenham sido removidas, a seguinte mensagem deve ser emitida:
+  
+  <code></code><pre><code>&lt;h&gt; hashtags foram removidas.</code></pre>
+
+  </li><li>Caso apenas 1 hashtag tenha sido removida, a mensagem virá no singular:
+    <code></code><pre><code>1 hashtag foi removida.</code></pre>
+    
+  </li><li> Não é necessário emitir mensagem caso nenhuma hashtag tenha sido removida.
+</li></ul>
+
+</li><li><p><b>Emoticons:</b>
+    </p><ul>
+      <li>Caso <code>&lt;e&gt; &gt; 1</code> emoticons tenham sido
+      removidos, a seguinte mensagem deve ser emitida:
+	<code></code><pre><code>&lt;e&gt; emoticons foram removidos.</code></pre>
+
+      </li><li>Caso apenas 1 emoticon tenha sido removido, a mensagem virá
+      no singular:
+	<code></code><pre><code>1 emoticon foi removido.</code></pre>
+      </li><li> Não é necessário emitir mensagem caso nenhum emoticon tenha sido removido.
+    </li></ul>
+</li></ul>
+
+<p>Para a entrada usada como exemplo a saída será:</p>
+
+<code><pre>happy
+hacking
+1 hashtag foi removida.
+2 emoticons foram removidos.
+</pre></code>    
+
+<h2>Testes para o SuSy</h2>
+
+<p>Esta tarefa contém 6 testes abertos e 4 testes
+fechados. Todos os elementos a serem processados estão de acordo com
+as regras apresentadas na primeira seção.</p>
+
+<h2>Dicas de Python 3 para esta tarefa:</h2>
+
+<ul>
+  <li> <p>Para verificar o primeiro elemento de uma
+      string <code>s</code> escreva <code>s[0]</code>.</p>
+  </li><li> <p>Para verificar todos os elementos de uma
+  string <code>s</code> com exceção do primeiro elemento
+      escreva <code>s[1:]</code>.</p>
+  </li><li> <p>Para verificar se uma string <code>s</code> contém apenas
+      dígitos use a função <code>s.isdigit()</code>.</p>
+  </li><li> <p>Para verificar se uma string <code>s</code> contém apenas
+  caracteres use a função <code>s.isalpha()</code>.</p>
+</li></ul>
+      
+<h2>Orientações para submissão</h2>
+
+<p> Veja <a href="https://susy.ic.unicamp.br:9999/mc102geral/05">aqui</a>
+  a página de submissão da tarefa. Lembre-se que o
+  arquivo a ser submetido deve se chamar <b><tt>lab05.py</tt></b>. No
+  link <a href="https://susy.ic.unicamp.br:9999/mc102geral/05/aux/aux.html">Arquivos
+  auxiliares</a> há um arquivo <code><a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/labs/aux-05.zip">aux-05.zip</a></code> que
+  contém todos os arquivos de testes abertos e seus respectivos
+  resultados compactados. Os arquivos <code>executa-testes.py</code>
+  e <code>executa-testes-windows.py</code> também estão
+  neste pacote.
+
+</p><p>Observe o limite máximo de 20 submissões.</p> 
+
+<p>A nota final é proporcional ao número de testes que
+  executaram corretamente, desde que o código esteja coerente
+  com o enunciado. <b>A submissão de um código que não
+  implementa o algoritmo requisitado, mas que exibe as
+  saídas esperadas dos testes abertos a partir da
+  comparação de trechos da entrada será
+  considerada fraude e acarretará a atribuição de
+  nota zero à média final da disciplina.</b></p>
+  
+<p>O peso desta tarefa é 2.</p>
+
+<p>O prazo final para submissão é 30/09/2018. Recomenda-se a realização da tarefa antes da Prova 1.</p>
+    
+
+
+<hr>
+
+
+</body></html>

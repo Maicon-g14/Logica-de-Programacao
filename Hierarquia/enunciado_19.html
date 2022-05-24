@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 19</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_19_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_19_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h3>
+<a id="user-content-instituto-de-computação---unicamp" class="anchor" href="#instituto-de-computa%C3%A7%C3%A3o---unicamp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Instituto de Computação - Unicamp</h3>
+<h5>
+<a id="user-content-mc102---algoritmos-e-programação-de-computadores" class="anchor" href="#mc102---algoritmos-e-programa%C3%A7%C3%A3o-de-computadores" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MC102 - Algoritmos e Programação de Computadores</h5>
+<h1>
+<a id="user-content-laboratório-id---title" class="anchor" href="#laborat%C3%B3rio-id---title" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Laboratório 19 - Hierarquia</h1><p>Prazo de entrega: <strong>24/06/2018 23:59:59</strong></p><p>Peso: <strong>2</strong></p>
+<p><em>Professor:</em> Eduardo C. Xavier<br>
+<em>Monitor:</em> Alexsandro Alexandrino<br>
+<em>Monitor:</em> Ramon Nepomuceno</p>
+<hr>
+<h2>
+<a id="user-content-descrição" class="anchor" href="#descri%C3%A7%C3%A3o" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Descrição</h2>
+<p>Esta tarefa tem por objetivo exercitar a construção de algoritmos recursivos.</p>
+<p>Cargos em empresas geralmente são organizados de forma hierárquica. 
+Isto permite que decisões que atingem apenas um (sub-)setor da empresa 
+possam ser tomadas por lideres locais, não sobrecarregando os cargos 
+mais altos na hierarquia.</p>
+<p>A hierarquia da empresa pode ser entendida facilmente através de 
+diagramas que mostram como ela está estruturada. Através deles, pode-se 
+identificar a quem um determinado funcionário está diretamente 
+subordinado, ou seja, quem é o seu <em>chefe</em>. Na verdade, pode-se até mesmo determinar toda a <em>cadeia hierárquica</em>
+ de subordinados de um determinado funcionário, começando com o próprio 
+funcionário e identificando-se quem são seus subordinados, em seguida 
+quem são os subordinados dos seus subordinados e assim sucessivamente, 
+até atingirmos os funcionários que não possuem subordinados.</p>
+<p>Como veremos a seguir, o objetivo desta tarefa é encontrar a <em>cadeia hierárquica</em>
+ de um funcionário de uma empresa. Antes porém, veja abaixo um exemplo 
+de um desses diagramas hierárquicos onde cada funcionário é identificado
+ por um número, sendo 0 (zero) o presidente da empresa.</p>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/19/hierarquia.png" target="_blank"><img src="enunciado_19_files/hierarquia.png" alt="Hierarquia" style="max-width:100%;"></a></p>
+<p>Algumas relações que podemos ver no diagrama acima são:</p>
+<ul>
+<li>A cadeia hierárquica do funcionário 0 (o presidente) é formada pelos
+ funcionários 0, 1, 2, 3, 4, 5, 6, 7, 8 e 9 (todos os funcionários);</li>
+<li>A cadeia hierárquica do funcionário 1 é formada pelos funcionários 1, 2 e 3;</li>
+<li>A cadeia hierárquica do funcionário 7 é formada pelos funcionários 7 e 4;</li>
+<li>A cadeia hierárquica do funcionário 4 é formada somente por ele mesmo (pois não possui subordinados).</li>
+</ul>
+<p>Podemos representar as informações do diagrama hierárquico de uma empresa com <code>n</code> funcionários fazendo uso de uma matriz quadrada de ordem <code>n</code>,
+ com todos elementos tendo valor 0 (zero) ou 1 (um). Para tanto, vamos 
+supor que os funcionários da empresa são identificados por números de 0 a
+ <code>n-1</code>, sendo 0 (zero) o presidente da empresa. Assim, na linha <code>i</code> da matriz, uma coluna <code>j</code> terá o valor 1 (um) se o funcionário <code>j</code> for subordinado <strong>direto</strong> do funcionário <code>i</code>, caso contrário o valor nesta coluna é 0 (zero).</p>
+<p>Por exemplo, a matriz correspondente ao diagrama hierárquico visto na imagem acima seria:</p>
+<pre><code>0 1 0 0 0 1 1 0 0 0    
+0 0 1 1 0 0 0 0 0 0    
+0 0 0 0 0 0 0 0 0 0    
+0 0 0 0 0 0 0 0 0 0    
+0 0 0 0 0 0 0 0 0 0    
+0 0 0 0 0 0 0 0 0 0    
+0 0 0 0 0 0 0 1 1 1    
+0 0 0 0 1 0 0 0 0 0    
+0 0 0 0 0 0 0 0 0 0    
+0 0 0 0 0 0 0 0 0 0    
+</code></pre>
+<h2>
+<a id="user-content-objetivo" class="anchor" href="#objetivo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Objetivo</h2>
+<p>O objetivo desta tarefa é fazer um programa que <strong>use recursividade</strong> e que, dada a matriz que descreve a hierarquia de uma empresa, encontre a <em>cadeia hierárquica</em> relativa a um determinado funcionário.</p>
+<h2>
+<a id="user-content-entrada" class="anchor" href="#entrada" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Entrada</h2>
+<p>A primeira linha contém dois inteiros: <code>n</code>, o número de funcionários entre 3 e 30, e <code>k</code>, o identificador numérico do funcionário sobre o qual deseja-se conhecer a cadeira hierárquica. A seguir tem-se <code>n</code> linhas que correspondem as linhas da matriz que descrevem a hierarquia da empresa, conforme explicado no enunciado.</p>
+<h2>
+<a id="user-content-saída" class="anchor" href="#sa%C3%ADda" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Saída</h2>
+<p>Na saída devem ser impressos os números que identificam todos os funcionários que estejam na <em>cadeia hierárquica</em> do funcionário <code>k</code>, <strong>começando pelo próprio</strong>, e então imprimindo, <strong>em ordem crescente</strong>
+ por identificador, os outros funcionários. Os números dos funcionários 
+da cadeia devem estar separados por um único espaço em branco.</p>
+<h2>
+<a id="user-content-exemplos" class="anchor" href="#exemplos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Exemplos</h2>
+<h3>
+<a id="user-content-teste-05" class="anchor" href="#teste-05" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 05</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/19/dados/arq05.in">Entrada</a></p>
+<pre><code>5 0
+0 1 1 0 0
+0 0 0 1 1
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/19/dados/arq05.res">Saída</a></p>
+<pre><code>0 1 2 3 4
+</code></pre>
+<h3>
+<a id="user-content-teste-11" class="anchor" href="#teste-11" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 11</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/19/dados/arq11.in">Entrada</a></p>
+<pre><code>10 6
+0 1 1 0 1 0 0 1 0 0
+0 0 0 0 0 0 0 0 0 0
+0 0 0 1 0 0 1 0 0 0
+0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 1
+0 0 0 0 0 0 0 0 1 0
+0 0 0 0 0 1 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/19/dados/arq11.res">Saída</a></p>
+<pre><code>6 5 8
+</code></pre>
+<h3>
+<a id="user-content-teste-10" class="anchor" href="#teste-10" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 10</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/19/dados/arq10.in">Entrada</a></p>
+<pre><code>19 7
+0 1 0 0 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0
+0 0 0 1 1 0 0 0 0 0 0 0 1 0 0 0 1 1 0
+0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0
+0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0
+0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/19/dados/arq10.res">Saída</a></p>
+<pre><code>7
+</code></pre>
+<p>Para mais exemplos, consulte os
+<a href="https://susy.ic.unicamp.br:9999/mc102wy/19/dados/testes.html">testes abertos no Susy</a>.</p>
+<h2>
+<a id="user-content-observações" class="anchor" href="#observa%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Observações</h2>
+<ul>
+<li><strong>O seu programa deve obrigatoriamente ser implementado de modo a usar recursividade.</strong></li>
+<li>O número máximo de submissões é <strong>10</strong>.</li><li>O seu programa deve estar completamente contido em um único arquivo denominado <code>lab19.py</code>.</li><li>Para a realização dos testes do SuSy, a execução do código em Python se dará da seguinte forma: (Linux e OSX)
+<code>python3 lab19.py</code>.</li><li>Você deve incluir, no início do 
+seu programa, uma breve descrição dos objetivos do programa, da entrada e
+ da saída, além do seu nome e do seu RA.</li>
+<li>Indente corretamente o seu código e inclua comentários no decorrer do seu programa.</li>
+</ul>
+<h2>
+<a id="user-content-critérios-importantes" class="anchor" href="#crit%C3%A9rios-importantes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Critérios importantes</h2>
+<p>Independentemente dos resultados dos testes do SuSy, o não cumprimento
+dos critérios abaixo implicará em nota zero nesta tarefa de
+laboratório.</p>
+<ul>
+<li>O aluno não poderá utilizar a funcão <code>sort</code> do python.</li>
+</ul>
+
+    </article>
+
+
+</body></html>

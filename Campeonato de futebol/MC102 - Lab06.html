@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html><div id="tenten-safe-area-provider" style="all: initial;"></div><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>MC102 - Lab06</title>
+
+    <link rel="stylesheet" type="text/css" href="MC102%20-%20Lab06_files/2s2018-mc102.css">
+</head>
+
+<body>
+
+<header>
+    MC102 - Algoritmos e Programação de Computadores
+</header>
+
+<div class="topnav">
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/index.html"><b>MC102</b></a>
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-1s2018"><b>Oferecimento anterior</b></a>
+</div>
+
+<h1>Tarefa de laboratório 06</h1>
+
+<p><img src="MC102%20-%20Lab06_files/bola.jpg" alt="Bola" class="left" padding="5px">Em
+ um campeonato de futebol, todos os times inscritos se enfrentam duas 
+vezes: uma em seu estádio e outra no estádio adversário. O
+principal elemento para classificação é a <b>pontuação</b> acumulada: cada time recebe três pontos por vitória, um ponto por empate e zero ponto por derrota.</p><p>
+
+</p><p>Em caso de empate, o desempate é feito por <b>número de vitórias</b>, <b>saldo de gols</b> (diferença entre o número de gols pró marcados e os gols sofridos por cada time) e <b>número de gols pró.</b>
+ Caso os times permaneçam empatados em todos estes itens, ocupariam a 
+mesma posição no campeonato. Nesta tarefa, no entanto, todos os testes 
+levarão a um <b>único vencedor</b>.</p>
+
+
+<h2>Descrição da entrada</h2>
+
+<p>A primeira linha da entrada indicará o número de times do campeonato e
+ as linhas seguintes irão descrever os resultados das partidas. Uma 
+partida será descrita em uma linha pelo nome e o número de gols pró do 
+primeiro time, pelo caractere <code>"x"</code> e pelo nome e o número de gols pró do segundo time.</p>
+
+<code></code><pre><code>&lt;numero_de_times&gt;
+&lt;time_A&gt; &lt;gols_A&gt; x &lt;time_B&gt; &lt;gols_B&gt;
+&lt;time_B&gt; &lt;gols_B&gt; x &lt;time_A&gt; &lt;gols_A&gt;
+&lt;time_A&gt; &lt;gols_A&gt; x &lt;time_C&gt; &lt;gols_C&gt;
+&lt;time_C&gt; &lt;gols_C&gt; x &lt;time_A&gt; &lt;gols_A&gt; 
+...
+&lt;time_B&gt; &lt;gols_B&gt; x &lt;time_C&gt; &lt;gols_C&gt;
+&lt;time_C&gt; &lt;gols_C&gt; x &lt;time_B&gt; &lt;gols_B&gt;
+...     	
+</code></pre>      
+
+<p>Exemplo:</p>
+<code><pre>3 
+Ibis 0 x Cascavel 3
+Cascavel 2 x Ibis 0
+Ibis 0 x Dourados 1
+Dourados 2 x Ibis 0
+Cascavel 3 x Dourados 2
+Dourados 3 x Cascavel 1    
+</pre></code>    
+
+<h2>Descrição da saída</h2>
+
+<p>A saída conterá os resultados obtidos pelos times, apresentados em ordem alfabética de acordo com o padrão abaixo:</p>
+
+<code></code><pre><code>&lt;nome_do_time&gt; &lt;pontuacao&gt; &lt;num_vitorias&gt; &lt;saldo_gols&gt; &lt;num_gols_pro&gt;
+</code></pre>    
+
+<p>A última linha conterá a string <code>Vencedor:</code> seguida do
+  nome do vencedor.</p>
+
+<code></code><pre><code>Vencedor: &lt;vencedor&gt;
+</code></pre>
+
+<p>Para o exemplo da seção anterior, a saída será:</p>
+
+<code><pre>Cascavel 9 3 4 9
+Dourados 9 3 4 8
+Ibis 0 0 -8 0
+Vencedor: Cascavel
+</pre></code>
+
+<h2>Testes para o SuSy</h2>
+
+<p>Esta tarefa contém 7 testes abertos e 3 testes fechados. Como mencionado acima, todos os testes levam a um único vencedor.</p>
+
+<h2>Dicas de Python 3 para esta tarefa:</h2>
+
+<ul>
+  <li> Para separar os dados da partida, você pode utilizar a função <code>split</code>. Faça, por exemplo, o seguinte teste:
+<pre><code>linha_entrada = input()
+dados_partida = linha_entrada.split()
+print("O time da casa", dados_partida[0], "marcou", dados_partida[1], "gols.")
+print("O time visitante", dados_partida[3], "marcou", dados_partida[4], "gols.")    
+</code></pre>
+    
+  </li><li>Para armazenar os dados dos times, você pode usar dicionários. Veja exemplos de algumas ações:
+    <ul>
+      <li> <p>Inicia dicionário vazio</p>
+<code></code><pre><code>dic_times = {}
+</code></pre>
+      </li><li> Verifica se um time está em um dicionário:
+<code></code><pre><code>if "Ibis" in dic_times:
+       print("Ibis faz parte dos times inscritos.")
+</code></pre>
+      </li><li>Atribui dados a um elemento do dicionário. Suponha que a
+      variável <code>dados_time</code> contém os dados que queremos
+	armazenar:
+<code></code><pre><code>dic_times["Araguaia"] = dados_time
+</code></pre>	
+	
+      </li><li>Percorre os elementos de um dicionário em ordem alfabética:
+	<code></code><pre><code>for t in sorted(dic_times):
+    print(t, ":", dic_times[t])	    
+</code></pre>
+    </li></ul>	
+</li></ul>
+
+<h2>Orientações para submissão</h2>
+
+<p> Veja <a href="https://susy.ic.unicamp.br:9999/mc102geral/06">aqui</a>
+  a página de submissão da tarefa. Lembre-se que o
+  arquivo a ser submetido deve se chamar <b><tt>lab06.py</tt></b>. No
+  link <a href="https://susy.ic.unicamp.br:9999/mc102geral/06/aux/aux.html">Arquivos  auxiliares</a> há um arquivo <code><a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/labs/aux-06.zip">aux-06.zip</a></code> que
+  contém todos os arquivos de testes abertos e seus respectivos
+  resultados compactados. Os arquivos <code>executa-testes.py</code>
+  e <code>executa-testes-windows.py</code> também estão
+  neste pacote.
+
+</p><p>Observe o limite máximo de 20 submissões.</p> 
+
+<p>A nota final é proporcional ao número de testes que
+  executaram corretamente, desde que o código esteja coerente
+  com o enunciado. <b>A submissão de um código que não
+  implementa o algoritmo requisitado, mas que exibe as
+  saídas esperadas dos testes abertos a partir da
+  comparação de trechos da entrada será
+  considerada fraude e acarretará a atribuição de
+  nota zero à média final da disciplina.</b></p>
+  
+<p>O peso desta tarefa é 3.</p>
+
+<p>O prazo final para submissão é 14/10/2018.</p>
+
+<hr>
+
+
+</body></html>

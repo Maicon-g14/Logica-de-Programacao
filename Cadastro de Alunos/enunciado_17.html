@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 17</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_17_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_17_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h3>
+<a id="user-content-instituto-de-computação---unicamp" class="anchor" href="#instituto-de-computa%C3%A7%C3%A3o---unicamp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Instituto de Computação - Unicamp</h3>
+<h3>
+<a id="user-content-mc102---algoritmos-e-programação-de-computadores" class="anchor" href="#mc102---algoritmos-e-programa%C3%A7%C3%A3o-de-computadores" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MC102 - Algoritmos e Programação de Computadores</h3>
+<h1>
+<a id="user-content-laboratório-id---title" class="anchor" href="#laborat%C3%B3rio-id---title" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Laboratório 17 - Cadastro de Alunos</h1><p>Prazo de entrega: <strong>10/06/2018 23:59:59</strong></p><p>Peso: <strong>2</strong></p>
+<p><em>Professor:</em> Eduardo C. Xavier</p>
+<p><em>Monitor:</em> Alexsandro Oliveira Alexandrino<br>
+<em>Monitor:</em> Ramon Nepomuceno</p>
+<hr>
+<p>Neste laboratório vamos criar um programa para gerenciar um 
+repositório de dados (base de dados) com registros acadêmicos de alunos.
+ Cada aluno possui os seguintes dados: &nbsp;RA, e-mail, nome, usuário e
+ senha. As operações que poderão ser realizadas sobre o repositório são 
+i) adição de um aluno, ii) alteração de um aluno, iii) impressão de um 
+aluno, e iv) remoção de um aluno.</p>
+<p>O repositório será implementado na classe <code>Repositorio</code> (arquivo lab17.py), que contém os métodos referentes as operações mencionadas anteriormente e um atributo <code>alunos</code>. O atributo <code>alunos</code> representa a lista de alunos cadastrados no repositório.</p>
+<p>Um registro com as informações de um aluno é uma instância da classe <code>Aluno</code> (arquivo aluno.py):</p>
+<div class="highlight highlight-source-python"><pre><span class="pl-k">class</span> <span class="pl-en">Aluno</span>:
+    <span class="pl-k">def</span> <span class="pl-c1">__init__</span>(<span class="pl-smi"><span class="pl-smi">self</span></span>, <span class="pl-smi">nome</span>, <span class="pl-smi">ra</span>, <span class="pl-smi">email</span>, <span class="pl-smi">usuario</span>, <span class="pl-smi">senha</span>):
+        <span class="pl-c1">self</span>.nome <span class="pl-k">=</span> nome
+        <span class="pl-c1">self</span>.ra <span class="pl-k">=</span> ra
+        <span class="pl-c1">self</span>.email <span class="pl-k">=</span> email
+        <span class="pl-c1">self</span>.usuario <span class="pl-k">=</span> usuario
+        <span class="pl-c1">self</span>.senha <span class="pl-k">=</span> senha</pre></div>
+<p>Esse laboratório possui 3 arquivos: lab17_main.py, aluno.py, lab17.py. O arquivo lab17.py possui 3 exceções: <code>EmailInvalido</code>, <code>SenhaFraca</code> e <code>RAInvalido</code>. Você deverá implementar apenas a classe <code>Repositorio</code> do arquivo lab17.py. Os métodos da classe <code>Repositorio</code> são:</p>
+<ul>
+<li>
+<p><em>limparRepositorio</em>: Este método exclui todos os alunos do repositório.</p>
+</li>
+<li>
+<p><em>adicionar</em>: Este método recebe o parâmetro <code>aluno</code> e o adiciona no repositório, caso não tenha nenhum problema. Existem 3 situações nas quais essa operação falha:</p>
+<ol>
+<li>Caso outro aluno com o mesmo RA já exista no repositório. Nesse 
+caso, o aluno não é inserido no banco de dados e o método deve lançar a 
+exceção <code>RAInvalido</code>.</li>
+<li>Caso a senha fornecida não seja <em>forte</em>. Para que uma senha 
+seja considerada forte ela tem que conter ao menos 1 letra maiúscula, ao
+ menos 2 letras minúsculas, ao menos 2 números, ao menos um caracter 
+especial (!@#$&amp;*) e ter um tamanho maior ou igual a 8. Se a senha 
+fornecida não for <em>forte</em>, o aluno não é inserido e o método deve lançar a exceção a frase <code>SenhaFraca</code>.</li>
+<li>Caso o email fornecido esteja em um formato inválido. O formato aceito para emails é <code>usuario@servidor.dominio</code>. O <code>usuario</code> pode conter letras, números e os seguintes caracteres: <code>_</code> <code>.</code> <code>+</code> <code>-</code>. O <code>servidor</code> só pode conter letras e números. O <code>dominio</code>
+ só pode conter letras e só deve conter de 2 a 4 caracteres. Se o email 
+fornecido não estiver no padrão aceito, o aluno não é inserido no banco 
+de dados e o método deve lançar a exceção <code>EmailInvalido</code>.</li>
+</ol>
+<p>Caso não haja problemas com os dados fornecidos, o novo aluno deve 
+ser adicionado e a seguinte mensagem é impressa pelo programa principal <code>Adicionado: RA - E-MAIL - NOME - USUARIO</code>, onde <code>RA</code>, <code>E-MAIL</code>, <code>NOME</code> e <code>USUARIO</code> são substituídos pelos dados do novo aluno.</p>
+</li>
+<li>
+<p><em>alterar</em>: Este método recebe o parâmetro <code>aluno</code> e altera no repositório, caso não tenha nenhum problema, os dados do aluno com RA igual a <code>aluno.ra</code>. Existem 3 situações nas quais essa operação falha:</p>
+<ol>
+<li>Caso nenhum aluno do repositório tenha RA igual a <code>aluno.ra</code>, a operação falha e o método deve lançar a exceção <code>RAInvalido</code>.</li>
+<li>Caso a senha fornecida não seja <em>forte</em>. Para que uma senha 
+seja considerada forte ela tem que conter ao menos 1 letra maiúscula, ao
+ menos 2 letras minúsculas, ao menos 2 números, ao menos um caracter 
+especial (!@#$&amp;*) e ter um tamanho maior ou igual a 8. Se a senha 
+fornecida não for <em>forte</em>, o aluno não é alterado e o método deve lançar a exceção <code>SenhaFraca</code>.</li>
+<li>Caso o email fornecido esteja em um formato inválido. O formato aceito para emails é <code>usuario@servidor.dominio</code>. O <code>usuario</code> pode conter letras, números e os seguintes caracteres: <code>_</code> <code>.</code> <code>+</code> <code>-</code>. O <code>servidor</code> só pode conter letras e números. O <code>dominio</code>
+ só pode conter letras e só deve conter de 2 a 4 caracteres. Se o email 
+fornecido não estiver no padrão aceito, o aluno não é alterado no banco 
+de dados e o método deve lançar a exceção <code>EmailInvalido</code>.</li>
+</ol>
+<p>Caso não haja problemas, o aluno deve ser alterado e a seguinte mensagem é impressa pelo programa principal <code>Alterado: RA - E-MAIL - NOME - USUARIO</code>, onde <code>RA</code>, <code>E-MAIL</code>, <code>NOME</code> e <code>USUARIO</code> são substituídos pelos dados do parâmetro <code>aluno</code>.</p>
+</li>
+<li>
+<p><em>achaAluno</em>: Este método recebe o parâmetro <code>ra</code> e deve retornar o <code>aluno</code> com <code>aluno.ra</code> igual ao parâmetro.  Se o aluno não estiver cadastrado, o método deve lançar a exceção <code>RAInvalido</code>. Caso não haja problemas, o programa principal imprime uma mensagem no formato <code>RA - E-MAIL - NOME - USUARIO</code>.</p>
+</li>
+<li>
+<p><em>remover</em>: Este método recebe o parâmetro <code>ra</code> e deve remover o aluno correspondente do repositório. Se o aluno não estiver cadastrado, o método deve lançar a exceção <code>RAInvalido</code>. Caso não haja problemas, o programa principal imprime a mensagem <code>Aluno RA removido com sucesso</code>, onde no lugar de <code>RA</code> é impresso o RA passado como parâmetro.</p>
+</li>
+</ul>
+<p>As exceções <code>EmailInvalido</code>, <code>SenhaFraca</code> e <code>RAInvalido</code> e a classe <code>Repositorio</code> tem a seguinte forma:</p>
+<div class="highlight highlight-source-python"><pre><span class="pl-k">class</span> <span class="pl-en">EmailInvalido</span>(<span class="pl-c1">Exception</span>):
+    <span class="pl-k">pass</span>
+
+<span class="pl-k">class</span> <span class="pl-en">SenhaFraca</span>(<span class="pl-c1">Exception</span>):
+    <span class="pl-k">pass</span>
+
+<span class="pl-k">class</span> <span class="pl-en">RAInvalido</span>(<span class="pl-c1">Exception</span>):
+    <span class="pl-k">pass</span>
+
+<span class="pl-k">class</span> <span class="pl-en">Repositorio</span>:
+    <span class="pl-k">def</span> <span class="pl-c1">__init__</span>(<span class="pl-smi"><span class="pl-smi">self</span></span>):
+        <span class="pl-c1">self</span>.alunos <span class="pl-k">=</span> []
+
+    <span class="pl-c"><span class="pl-c">#</span>Este método recebe o parâmetro aluno e o insere no repositório</span>
+    <span class="pl-k">def</span> <span class="pl-en">adicionar</span>(<span class="pl-smi"><span class="pl-smi">self</span></span>, <span class="pl-smi">aluno</span>):
+
+    <span class="pl-c"><span class="pl-c">#</span>Este método recebe o parâmetro aluno e altera, no repositório, os dados do aluno com RA igual a aluno.ra</span>
+    <span class="pl-k">def</span> <span class="pl-en">alterar</span>(<span class="pl-smi"><span class="pl-smi">self</span></span>, <span class="pl-smi">aluno</span>):
+
+    <span class="pl-c"><span class="pl-c">#</span>Este método recebe o parâmetro ra e deve retornar o aluno que possui o RA informado como parâmetro</span>
+    <span class="pl-k">def</span> <span class="pl-en">achaAluno</span>(<span class="pl-smi"><span class="pl-smi">self</span></span>, <span class="pl-smi">ra</span>):
+
+    <span class="pl-c"><span class="pl-c">#</span>Este método recebe o parâmetro ra e deve remover o aluno correspondente do repositório</span>
+    <span class="pl-k">def</span> <span class="pl-en">remover</span>(<span class="pl-smi"><span class="pl-smi">self</span></span>, <span class="pl-smi">ra</span>):
+
+    <span class="pl-c"><span class="pl-c">#</span>Este método exclui todos os alunos do repositório.</span>
+    <span class="pl-k">def</span> <span class="pl-en">limparRepositorio</span>(<span class="pl-smi"><span class="pl-smi">self</span></span>):</pre></div>
+<p>Para este laboratório, você deverá submeter apenas o arquivo 
+lab17.py. Links para os arquivos auxiliares estão disponíveis na página 
+do laboratório.</p>
+<h2>
+<a id="user-content-reforçando" class="anchor" href="#refor%C3%A7ando" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reforçando</h2>
+<p>Neste laboratório você não precisará se preocupar em ler a entrada a 
+partir da entrada padrão. Seu trabalho é apenas implementar os métodos 
+da classe <code>Repositorio</code>.</p>
+<p>As sessões abaixo, de Entrada e Saída, descrevem os formatos de 
+entrada e saída, mas você não precisa se preocupar com o formato da 
+Entrada.</p>
+<h2>
+<a id="user-content-entrada" class="anchor" href="#entrada" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Entrada</h2>
+<p>A primeira linha da entrada contém um inteiro <code>n</code> indicando o número
+máximo de alunos que a base conterá.</p>
+<p>As linhas seguintes consistem de operações a serem realizadas na base de alunos.
+As operações são:</p>
+<ul>
+<li>
+<code>&gt; RA</code> Chama o método <code>achaAluno</code> passando o RA informado;</li>
+<li>
+<code>+ RA E-MAIL USUARIO SENHA NOME</code> Adicionar um aluno com os dados fornecidos. Caso o email esteja em um formato errado, imprime uma mensagem de erro;</li>
+<li>
+<code>* RA E-MAIL USUARIO SENHA NOME</code> Alterar um aluno com os dados fornecidos. Caso o email fornecido esteja em um formato errado, imprime uma mensagem de erro;</li>
+<li>
+<code>- RA</code> Remover o aluno de RA informado do repositório;</li>
+<li>
+<code>q</code> Limpar a base e encerrar o programa.</li>
+</ul>
+<p>Onde:</p>
+<ul>
+<li>
+<code>RA</code> é o número do RA;</li>
+<li>
+<code>E-MAIL</code> é o e-mail do aluno;</li>
+<li>
+<code>NOME</code> é o nome do aluno;</li>
+<li>
+<code>USUARIO</code> é o usuário do aluno.</li>
+<li>
+<code>SENHA</code> é a senha do aluno;</li>
+</ul>
+<h2>
+<a id="user-content-saída" class="anchor" href="#sa%C3%ADda" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Saída</h2>
+<p>Cada linha da saída do programa contém o resultado da execução de 
+cada operação dada na entrada, de forma que a saída possui uma linha a 
+menos que a quantidade de linhas da entrada.</p>
+<h2>
+<a id="user-content-exemplos" class="anchor" href="#exemplos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Exemplos</h2>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/17/dados/arq01.in">Entrada</a></p>
+<pre><code>+ 192815 figueiredo_marina@ic.com figueiredo_marina Nte85#ODRK Marina Figueiredo
+&gt; 195716
++ 193453 araujo_marcio@ic.com araujo_marcio Gfm02@LGO Marcio Araujo
+&gt; 196564
+* 195716 ana_carolina@ic.com ana_carolina Gki85@JP Ana Carolina
++ 195180 melo_felipe@ic.com melo_felipe Ycf84#YCO Felipe Melo
+&gt; 194883
+&gt; 195716
++ 194883 andrade_barbara@ic.com andrade_barbara Kyw81@UYLO Barbara Andrade
+* 194749 daiane_santos@ic.com daiane_santos Jyz14#RF Daiane Santos
+q
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/17/dados/arq01.res">Saída</a></p>
+<pre><code>Adicionado: 192815 - figueiredo_marina@ic.com - Marina Figueiredo - figueiredo_marina
+Aluno 195716 não encontrado
+Adicionado: 193453 - araujo_marcio@ic.com - Marcio Araujo - araujo_marcio
+Aluno 196564 não encontrado
+Aluno 195716 não encontrado
+Adicionado: 195180 - melo_felipe@ic.com - Felipe Melo - melo_felipe
+Aluno 194883 não encontrado
+Aluno 195716 não encontrado
+Adicionado: 194883 - andrade_barbara@ic.com - Barbara Andrade - andrade_barbara
+Aluno 194749 não encontrado
+</code></pre>
+<h3>
+<a id="user-content-teste-02" class="anchor" href="#teste-02" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 02</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/17/dados/arq02.in">Entrada</a></p>
+<pre><code>+ 192593 santos_daiane@ic.com santos_daiane Sbe Daiane Santos
+* 195945 jose_da@ic.com jose_da Ipn93#SDHOVB Jose da Silva
++ 192593 santos_daiane@ic.com santos_daiane Htk38@VYQ Daiane Santos
+* 195945 jose_da@ic.com jose_da Nvj66@WJYZ Jose da Silva
+q
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/17/dados/arq02.res">Saída</a></p>
+<pre><code>Aluno não inserido, senha fraca fornecida
+Aluno 195945 não encontrado
+Adicionado: 192593 - santos_daiane@ic.com - Daiane Santos - santos_daiane
+Aluno 195945 não encontrado
+</code></pre>
+<h3>
+<a id="user-content-teste-16" class="anchor" href="#teste-16" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 16</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/17/dados/arq16.in">Entrada</a></p>
+<pre><code>+ 195631 ramos_cassio@ic.com ramos_cassio Pvw36@HLBR Cassio Ramos
+&gt; 193328
++ 193328 alves_daniel@ic.com alves_daniel Efg62#CSNDE Daniel Alves
+&gt; 193328
++ 197079 andrade_barbara@i.com andrade_barbara Yit27 Barbara Andrade
+* 196110 ana_carolina@ic.com ana_carolina Mix67#AFQOO Ana Carolina
+- 195631
+q
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/17/dados/arq16.res">Saída</a></p>
+<pre><code>Adicionado: 195631 - ramos_cassio@ic.com - Cassio Ramos - ramos_cassio
+Aluno 193328 não encontrado
+Adicionado: 193328 - alves_daniel@ic.com - Daniel Alves - alves_daniel
+193328 - alves_daniel@ic.com - Daniel Alves - alves_daniel
+Aluno não inserido, senha fraca fornecida
+Aluno 196110 não encontrado
+Aluno 195631 removido com sucesso
+</code></pre>
+<p>Para mais exemplos, consulte os <a href="https://susy.ic.unicamp.br:9999/mc102wy/17/dados/testes.html">testes abertos no Susy</a>.</p>
+<h2>
+<a id="user-content-observações" class="anchor" href="#observa%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Observações</h2>
+<ul>
+<li>O número máximo de submissões é <strong>10</strong>;</li><li>O seu programa deve estar completamente contido em um único arquivo denominado <code>lab17.py</code>;</li><li>Para a realização dos testes do SuSy, a compilação se dará da seguinte forma:<br>
+<code>python3 lab17_main.py</code>;</li>
+<li>Você deve incluir, no início do seu programa, uma breve descrição 
+dos objetivos do programa, da entrada e da saída, além do seu nome e do 
+seu RA;</li>
+</ul>
+
+    </article>
+
+
+</body></html>

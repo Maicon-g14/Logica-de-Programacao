@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html><div id="tenten-safe-area-provider" style="all: initial;"></div><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>MC102 - Lab07</title>
+
+    <link rel="stylesheet" type="text/css" href="MC102%20-%20Lab07_files/2s2018-mc102.css">
+</head>
+
+<body>
+
+<header>
+    MC102 - Algoritmos e Programação de Computadores
+</header>
+
+<div class="topnav">
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/index.html"><b>MC102</b></a>
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-1s2018"><b>Oferecimento anterior</b></a>
+</div>
+
+<h1><img src="MC102%20-%20Lab07_files/smiley-negative-neutral-positive.png" alt="Smiley faces" style="align:left" width="10%"> Tarefa de laboratório 07</h1>
+
+<p>O critério de aprovação em MC102 é composto por vários itens com 
+pesos diferentes. Nesta tarefa, vamos fazer um programa em Python para 
+podermos calcular a média e situação final de um(a) aluno(a) com 
+facilidade. <b>O critério deste semestre é um pouco diferente do critério utilizado no semestre passado!</b></p>
+
+<h2>Elementos componentes da avaliação</h2>
+
+<p><b>Atividades conceituais:</b> são os questionários
+  que podem ser respondidos via Moodle. A nota atribuída a cada
+  uma destas atividades é uma nota de participação, calculada
+  de maneira proporcional ao número de questões
+  respondidas pelo(a) aluno(a), independentemente do fato de estarem
+  corretas ou não.  A média das atividades
+  conceituais <code>M<sub>AC</sub></code> será dada pela
+  média aritmética simples das notas das atividades.</p>
+
+<p><b>Tarefas de laboratório:</b> são os programas
+desenvolvidos e entregues para correção automática no
+SuSy. Para compor a média dos laboratórios <code>M<sub>L</sub></code>, cada tarefa tem um peso indicado no enunciado do laboratório.</p>
+
+<p><b>Provas teóricas:</b> são as avaliações aplicadas em sala de aula, sem consulta. Para compor a média de provas <code>M<sub>P</sub></code> a primeira prova tem peso 2 e a segunda, peso 3.</p>
+ 
+<h2>Resultado final</h2>
+
+<p>Considerando <code>Freq</code> a porcentagem de frequência às aulas, o resultado final será computado seguindo as regras abaixo:</p>
+
+<ul>
+  <li> <p>Caso <code>Freq</code> ≥ 75%:</p>
+    <ul>
+      <li><p>Caso <code>M<sub>P</sub> ≥ 5</code> e
+	  <code>M<sub>L</sub> ≥ 5</code>:
+	  
+	</p><p>Será calculada uma média ponderada dos elementos
+	avaliativos:</p>
+
+	<p><code>M<sub>Elem</sub> = 0.6 * M<sub>P</sub> +
+	    0.3 * M<sub>L</sub> + 0.1 * M<sub>AC</sub></code></p>
+	
+	<p>O(A) aluno(a) estará <b>aprovado(a) por nota e
+	    frequência</b> com <code>M<sub>Final</sub> =
+	    max(5, M<sub>Elem</sub>)</code>.</p>
+
+      </li><li><p>Caso <code>M<sub>P</sub> &lt; 2.5</code> ou
+	  <code>M<sub>L</sub> &lt; 2.5</code>:
+
+	  </p><p>O(A) aluno(a) estará <b>reprovado(a) por nota</b>
+	    com <code>M<sub>Final</sub> =
+	      min(M<sub>P</sub>, M<sub>L</sub>)</code>.</p>
+      </li><li><p>Caso contrário:</p>
+
+	<p>O(A) aluno(a) deverá realizar o exame. Sua média final
+	  será <code>M<sub>Final</sub> =
+	    (min(M<sub>P</sub>, M<sub>L</sub>) + Exame)/2</code>.</p>
+
+	<ul>
+	  <li> <p>Caso <code>M<sub>Final</sub> ≥ 5.0</code> o(a) aluno(a)
+		estará <b>aprovado(a) por nota e frequência</b>.</p>
+	  </li><li> <p>Caso contrário, estará <b>reprovado(a) por nota</b>.</p>
+	</li></ul>	
+    </li></ul>
+  </li><li> <p>Caso <code>Freq</code> &lt; 75%:</p>
+<ul>
+  <li> <p>O(A) aluno(a) estará <b>reprovado(a) por frequência</b> com <code>M<sub>Final</sub> = min(M<sub>P</sub>, M<sub>L</sub>)</code>.</p>
+</li></ul>
+</li></ul>      
+
+<h2>Descrição da entrada</h2>
+
+<p>A primeira linha da entrada conterá <code>n</code> valores <code>nota_ac<sub>i</sub></code> indicando as notas das atividades conceituais.  A segunda linha conterá <code>m</code> tuplas <code>(nota_lab<sub>i</sub>, peso_lab<sub>i</sub>)</code>
+ indicando a nota da tarefa de laboratório e seu respectivo peso para a 
+média das tarefas de laboratório. A terceira linha conterá as notas das 
+duas provas. A quarta linha conterá um valor entre 0 e 100 indicando a 
+porcentagem da frequência às aulas. Caso o(a) aluno(a) precise fazer 
+exame, haverá uma última linha contendo a nota obtida.</p>
+
+<pre><code>&lt;nota_ac<sub>1</sub>&gt; ... &lt;nota_ac<sub>n</sub>&gt;
+(&lt;nota_lab<sub>00</sub>&gt;, &lt;peso_lab<sub>00</sub>&gt;) ... (&lt;nota_lab<sub>m-1</sub>&gt;, &lt;peso_lab<sub>m-1</sub>&gt;)
+&lt;nota_prova<sub>1</sub>&gt; &lt;nota_prova<sub>2</sub>&gt;
+&lt;freq&gt;
+&lt;nota_exame&gt;
+</code></pre>
+
+<h2>Descrição da saída</h2>
+
+<p>A primeira parte da saída conterá as médias das atividades 
+conceituais, tarefas de laboratório e provas obtidas pelo(a) aluno(a), 
+formatadas para apresentar apenas uma casa
+decimal (veja a seção <a href="#dicas">Dicas</a>):</p>
+
+<pre><code>Media das atividades conceituais: &lt;M<sub>AC</sub>&gt;
+Media das tarefas de laboratorio: &lt;M<sub>L</sub>&gt;
+Media das provas: &lt;M<sub>P</sub>&gt;</code></pre>
+
+<p>Caso o(a) aluno(a) tenha feito exame, a nota deve ser indicada:</p>
+
+<pre><code>Nota no exame: &lt;Exame&gt;</code></pre>
+
+<p>A situação final do(a) aluno(a) deve ser indicada por uma das
+  strings abaixo:</p>
+
+<pre><code>Aprovado(a) por nota e frequencia.
+Reprovado(a) por nota.
+Reprovado(a) por frequencia.
+</code></pre>
+
+<p>Por último, a média final deve ser indicada:
+
+</p><pre><code>Media final: &lt;M<sub>Final</sub>&gt;</code></pre>
+
+<h2>Testes para o SuSy</h2>
+
+<p>Para facilitar a visualização e a conferência o número de
+atividades conceituais e tarefas de laboratório é inferior ao que será
+proposto no semestre. Os oito testes abertos estão listados abaixo,
+acompanhados de alguns comentários sobre o desempenho do(a) aluno(a).</p>
+  
+<table id="tab_testes">
+  </table><table id="tab_testes">
+    <tbody><tr>
+      <th colspan="2">Entrada</th>
+      <th colspan="2">Saída</th>
+      <th>Observações</th>
+    </tr>    
+  <tr>
+    <th style="background-color:#aaa">arq1.in</th>
+    <td><pre><code>10 10 10 10 10 
+(10,1) (10,2) (10,3)
+10 10
+100
+</code></pre></td>
+    <td><pre><code>Media das atividades conceituais: 10.0
+Media das tarefas de laboratorio: 10.0
+Media das provas: 10.0
+Aprovado(a) por nota e frequência.
+Media final: 10.0</code></pre></td>
+    <th style="background-color:#aaa">arq1.res</th>    
+<td>• Excelente desempenho em todos os itens.<br>
+  • Média final igual à média ponderada dos elementos.<br>
+• Aprovado(a) sem exame.</td>
+  </tr>
+  <tr>
+    <th style="background-color:#ccc">arq2.in</th>
+    <td><pre><code>10 10 10 10 10 10 
+(10,1) (10,2) (8,3) (9,2)
+6.0 5.0
+100</code></pre></td>
+    <td><pre><code>Media das atividades conceituais: 10.0
+Media das tarefas de laboratorio: 9.0
+Media das provas: 5.4
+Aprovado(a) por nota e frequencia.
+Media final: 6.9</code></pre></td>
+    <th style="background-color:#ccc">arq2.res</th>    
+<td>• Ótimo desempenho em atividades conceituais<br>
+e tarefas de laboratório.<br>
+• Desempenho suficiente nas provas.<br>
+• Média final igual à média ponderada dos elementos.<br>
+• Aprovado(a) sem exame.</td>
+  </tr>
+<tr>
+  <th style="background-color:#aaa">arq3.in</th>
+  <td><pre><code>0 0 0 0 0 0
+(0,1) (7.5,2) (5,3)
+5.0 5.0
+100
+5.5</code></pre></td>
+  <td><pre><code>Media das atividades conceituais: 0.0
+Media das tarefas de laboratorio: 5.0
+Media das provas: 5.0
+Aprovado(a) por nota e frequencia.
+Media final: 5.0</code></pre></td>
+      <th style="background-color:#aaa">arq3.res</th>    
+<td>• Não realizou as atividades conceituais.<br>
+• Desempenho suficiente nas provas e tarefas<br>
+  de laboratório.<br>
+• Aprovado(a) sem exame.</td>  
+</tr>  
+<tr>
+  <th style="background-color:#ccc">arq4.in</th>
+  <td><pre><code>10 9 8 9.5 10
+(10,1) (7.5,2) (9,3) (9,2) (10,3)
+3.0 4.5
+100
+7.0</code></pre></td>
+  <td><pre><code>Media das atividades conceituais: 9.3
+Media das tarefas de laboratorio: 9.1
+Media das provas: 3.9
+Nota no exame: 7.0
+Aprovado(a) por nota e frequencia.
+Media final: 5.5
+</code></pre></td>
+      <th style="background-color:#ccc">arq4.res</th> 
+<td>• Ótimo desempenho em atividades conceituais<br>
+e tarefas de laboratório.<br>
+• Desempenho insuficiente nas provas.<br>
+• Aprovado(a) após exame.</td>   
+</tr>
+<tr>
+  <th style="background-color:#aaa">arq5.in</th>
+  <td><pre><code>10 9 8 7 6
+(0,1) (7.5,2) (5,3) (5,2) (0,3)
+5.5 7
+100
+7.0</code></pre></td>
+  <td><pre><code>Media das atividades conceituais: 8.0
+Media das tarefas de laboratorio: 3.6
+Media das provas: 6.4
+Nota no exame: 7.0
+Aprovado(a) por nota e frequencia.
+Media final: 5.3</code></pre></td>
+      <th style="background-color:#aaa">arq5.res</th> 
+<td>• Bom desempenho nas atividades conceituais<br>
+e nas provas.<br>
+• Desempenho insuficiente nas tarefas de<br>laboratório.<br>
+• Aprovado(a) após exame.</td>     
+</tr>
+
+<tr>
+  <th style="background-color:#ccc">arq6.in</th>
+  <td><pre><code>0 0 0 0 0 0 0 
+(0,1) (5.0,2) (4.0,3) (7.0,2) (0,3)
+4.0 4.5
+100
+4.0 </code></pre></td>
+  <td><pre><code>Media das atividades conceituais: 0.0
+Media das tarefas de laboratorio: 3.3
+Media das provas: 4.3
+Nota no exame: 4.0
+Reprovado(a) por nota.
+Media final: 3.6</code></pre></td>
+      <th style="background-color:#ccc">arq6.res</th>
+<td>• Não realizou as atividades conceituais.<br>
+• Desempenho insuficiente nas provas e<br>
+tarefas de laboratório.<br>
+• Reprovado(a) após o exame.</td>
+</tr>
+<tr>
+  <th style="background-color:#aaa">arq7.in</th>
+  <td><pre><code>5 3 5 6 4 2.5 0 
+(0,1) (0,2) (6.0,3) (0,2) (4.0,3)
+2.0 1.5 
+100</code></pre></td>
+  <td><pre><code>Media das atividades conceituais: 3.6
+Media das tarefas de laboratorio: 2.7
+Media das provas: 1.7
+Reprovado(a) por nota.
+Media final: 1.7</code></pre></td>
+  <th style="background-color:#aaa">arq7.res</th>
+<td>• Desempenho insuficiente em todos os itens.<br>
+• Reprovado(a) sem direito a exame.</td>
+</tr>
+<tr>
+  <th style="background-color:#ccc">arq8.in</th>
+  <td><pre><code>10 8 5 0 0 0 0 
+(10,1) (5.0,2) (5.0,3) (0,2) (0,3)
+4.0 0 
+50</code></pre></td>
+  <td><pre><code>Media das atividades conceituais: 3.3
+Media das tarefas de laboratorio: 3.2
+Media das provas: 1.6
+Reprovado(a) por frequencia.
+Media final: 1.6</code></pre></td>
+  <th style="background-color:#ccc">arq8.res</th>
+<td>• Desempenho insuficiente em todos os itens.<br>
+• Não atingiu frequência mínima.<br>
+• Reprovado(a) sem direito a exame.</td>    
+</tr>
+</tbody></table>
+
+<p>Esta tarefa inclui mais dois testes fechados.</p>
+  
+<h2 id="dicas">Dicas de Python 3 para esta tarefa:</h2>
+
+<p>• Para ler a linha com as notas das atividades conceituais e montar
+  uma lista com elementos do tipo <code>float</code> você pode
+  utilizar: </p>
+
+<pre><code>notas_ac = [float(x) for x in input().split()]
+</code></pre>
+
+<p>• Para imprimir a primeira nota formatada com uma casa decimal você pode usar:</p>
+
+<pre><code>print("Nota da primeira atividade conceitual:", format(notas_ac[0], ".1f"))</code></pre>
+  
+<p>• Para ler a linha com as notas das tarefas de laboratório podemos
+  utilizar uma abordagem semelhante, mas definindo uma função especial
+  que retornará uma tupla com dois elementos, sendo o primeiro
+  um <code>float</code> e o segundo um <code>int</code>.</p>
+
+<pre><code>def tupla_float_int(x) :
+    x = x[1:-1]       # remove parênteses
+    x = x.split(",")  # separa em duas strings
+    f = float(x[0])   # converte primeiro elemento para float
+    i = int(x[1])     # converte segundo elemento para int
+    return (f,i)      # retorna tupla
+
+notas_lab = [tupla_float_int(x) for x in input().split()]
+</code></pre>
+
+<p>• Para imprimir a nota do primeiro lab formatada com uma casa
+decimal e o peso você pode usar:</p>
+
+<pre><code>print("Nota do Lab00:", format(notas_lab[0][0], ".1f"))
+print("Peso do Lab00:", notas_lab[0][1])</code></pre>
+
+<h2>Orientações para submissão</h2>
+
+<p> Veja <a href="https://susy.ic.unicamp.br:9999/mc102geral/07">aqui</a>
+  a página de submissão da tarefa. Lembre-se que o
+  arquivo a ser submetido deve se chamar <b><tt>lab07.py</tt></b>. No
+  link <a href="https://susy.ic.unicamp.br:9999/mc102geral/07/aux/aux.html">Arquivos  auxiliares</a> há um arquivo <code><a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/labs/aux-07.zip">aux-07.zip</a></code> que
+  contém todos os arquivos de testes abertos e seus respectivos
+  resultados compactados. Os arquivos <code>executa-testes.py</code>
+  e <code>executa-testes-windows.py</code> também estão
+  neste pacote.
+
+</p><p>Observe o limite máximo de 20 submissões.</p> 
+
+<p>A nota final é proporcional ao número de testes que executaram 
+corretamente, desde que o código esteja coerente com o enunciado. <b>A 
+submissão de um código que não implementa o algoritmo requisitado, mas 
+que exibe as saídas esperadas dos testes abertos a partir da
+comparação de trechos da entrada será considerada fraude e acarretará a 
+atribuição de nota zero à média final da disciplina.</b></p>
+  
+<p>O peso desta tarefa é 3.</p>
+
+<p>O prazo final para submissão é 21/10/2018.</p>
+
+<hr>
+
+
+</body></html>

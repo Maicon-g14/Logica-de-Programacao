@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html><div id="tenten-safe-area-provider" style="all: initial;"></div><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>MC102 - Lab08</title>
+
+    <link rel="stylesheet" type="text/css" href="MC102%20-%20Lab08_files/2s2018-mc102.css">
+
+    <style>
+      table#tab_saida td {
+	  vertical-align:top;
+      }
+    </style>
+</head>
+  
+<body>
+
+<header>
+    MC102 - Algoritmos e Programação de Computadores
+</header>
+
+<div class="topnav">
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/index.html"><b>MC102</b></a>
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-1s2018"><b>Oferecimento anterior</b></a>
+</div>
+
+<h1><code style="font-size:80%"><pre>+++++
+|   |
+|   O
+|  /|\
+|  / \
++_______ T a _ e _ a &nbsp; d e  &nbsp; l a _ o _ a t o _ i o  0 8</pre></code></h1>
+
+
+<p>No jogo da forca, o desafio é descobrir uma palavra oculta, tendo
+como dica o número de letras e podendo palpitar uma letra a cada
+vez. Para aumentar a emoção, a cada letra que não pertence à palavra,
+um membro de um boneco palito em uma forca é desenhado.  O jogo
+termina se a palavra foi descoberta ou se o número máximo de tentativas
+foi atingido e o boneco está completo.</p>
+
+<p>Para implementarmos o jogo, utilizaremos como base uma lista de
+  cinquenta palavras que está armazenada no arquivo
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/labs/forca.py"><code>forca.py</code></a>.</p>
+
+<code><pre>lista_palavras = ["perfeitamente", "liberdade", "enfermidade",
+                  "significado", "outono", "chuva", "ilha",
+                  "infinito", "solidariedade", "ameixa",
+                  "felicidade", "arte", "paternidade",
+                  "criatividade", "virtude", "guerra",
+                  "democracia", "teatro", "saudade", "adeus",
+                  "paz", "honestidade", "horizonte", "sabedoria",
+                  "sossego", "maternidade", "esperteza",
+                  "primavera", "coragem", "igualdade",
+                  "navio", "montanha", "queijo",
+                  "gentileza", "tempestade", "joalheria",
+                  "paralelogramo", "melancolia", "trem",
+                  "inverno", "amizade", "atriz",
+                  "computador", "borboleta", "aeroporto",
+                  "nascimento", "uva", "oceano", "orquestra",
+                  "melancia"]
+</pre></code>
+
+<p>Neste mesmo arquivo, há um vetor <code>cenas_forca</code> com as cenas para cada situação do jogo em termos de palpites incorretos.</p>
+
+<table>
+  <tbody><tr><td><code><pre>+++++
+|   |
+|
+|
+|
++_______</pre></code></td>
+  <td><code><pre>+++++
+|   |
+|   O
+|
+|
++_______</pre></code></td>
+  <td><code><pre>+++++
+|   |
+|   O
+|   |
+|
++_______</pre></code></td>
+  <td><code><pre>+++++
+|   |
+|   O
+|  /|
+|
++_______</pre></code></td>
+  <td><code><pre>+++++
+|   |
+|   O
+|  /|\
+|
++_______</pre></code></td>
+  <td><code><pre>+++++
+|   |
+|   O
+|  /|\
+|  /
++_______</pre></code></td>
+  <td><code><pre>+++++
+|   |
+|   O
+|  /|\
+|  / \
++_______</pre></code></td>
+  </tr>
+</tbody></table>  
+    
+ 
+<h2>Descrição da entrada e da saída</h2>
+
+<p>Nesta tarefa, adotaremos um modelo mais amigável para interação com
+  o usuário e, por isso, a entrada e saída serão descritas na mesma
+  seção.</p>
+
+<p>Inicialmente, o seu programa deverá escrever a
+  mensagem <code>"Escolha um numero entre 0 e 49: "</code>. Caso o
+  número digitado não esteja dentro do intervalo, emitiremos a
+  mensagem <code>"Numero invalido."</code> e o programa será
+  encerrado.</p>
+
+<p>Um número válido servirá para selecionarmos a palavra-desafio na
+lista. Por exemplo, se o usuário digitar 20, a palavra
+será <code>paz</code> e deveremos apresentar o seguinte cenário: </p>
+
+<code><pre>+++++
+|   |
+|
+|
+|
++_______
+Palavra: _  _  _
+Proxima letra:</pre></code>
+
+<p>Se o usuário digitar uma letra correta como, por
+exemplo, <code>a</code>, o próximo cenário será:</p>
+
+<code><pre>+++++
+|   |
+|
+|
+|
++_______
+Palavra: _  a  _
+Proxima letra:</pre></code>
+
+<p>Quando o usuário digitar uma letra incorreta como, por
+exemplo, <code>m</code>, o próximo cenário conterá uma linha extra com
+o registro das letras incorretas. Observe:</p>
+
+<code><pre>+++++
+|   |
+|   O
+|
+|
++_______
+Palavra: _  a  _
+Tentativa(s) incorreta(s): m
+Proxima letra:</pre></code>
+
+<p>Se o usuário repetir uma tentativa, emitiremos a
+mensagem <code>"Voce jah escolheu esta letra."</code> e
+reapresentaremos o cenário, sem descontar esta tentativa do número
+máximo permitido.</p>
+  
+<p>O jogo prosseguirá neste esquema. Se o usuário não conseguir
+  completar a palavra, o cenário conterá todas as tentativas
+  incorretas, o boneco completo e a palavra que estava oculta.</p>
+
+<code><pre>+++++
+|   |
+|   O
+|  /|\
+|  / \
++_______
+Palavra: p  a  _
+Tentativa(s) incorreta(s): m s t u i o
+Palavra oculta: paz </pre></code>
+
+<p>Se o usuário conseguir completar, o cenário final conterá o boneco
+no estágio referente às tentativas incorretas, a palavra completa, as
+letras das tentativas incorretas e a mensagem <code>"Palavra
+    encontrada!"</code>.</p>
+
+<code><pre>+++++
+|   |
+|   O
+|  /|
+|
++_______
+Palavra: p  a  z
+Tentativa(s) incorreta(s): m t l
+Palavra encontrada!</pre></code>
+
+<h2 id="dicas">Dicas de Python 3 para esta tarefa:</h2>
+
+<ul>
+  <li> Para utilizar as listas que estão definidas no
+  arquivo <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/labs/forca.py"><code>forca.py</code></a> escreva no início do
+  arquivo <code>lab08.py</code>:
+
+<code><pre>from forca import lista_palavras, cenas_forca
+</pre></code>      
+
+  </li><li>Após o <code>import</code>, para imprimir o desenho referente
+  a <code>n_tentativas_incorretas</code> escreva simplesmente:
+
+<code><pre>print(cenas_forca[n_tentativas_incorretas])
+</pre></code>    
+
+  </li><li><p>A palavra que está sendo construída pode ficar armazenada em uma lista de caracteres. Para iniciar uma lista de tamanho <code>n</code> com caracteres <code>"_"</code> escreva:
+
+<code></code></p><pre><code>palavra = ["_" for i in range(n)]
+</code></pre>
+
+</li><li>Para fazer uma leitura emitindo uma mensagem, observe os exemplos abaixo:
+  <code><pre>letra = input("Proxima letra: ")
+</pre></code>
+</li></ul>  
+
+<h2>Testes para o SuSy</h2>
+
+<p>Esta tarefa de laboratório foi projetado para interação com um 
+usuário humano. No entanto, podemos fazer os testes automáticos como nos
+ laboratórios anteriores. Devemos apenas observar que a saída dos testes
+ abertos conterá as perguntas feitas ao usuário, mas não conterá
+as respostas nem o efeito do <code>enter</code> digitado pelo
+  usuário. Compare as saídas dos arquivos <code>arq1.in</code> e 
+<code>arq4.in</code> no SuSy e com os efeitos das mesmas entradas na
+linha de comando.</p>
+
+<table id="tab_saida">
+  <tbody><tr> <th colspan="2">SuSy</th> <th rowspan="2">linha de comando </th></tr>
+  <tr> <th>arq1.in</th> <th>arq1.res</th></tr>
+  <tr><td><code>60</code></td>
+    <td><code>Escolha um numero entre 0 e 49: Numero invalido.</code></td>
+    <td><code><pre style="margin:0px;">$ python3 lab08.py
+Escolha um numero entre 0 e 49: 60
+Numero invalido.</pre></code></td></tr>
+  <tr> <th colspan="2">SuSy</th> <th rowspan="2">linha de comando </th></tr>
+<tr> <th>arq4.in</th> <th>arq4.res</th></tr>
+<tr><td><code><pre style="margin:0px;">20
+p
+a
+a
+i
+i
+z</pre></code></td>
+<td><code><pre style="margin:0px;">Escolha um numero entre 0 e 49: 
++++++
+|   |
+|
+|
+|
++_______
+Palavra: _  _  _
+Proxima letra: 
++++++
+|   |
+|
+|
+|
++_______
+Palavra: p  _  _
+Proxima letra: 
++++++
+|   |
+|
+|
+|
++_______
+Palavra: p  a  _
+Proxima letra: Voce jah escolheu esta letra.
+
++++++
+|   |
+|
+|
+|
++_______
+Palavra: p  a  _
+Proxima letra: 
++++++
+|   |
+|   O
+|
+|
++_______
+Palavra: p  a  _
+Tentativa(s) incorreta(s): i
+Proxima letra: Voce jah escolheu esta letra.
+
++++++
+|   |
+|   O
+|
+|
++_______
+Palavra: p  a  _
+Tentativa(s) incorreta(s): i
+Proxima letra: 
++++++
+|   |
+|   O
+|
+|
++_______
+Palavra: p  a  z
+Tentativa(s) incorreta(s): i
+Palavra encontrada!</pre></code></td>
+<td><code><pre style="margin:0px;">$ python3 lab08.py
+Escolha um numero entre 0 e 49: 20
+
++++++
+|   |
+|
+|
+|
++_______
+Palavra: _  _  _
+Proxima letra: p
+
++++++
+|   |
+|
+|
+|
++_______
+Palavra: p  _  _
+Proxima letra: a
+
++++++
+|   |
+|
+|
+|
++_______
+Palavra: p  a  _
+Proxima letra: a
+Voce jah escolheu esta letra.
+
++++++
+|   |
+|
+|
+|
++_______
+Palavra: p  a  _
+Proxima letra: i
+
++++++
+|   |
+|   O
+|
+|
++_______
+Palavra: p  a  _
+Tentativa(s) incorreta(s): i
+Proxima letra: i
+Voce jah escolheu esta letra.
+
++++++
+|   |
+|   O
+|
+|
++_______
+Palavra: p  a  _
+Tentativa(s) incorreta(s): i
+Proxima letra: z
+
++++++
+|   |
+|   O
+|
+|
++_______
+Palavra: p  a  z
+Tentativa(s) incorreta(s): i
+Palavra encontrada!</pre></code></td>
+</tr></tbody></table>  
+
+<p>Esta tarefa contém sete testes abertos e três testes fechados,
+incluindo casos em que a palavra é encontrada ou não.</p>
+  
+<h2>Orientações para submissão</h2>
+
+<p> Veja <a href="https://susy.ic.unicamp.br:9999/mc102geral/08">aqui</a>
+  a página de submissão da tarefa. Lembre-se que o
+  arquivo a ser submetido deve se chamar <b><tt>lab08.py</tt></b>. Não
+  é necessário submeter o arquivo <code>forca.py</code>.</p> 
+
+<p>No link <a href="https://susy.ic.unicamp.br:9999/mc102geral/08/aux/aux.html">Arquivos
+  auxiliares</a> há um
+  arquivo <code><a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/labs/aux-08.zip">aux-08.zip</a></code> que
+  contém todos os arquivos de testes abertos e seus respectivos
+  resultados compactados. Os arquivos <code>executa-testes.py</code>
+  e <code>executa-testes-windows.py</code> também estão
+  neste pacote. O arquivo <code>forca.py</code> pode ser obtido <a href="https://susy.ic.unicamp.br:9999/mc102geral/08/aux/forca.html">aqui</a> ou <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/labs/forca.py">aqui</a>.</p>
+
+<p>Observe o limite máximo de 40 submissões.</p> 
+
+<p>A nota final é proporcional ao número de testes que executaram 
+corretamente, desde que o código esteja coerente com o enunciado. <b>A 
+submissão de um código que não implementa o algoritmo requisitado, mas 
+que exibe as saídas esperadas dos testes abertos a partir da
+comparação de trechos da entrada será considerada fraude e acarretará a 
+atribuição de nota zero à média final da disciplina.</b></p>
+  
+<p>O peso desta tarefa é 3.</p>
+
+<p>O prazo final para submissão é 11/11/2018.</p>
+
+<hr>
+
+
+</body></html>

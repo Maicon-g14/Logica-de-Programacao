@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html><div id="tenten-safe-area-provider" style="all: initial;"></div><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>MC102 - Lab09</title>
+
+    <link rel="stylesheet" type="text/css" href="MC102%20-%20Lab09_files/2s2018-mc102.css">
+
+    <style>
+      table#tab_saida td {
+	  vertical-align:top;
+      }
+    </style>
+</head>
+  
+<body>
+
+<header>
+    MC102 - Algoritmos e Programação de Computadores
+</header>
+
+<div class="topnav">
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/index.html"><b>MC102</b></a>
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-1s2018"><b>Oferecimento anterior</b></a>
+</div>
+
+<h1><code style="font-size:80%">BINGO!</code> Tarefa de laboratório 09</h1>
+
+<p>Em um jogo de Bingo, os participantes recebem cartelas com 24
+  números distintos dispostos em uma matriz com 5 linhas e 5 colunas,
+  sendo que o elemento central não recebe número. Os números da
+  primeira coluna devem estar no intervalo de 1 a 15, da segunda, de
+  16 a 30, da terceira, de 31 a 45, da quarta, de 46 a 60 e da quinta,
+  de 61 a 75. Além disto, a palavra BINGO costuma estar escrita no
+  topo das cartelas de maneira a facilitar a identificação das
+  colunas. Observe:</p>
+
+<pre><code>+----------------+
+| B  I  N  G  O  |
++================+
+| 12 24 43 49 72 |
+| 07 23 31 57 62 |
+| 04 20 XX 51 73 |
+| 08 21 38 50 61 |
+| 05 27 40 54 63 |
++----------------+</code></pre>    
+
+<p>Durante o jogo, números são sorteados e anunciados juntamente com o
+identificador das colunas, como, por exemplo, B-02, I-17 ou G-54. Ao
+verificar que um número sorteado está em sua cartela, o jogador deve
+marcá-lo. Ganha prêmios quem completar com números sorteados uma
+linha, uma coluna ou uma das diagonais.</p>
+
+<pre><code>+----------------+ +----------------+ +----------------+ +----------------+
+| B  I  N  G  O  | | B  I  N  G  O  | | B  I  N  G  O  | | B  I  N  G  O  |
++================+ +================+ +================+ +================+
+| 12 24 43 49 72 | | 12 24 XX 49 72 | | XX 24 43 49 72 | | 12 24 43 49 XX |
+| 07 23 31 57 62 | | 07 23 XX 57 62 | | 07 XX 31 57 62 | | 07 23 31 XX 62 |
+| 04 20 XX 51 73 | | 04 20 XX 51 73 | | 04 20 XX 51 73 | | 04 20 XX 51 73 |
+| XX XX XX XX XX | | 08 21 XX 50 61 | | 08 21 38 XX 61 | | 08 XX 38 50 61 |
+| 05 27 40 54 63 | | 05 27 XX 54 63 | | 05 27 40 54 XX | | XX 27 40 54 63 |
++----------------+ +----------------+ +----------------+ +----------------+</code></pre>    
+
+
+<p> Sua tarefa será implementar um programa em Python para simular a
+  participação de um jogador com uma única cartela em uma partida de
+  Bingo.</p>
+
+<h2>Descrição da entrada</h2>
+
+<p>As primeiras cinco linhas da entrada correspondem aos números da
+  cartela. Para facilitar a leitura, o elemento central será marcado
+  com XX.</p>
+
+<code></code><pre><code>12 24 43 49 72
+07 23 31 57 62
+04 20 XX 51 73
+08 21 38 50 61
+05 27 40 54 63</code></pre>
+
+<p>A próxima linha conterá a quantidade de números sorteados que deverão
+ ser processados. Em seguida, os números virão um por linha no padrão <code>&lt;letra&gt;-&lt;numero&gt;</code>.</p>
+
+<code></code><pre><code>6
+N-38
+N-40
+B-06
+N-43
+N-31
+O-72</code></pre>
+
+<h2>Descrição da saída</h2>
+
+<p>Inicialmente, você deverá escrever a cartela com a moldura, o
+espaçamento e a palavra BINGO representada com nos exemplos da
+primeira seção. Em seguida, deverá processar os números
+sorteados. Todo número lido deve ser escrito na saída e, caso tenha
+sido encontrado na cartela, a cartela deve ser reescrita com XX no
+lugar do elemento sorteado. Caso uma linha, coluna ou diagonal tenha
+sido completada, a palavra BINGO é emitida e processamento termina,
+mesmo que existam mais números na entrada.</p>
+
+<pre><code>+----------------+
+| B  I  N  G  O  |
++================+
+| 12 24 43 49 72 |
+| 07 23 31 57 62 |
+| 04 20 XX 51 73 |
+| 08 21 38 50 61 |
+| 05 27 40 54 63 |
++----------------+
+N-38
++----------------+
+| B  I  N  G  O  |
++================+
+| 12 24 43 49 72 |
+| 07 23 31 57 62 |
+| 04 20 XX 51 73 |
+| 08 21 XX 50 61 |
+| 05 27 40 54 63 |
++----------------+
+N-40
++----------------+
+| B  I  N  G  O  |
++================+
+| 12 24 43 49 72 |
+| 07 23 31 57 62 |
+| 04 20 XX 51 73 |
+| 08 21 XX 50 61 |
+| 05 27 XX 54 63 |
++----------------+
+B-06
+N-43
++----------------+
+| B  I  N  G  O  |
++================+
+| 12 24 XX 49 72 |
+| 07 23 31 57 62 |
+| 04 20 XX 51 73 |
+| 08 21 XX 50 61 |
+| 05 27 XX 54 63 |
++----------------+
+N-31
++----------------+
+| B  I  N  G  O  |
++================+
+| 12 24 XX 49 72 |
+| 07 23 XX 57 62 |
+| 04 20 XX 51 73 |
+| 08 21 XX 50 61 |
+| 05 27 XX 54 63 |
++----------------+
+BINGO!
+</code></pre>
+
+<h2>Testes para o SuSy</h2>
+
+<p>Esta tarefa contém 8 testes abertos e 2 testes fechados. Não será necessário fazer a validação dos dados da entrada.</p>
+  
+<h2>Orientações para submissão</h2>
+
+<p> Veja <a href="https://susy.ic.unicamp.br:9999/mc102geral/09">aqui</a>
+  a página de submissão da tarefa. Lembre-se que o
+  arquivo a ser submetido deve se chamar <b><tt>lab09.py</tt></b>. </p> 
+
+<p>No link <a href="https://susy.ic.unicamp.br:9999/mc102geral/09/aux/aux.html">Arquivos
+  auxiliares</a> há um
+  arquivo <code><a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/labs/aux-09.zip">aux-09.zip</a></code> que
+  contém todos os arquivos de testes abertos e seus respectivos
+  resultados compactados. Os arquivos <code>executa-testes.py</code>
+  e <code>executa-testes-windows.py</code> também estão
+  neste pacote.</p>
+
+<p>Observe o limite máximo de 20 submissões.</p> 
+
+<p>A nota final é proporcional ao número de testes que
+executaram corretamente, desde que o código esteja coerente com
+o enunciado. <b>A submissão de um código que não
+implementa o algoritmo requisitado, mas que exibe as saídas
+esperadas dos testes abertos a partir da comparação de
+trechos da entrada será considerada fraude e acarretará
+a atribuição de nota zero à média final da
+disciplina.</b></p>
+  
+<p>O peso desta tarefa é 3.</p>
+
+<p>O prazo final para submissão é 20/11/2018.</p>
+
+<hr>
+
+
+</body></html>

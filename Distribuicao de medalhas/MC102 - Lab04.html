@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html><div id="tenten-safe-area-provider" style="all: initial;"></div><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>MC102 - Lab04</title>
+
+    <link rel="stylesheet" type="text/css" href="MC102%20-%20Lab04_files/2s2018-mc102.css">
+    <style>
+    table#tab_desenho td {
+       vertical-align: top;
+       text-align: left;
+    }
+    table#tab_desenho pre {
+       margin:2px;
+    }
+    </style>    
+</head>
+
+<body>
+
+<header>
+    MC102 - Algoritmos e Programação de Computadores
+</header>
+
+<div class="topnav">
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/index.html"><b>MC102</b></a>
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-1s2018"><b>Oferecimento anterior</b></a>
+</div>
+
+<h1>Tarefa de laboratório 04</h1>
+
+<p><img src="MC102%20-%20Lab04_files/medals.png" alt="Medalhas" class="left" padding="5px">Uma famosa olimpíada do conhecimento
+decidiu distribuir medalhas de ouro, prata e bronze aos seus
+participantes de acordo com faixas de notas. Esta medida não agradou a
+todos, pois é provável que a divisão de medalhas por tipo não seja
+uniforme. Além disso, corre-se o risco de não haver distribuição de um
+dado tipo de medalha...</p>
+
+
+<p>Sua tarefa será escrever um programa em Python para ler as notas de
+corte, as notas dos participantes e calcular o número de medalhas a
+serem entregues. Você também deverá apresentar a maior nota
+obtida. <b>O uso de listas é opcional para a implementação da solução desta
+tarefa!</b></p>
+
+<h2>Descrição da entrada</h2>
+
+<p>Todas as notas serão consideradas no intervalo de 0 a 10, com uma
+  casa decimal de precisão.</p>
+  
+<p>A primeira linha da entrada conterá a nota de corte para obtenção
+da medalha de ouro. Por exemplo, se a primeira linha contiver 9.0,
+todos os participantes que tiverem obtido nota no intervalo de 9.0
+(inclusive) a 10 receberão medalha de ouro.</p>
+
+<p>A segunda linha conterá a nota de corte para obtenção da medalha de
+  prata. Continuando o exemplo anterior, se a primeira linha contiver
+  9.0 e a segunda 8.0, todos os participantes que tiverem obtido nota
+  8.0 (inclusive) a 8.9 (inclusive) receberão medalha de prata.</p>
+
+<p>De maneira semelhante, a terceira linha conterá a nota de corte
+para a medalha de bronze.</p>
+
+<p>As outras linhas conterão as notas obtidas pelos participantes da
+olimpíada. O valor -1 sinalizará o final da entrada. Exemplo:</p>
+
+<code><pre>9.0
+8.0
+7.0
+8.5
+9.5
+9.0
+6.9
+-1
+</pre></code>
+
+<h2>Descrição da saída</h2>
+
+<p>As três primeiras linhas da saída indicarão o número de medalhas
+por tipo ou uma indicação que nenhum participante ganhou medalhas
+daquele tipo. As strings deverão ter o seguinte formato:</p>
+
+<pre style="margin:2px"><code>Medalha(s) de &lt;tipo_medalha&gt;: XX</code> ou
+<code>Nenhum participante recebeu medalha de &lt;tipo_medalha&gt;!</code>
+</pre>
+
+<p>A quarta linha indicará a maior nota lida, com uma string no
+formato:</p>
+
+<pre style="margin:2px"><code>Maior nota: &lt;maior_nota&gt;</code></pre>
+
+<p>A saída para a entrada fornecida na seção anterior
+será:</p>
+
+<code><pre>Medalha(s) de ouro: 2
+Medalha(s) de prata: 1
+Nenhum participante recebeu medalha de bronze!
+Maior nota: 9.5    
+</pre></code>    
+
+<h2>Testes para o SuSy</h2>
+
+<p>Esta tarefa contém 7 testes abertos e 3 testes
+fechados. Para todos os testes as notas estão no formato
+esperado e todas as entradas terminam com -1.</p>
+  
+<h2>Dicas de Python 3 para esta tarefa:</h2>
+
+<ul>
+  <li> <p>Para ler um <code>float</code> utilize o comando:</p>
+    
+<code><pre>nota = float(input())</pre></code>
+
+  </li><li> <p>Para escrever um <code>float</code> com uma única casa decimal utilize o comando:</p>
+    
+    <code><pre>"{:.1f}".format(nota)</pre></code>
+
+</li></ul>    
+<h2>Orientações para submissão</h2>
+
+<p> Veja <a href="https://susy.ic.unicamp.br:9999/mc102geral/04">aqui</a>
+  a página de submissão da tarefa. Lembre-se que o
+  arquivo a ser submetido deve se chamar <b><tt>lab04.py</tt></b>. No
+  link <a href="https://susy.ic.unicamp.br:9999/mc102geral/04/aux/aux.html">Arquivos
+  auxiliares</a> há um arquivo <code><a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/labs/aux-04.zip">aux-04.zip</a></code> que
+  contém todos os arquivos de testes abertos e seus respectivos
+  resultados compactados. Os arquivos <code>executa-testes.py</code>
+  e <code>executa-testes-windows.py</code> também estão
+  neste pacote.
+
+
+
+</p><p>Observe o limite máximo de 20 submissões.</p> 
+
+<p>A nota final é proporcional ao número de testes que
+  executaram corretamente, desde que o código esteja coerente
+  com o enunciado. <b>A submissão de um código que não
+  implementa o algoritmo requisitado, mas que exibe as
+  saídas esperadas dos testes abertos a partir da
+  comparação de trechos da entrada será
+  considerada fraude e acarretará a atribuição de
+  nota zero à média final da disciplina.</b></p>
+  
+<p>O peso desta tarefa é 2.</p>
+
+<p>O prazo final para submissão é
+23/09/2018. Recomenda-se a realização da tarefa antes da
+Prova 1.</p>
+    
+  
+
+
+</body></html>

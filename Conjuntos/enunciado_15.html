@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 15</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_15_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_15_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h3>
+<a id="user-content-instituto-de-computação---unicamp" class="anchor" href="#instituto-de-computa%C3%A7%C3%A3o---unicamp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Instituto de Computação - Unicamp</h3>
+<h3>
+<a id="user-content-mc102---algoritmos-e-programação-de-computadores" class="anchor" href="#mc102---algoritmos-e-programa%C3%A7%C3%A3o-de-computadores" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MC102 - Algoritmos e Programação de Computadores</h3>
+<h1>
+<a id="user-content-laboratório-id---title" class="anchor" href="#laborat%C3%B3rio-id---title" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Laboratório 15 - Conjuntos</h1><p>Prazo de entrega: <strong>27/05/2018 23:59:59</strong></p><p>Peso: <strong>2</strong></p>
+<p><em>Professor:</em> Eduardo C. Xavier</p>
+<p><em>Monitor:</em> Alexsandro Alexandrino<br>
+<em>Monitor:</em> Ramon Nepomuceno</p>
+<hr>
+<h2>
+<a id="user-content-descrição" class="anchor" href="#descri%C3%A7%C3%A3o" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Descrição</h2>
+<p>A <a href="http://pt.wikipedia.org/wiki/Teoria_dos_conjuntos" rel="nofollow">Teoria dos Conjuntos</a>
+é um ramo da matemática que estuda propriedades de coleções de objetos, e
+é utilizada para melhor entendermos e modelarmos diversos
+problemas.  Um conjunto é uma coleção de elementos
+distintos. Por exemplo, os números <em>2</em>, <em>3</em> e <em>5</em> são
+elementos distintos quando considerados isoladamente, mas
+quando considerados coletivamente formam o conjunto
+<em>{2,3,5}</em> e, nesse caso, <em>2</em>, <em>3</em> e <em>5</em> são os elementos do
+conjunto. A cardinalidade ou tamanho de um conjunto é o
+número de elementos desse conjunto. Note que um conjunto não
+pode ter mais de um elemento do mesmo valor.  Por exemplo
+<em>{1,2,1,2,3}</em> não é um conjunto, mas <em>{1,2,3}</em> sim.</p>
+<p>Abaixo temos uma lista de definições e operações que podem
+ser realizadas sobre conjuntos:</p>
+<ul>
+<li>
+<p>Dado um conjunto <em>A</em>, se <em>x</em> é um de seus elementos então
+dizemos que <em>x</em> <strong>pertence</strong> ao conjunto <em>A</em>, e denotamos
+isto por <em>x ∈ A</em>. Caso <em>x</em> não pertença ao conjunto <em>A</em>,
+denotamos isto por <em>x  ∉ A</em>.</p>
+</li>
+<li>
+<p>Dados dois conjuntos <em>A</em> e <em>B</em>, se cada um dos elementos
+de <em>B</em> pertencer também a <em>A</em>, então dizemos que <em>A</em>
+<strong>contém</strong> <em>B</em>, ou de forma equivalente <em>B</em> <strong>está
+contido</strong> em <em>A</em>, e denotamos isto por <em>B ⊆ A</em>. Caso
+<em>B</em> não esteja contido em <em>A</em>, denotamos isto por
+<em>B ⊄ A</em>.</p>
+</li>
+<li>
+<p>A operação de <strong>união</strong> de dois conjuntos <em>A</em> e <em>B</em>,
+denotada por <em>A ∪ B</em>, tem como resultado um outro
+conjunto contendo os elementos que estão em <em>A</em> ou <em>B</em>.
+Por exemplo, se <em>A = {1,2,3}</em> e <em>B = {2,3,4}</em>, a operação
+<em>A ∪ B</em> terá como resultado o conjunto <em>{1,2,3,4}</em>.</p>
+</li>
+<li>
+<p>A operação de <strong>interseção</strong> de dois conjuntos <em>A</em> e <em>B</em>,
+denotada por <em>A ∩ B</em>, tem como resultado um outro
+conjunto contendo os elementos que estão em ambos
+conjuntos <em>A</em> e <em>B</em>. Por exemplo, se <em>A = {1,2,3}</em> e
+<em>B = {2,3,4}</em>, sua interseção <em>A ∩ B</em> será <em>{2,3}</em>.</p>
+</li>
+<li>
+<p>A operação <strong>diferença</strong> do conjunto <em>A</em> para o conjunto
+<em>B</em>, denotada por <em>A \ B</em>, tem como resultado um conjunto
+contendo os elementos que estão em <em>A</em> mas não estão em
+<em>B</em>. Por exemplo, se <em>A = {1,2,3}</em> e <em>B = {2,3,4}</em>, a
+diferença <em>A \ B</em>, será <em>{1}</em>, enquanto que a diferença
+<em>B \ A</em> será <em>{4}</em>.</p>
+</li>
+<li>
+<p>A operação <strong>união disjunta</strong> do conjunto <em>A</em> e
+<em>B</em>, denotada por <em>A \ B ∪ B \ A</em>, tem como resultado um conjunto
+contendo os elementos de <em>A \ B</em> e os elementos de <em>B \ A</em>.
+Por exemplo, se <em>A = {1,2,3}</em> e <em>B = {2,3,4}</em>, a
+operação <em>A \ B ∪ B \ A</em>, resultará em <em>{1,4}</em>.</p>
+</li>
+</ul>
+<p>O objetivo deste laboratório é criar uma biblioteca de
+funções em Python para realizar operações sobre conjuntos de
+números naturais. Os conjuntos serão representados
+utilizando-se listas.</p>
+<p>Você deve implementar funções que realizam as seguintes
+operações:</p>
+<ul>
+<li>
+<p><strong>Pertence:</strong> verifica se um elemento pertence ao conjunto
+especificado, retornando verdadeiro ou falso.</p>
+</li>
+<li>
+<p><strong>Continência:</strong> verifica se um conjunto está contido em
+outro conjunto retornando verdadeiro ou falso.</p>
+</li>
+<li>
+<p><strong>Adição:</strong> adiciona um elemento em um conjunto, alterando
+o conjunto com a adição do novo elemento
+<em>caso ele já não pertença ao mesmo</em>.</p>
+</li>
+<li>
+<p><strong>Subtração:</strong> remove um elemento de um conjunto,
+alterando o conjunto especificado com a remoção do
+elemento <em>caso ele pertença ao conjunto</em>.</p>
+</li>
+<li>
+<p><strong>União:</strong> faz a união de dois conjuntos, criando um
+conjunto com os elementos dos dois conjuntos de entrada.</p>
+</li>
+<li>
+<p><strong>Interseção:</strong> faz a interseção de dois conjuntos,
+criando um conjunto com os elementos que pertencem aos
+dois conjuntos de entrada.</p>
+</li>
+<li>
+<p><strong>Diferença:</strong> Faz a diferença de dois conjuntos, criando
+um conjunto com os elementos do primeiro que não se
+encontram no segundo.</p>
+</li>
+<li>
+<p><strong>União Disjunta:</strong> Faz a união disjunta de dois conjuntos, criando
+um conjunto que corresponde a definição dada anteriormente.</p>
+</li>
+</ul>
+<h2>
+<a id="user-content-funções" class="anchor" href="#fun%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Funções</h2>
+<p>Observações gerais:</p>
+<ul>
+<li>Os conjuntos armazenam apenas números naturais: 0, 1, 2,
+etc.</li>
+<li>O tamanho máximo de cada conjunto é 20.</li>
+<li>O tamanho atual de cada conjunto é passado por parâmetro.</li>
+<li>Os vetores que armazenam os conjuntos não estão e não
+precisam estar ordenados.</li>
+</ul>
+<p>A descrição geral dos parâmetros de entrada e saída das
+funções está descrita nos comentários dos protótipos das
+funções, que são fornecidos a seguir:</p>
+<p>Linguagem Python 3:</p>
+<div class="highlight highlight-source-python"><pre><span class="pl-c"><span class="pl-c">#</span>!/usr/bin/env python3</span>
+
+<span class="pl-c"><span class="pl-c">#</span> Funcao: pertence</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-c"><span class="pl-c">#</span> Parametros:</span>
+<span class="pl-c"><span class="pl-c">#</span>   conj: vetor contendo o conjunto de entrada</span>
+<span class="pl-c"><span class="pl-c">#</span>    num: elemento a ser verificado pertinencia</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-c"><span class="pl-c">#</span> Retorno:</span>
+<span class="pl-c"><span class="pl-c">#</span>   True se num pertence a conj e False caso contrario</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-k">def</span> <span class="pl-en">pertence</span>(<span class="pl-smi">conj</span>, <span class="pl-smi">num</span>):
+    <span class="pl-c"><span class="pl-c">#</span> Implementar a funcao e trocar o valor de retorno</span>
+    <span class="pl-k">return</span> <span class="pl-c1">False</span>
+
+<span class="pl-c"><span class="pl-c">#</span> Funcao: contido</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-c"><span class="pl-c">#</span> Parametros:</span>
+<span class="pl-c"><span class="pl-c">#</span>   conj1: vetor contendo um conjunto de entrada</span>
+<span class="pl-c"><span class="pl-c">#</span>   conj2: vetor contendo um conjunto de entrada</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-c"><span class="pl-c">#</span> Retorno:</span>
+<span class="pl-c"><span class="pl-c">#</span>   True se conj1 esta contido em conj2 e False caso contrario</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-k">def</span> <span class="pl-en">contido</span>(<span class="pl-smi">conj1</span>, <span class="pl-smi">conj2</span>):
+    <span class="pl-c"><span class="pl-c">#</span> Implementar a funcao e trocar o valor de retorno</span>
+    <span class="pl-k">return</span> <span class="pl-c1">False</span>
+
+<span class="pl-c"><span class="pl-c">#</span> Funcoes: adicao e subtracao</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-c"><span class="pl-c">#</span> Parametros:</span>
+<span class="pl-c"><span class="pl-c">#</span>   conj: vetor contendo o conjunto que tera incluso ou removido o elemento</span>
+<span class="pl-c"><span class="pl-c">#</span>    num: elemento a ser adicionado ou removido</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-k">def</span> <span class="pl-en">adicao</span>(<span class="pl-smi">conj</span>, <span class="pl-smi">num</span>):
+    <span class="pl-c"><span class="pl-c">#</span> Implementar a funcao</span>
+    <span class="pl-k">return</span>
+
+<span class="pl-k">def</span> <span class="pl-en">subtracao</span>(<span class="pl-smi">conj</span>, <span class="pl-smi">num</span>):
+    <span class="pl-c"><span class="pl-c">#</span> Implementar a funcao</span>
+    <span class="pl-k">return</span>
+
+<span class="pl-c"><span class="pl-c">#</span> Funcoes: uniao, intersecao e diferenca</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-c"><span class="pl-c">#</span> Parametros:</span>
+<span class="pl-c"><span class="pl-c">#</span>     conj1: vetor contendo o conjunto de entrada do primeiro operando</span>
+<span class="pl-c"><span class="pl-c">#</span>     conj2: vetor contendo o conjunto de entrada do segundo operando</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-c"><span class="pl-c">#</span> Retorno:</span>
+<span class="pl-c"><span class="pl-c">#</span>   Vetor contendo o conjunto de saida/resultado da operacao</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-k">def</span> <span class="pl-en">uniao</span>(<span class="pl-smi">conj1</span>, <span class="pl-smi">conj2</span>):
+    <span class="pl-c"><span class="pl-c">#</span> Implementar a funcao e trocar o valor de retorno</span>
+    <span class="pl-k">return</span> []
+
+<span class="pl-k">def</span> <span class="pl-en">intersecao</span>(<span class="pl-smi">conj1</span>, <span class="pl-smi">conj2</span>):
+    <span class="pl-c"><span class="pl-c">#</span> Implementar a funcao e trocar o valor de retorno</span>
+    <span class="pl-k">return</span> []
+
+<span class="pl-k">def</span> <span class="pl-en">diferenca</span>(<span class="pl-smi">conj1</span>, <span class="pl-smi">conj2</span>):
+    <span class="pl-c"><span class="pl-c">#</span> Implementar a funcao e trocar o valor de retorno</span>
+    <span class="pl-k">return</span> []
+
+<span class="pl-k">def</span> <span class="pl-en">uniao_disjunta</span>(<span class="pl-smi">conj1</span>, <span class="pl-smi">conj2</span>):
+    <span class="pl-c"><span class="pl-c">#</span> Implementar a funcao e trocar o valor de retorno</span>
+    <span class="pl-k">return</span> []</pre></div>
+<h3>
+<a id="user-content-múltiplos-arquivos-e-função-principal" class="anchor" href="#m%C3%BAltiplos-arquivos-e-fun%C3%A7%C3%A3o-principal" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Múltiplos Arquivos e Função Principal</h3>
+<p>Neste laboratório vamos utilizar o conceito de dividir o
+código em múltiplos arquivos. Quando se implementa programas
+grandes é comum separar o código em vários arquivos com a
+extensão .py, onde cada arquivo implementa um conjunto de
+funções relacionadas entre si.  Isto facilita a manutenção e
+a leitura do código.</p>
+<p>Para esse laboratório você só deverá implementar as funções descritas acima. A função principal (<strong>main</strong>) será fornecida em um arquivo separado, chamado <a href="https://susy.ic.unicamp.br:9999/mc102wy/15/aux/lab15_main.py"><code>lab15_main.py</code></a>.<br>Um link para ele também está disponível na página da tarefa.</p>
+<p>Para executar o seu programa em Python 3, basta executar o arquivo <code>lab15_main.py</code>. O arquivo <code>lab15.py</code> deverá estar na mesma pasta e será chamado pelo primeiro.</p><pre><code>python3 lab15_main.py</code></pre>
+<p>A organização do conteúdo de cada arquivo é a seguinte:</p>
+<ul>
+<li>
+<p><code>lab15</code>:</p><ul>
+<li>funções auxiliares que você queira escrever;</li>
+<li>
+<code>pertence(...)</code>;</li>
+<li>
+<code>contido(...)</code>;</li>
+<li>
+<code>adicao(...)</code>;</li>
+<li>
+<code>subtracao(...)</code>;</li>
+<li>
+<code>uniao(...)</code>;</li>
+<li>
+<code>intersecao(...)</code>;</li>
+<li>
+<code>diferenca(...)</code>;</li>
+<li>
+<code>uniao_disjunta(...)</code>.</li>
+</ul>
+</li>
+<li>
+<p><code>lab15_main</code>:</p><ul>
+<li>funções auxiliares para a main;</li>
+<li>main.</li>
+</ul>
+</li>
+</ul>
+<p>Também está disponível um protótipo do arquivo que você deve submeter ao <em>SuSy</em> (lab15.py). Esse arquivo e o arquivo auxiliar (lab15_main.py) também podem ser encontrados na página da tarefa:</p><ul>
+<li><a href="https://susy.ic.unicamp.br:9999/mc102wy/15/aux/lab15.py"><code>lab15.py</code></a></li><li><a href="https://susy.ic.unicamp.br:9999/mc102wy/15/aux/lab15_main.py"><code>lab15_main.py</code></a></li></ul>
+<h2>
+<a id="user-content-reforçando" class="anchor" href="#refor%C3%A7ando" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reforçando</h2>
+<p>Neste laboratório você não precisará se preocupar em ler a
+entrada a partir da entrada padrão, nem em escrever a saída.
+Seu trabalho é apenas implementar as funções descritas. A
+função <code>main()</code> que é fornecida no arquivo <code>lab15_main.py</code>se encarrega dessa parte.</p>
+<p>Você também <strong>não deve</strong> submeter o arquivo <code>lab15_main.py</code>para o <em>SuSy</em>, somente o arquivo <code>lab15.py</code>.</p><p>As sessões abaixo, de <a href="#entrada">Entrada</a> e <a href="#sa%C3%ADda">Saída</a>,
+descrevem os formatos de entrada e saída, mas você
+não precisa se preocupar com eles.</p>
+<h2>
+<a id="user-content-entrada" class="anchor" href="#entrada" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Entrada</h2>
+<p>A entrada consiste de operações a serem realizadas sobre
+dois conjuntos nomeados de A e B. Os conjuntos iniciam
+vazios e cada linha da entrada descreve uma operação a ser
+realizada sobre um ou entre os dois conjuntos.</p>
+<p>As operações são:</p>
+<ul>
+<li>
+<code>C</code>: Não faça nada no conjunto, Só imprima o seu
+conteúdo</li>
+<li>
+<code>C = {x1, x2, x3, ... ,xn}</code>: substitui o conteúdo do
+conjunto <code>C</code> com os <code>N</code> elementos.</li>
+<li>
+<code>x e C</code>: verifica se o elemento <code>x</code> pertence ao conjunto
+<code>C</code>.</li>
+<li>
+<code>C1 c C2</code>: verifica se o conjunto <code>C1</code> está contido no
+conjunto <code>C2</code>.</li>
+<li>
+<code>C += x</code>: adiciona o elemento <code>x</code> ao conjunto <code>C</code>.</li>
+<li>
+<code>C -= x</code>: remove o elemento <code>x</code> do conjunto <code>C</code>.</li>
+<li>
+<code>C1 u C2</code>: realiza a união entre <code>C1</code> e <code>C2</code>
+</li>
+<li>
+<code>C1 ^ C2</code>: realiza a interseção entre <code>C1</code> e <code>C2</code>
+</li>
+<li>
+<code>C1 \ C2</code>: realiza a diferença entre <code>C1</code> e <code>C2</code>
+</li>
+<li>
+<code>q</code>: Encerra a execução do programa</li>
+</ul>
+<p>Onde:</p>
+<ul>
+<li>
+<code>C</code> é um dos conjuntos <code>A</code> ou <code>B</code>
+</li>
+<li>
+<code>C1</code> e <code>C2</code> são conjuntos distintos <code>A</code> e <code>B</code> em
+qualquer ordem.</li>
+<li>
+<code>x</code> é um elemento</li>
+<li>
+<code>x1, x2, x3, ... , xn</code> são <code>N</code> elementos.</li>
+<li>
+<code>q</code> é a letra q</li>
+</ul>
+<h2>
+<a id="user-content-saída" class="anchor" href="#sa%C3%ADda" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Saída</h2>
+<p>Cada linha da saída do programa contém o resultado da
+execução de cada operação dada na entrada, de forma que a
+saída possui uma linha a menos que a quantidade de linhas da
+entrada.</p>
+<p>O retorno das operações podem ter um dos 3 formatos
+distintos:</p>
+<ul>
+<li>
+<p>Para as operações<code>C</code>, <code>C = {x1, x2, x3, ... ,xn}</code>,
+<code>C += x</code>,  ou<code>C -= x</code>:</p>
+<p>Imprime o conteúdo do conjunto C, com os elementos em
+ordem crescente.</p>
+<p>Formato da saída: <code>C = {x1, x2, x3, ..., xn}</code></p>
+</li>
+<li>
+<p>para as operações <code>x e C</code> ou <code>C1 c C2</code>:</p>
+<p>Imprime Verdadeiro ou Falso.</p>
+<p>Formato: <code>verdadeiro</code> ou <code>falso</code></p>
+</li>
+<li>
+<p>Para as operações <code>C1 u C2</code>, <code>C1 ^ C2</code> ou <code>C1 \ C2</code>:</p>
+<p>Imprime o conjunto resultado da operação, com os
+elementos em ordem crescente.</p>
+<p>Formato: <code>C1 op C2 = {x1, x2, x3, ..., xn}</code>*</p>
+<p>* Onde <code>op</code> é o operador correspondende da operação de
+entrada, entre <code>u</code>, <code>^</code> e <code>\</code>.</p>
+</li>
+<li>
+<p>Para a operação <code>q</code> nada é impresso. Se encerra a
+execução do programa.</p>
+</li>
+</ul>
+<h2>
+<a id="user-content-exemplos" class="anchor" href="#exemplos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Exemplos</h2>
+<h3>
+<a id="user-content-teste-03" class="anchor" href="#teste-03" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 03</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/15/dados/arq03.in">Entrada</a></p>
+<pre><code>A = {2, 5, 7}
+B = {2, 5}
+B c A
+A c B
+B += 3
+B c A
+q
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/15/dados/arq03.res">Saída</a></p>
+<pre><code>A = {2, 5, 7}
+B = {2, 5}
+verdadeiro
+falso
+B = {2, 3, 5}
+falso
+</code></pre>
+<h3>
+<a id="user-content-teste-04" class="anchor" href="#teste-04" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 04</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/15/dados/arq04.in">Entrada</a></p>
+<pre><code>A = {2, 5, 7}
+B = {}
+B c A
+A c B
+B = {5}
+B c A
+B = {1, 5}
+B c A
+A c B
+q
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/15/dados/arq04.res">Saída</a></p>
+<pre><code>A = {2, 5, 7}
+B = {}
+verdadeiro
+falso
+B = {5}
+verdadeiro
+B = {1, 5}
+falso
+falso
+</code></pre>
+<h3>
+<a id="user-content-teste-15" class="anchor" href="#teste-15" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 15</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/15/dados/arq15.in">Entrada</a></p>
+<pre><code>A
+B
+A c B
+B c A
+A = {1, 2, 3}
+B = {4, 3, 2}
+A c B
+B c A
+1 e A
+1 e B
+4 e A
+4 e B
+A += 0
+B += 1
+A -= 3
+B -= 4
+A += 1
+B += 2
+A -= 4
+B -= 5
+A u B
+B u A
+A ^ B
+B ^ A
+A \ B
+B \ A
+A -= 1
+A c B
+A -= 0
+A c B
+B = {}
+B c A
+A c B
+A -= 2
+A c B
+B c A
+A \ B u B \ A
+q
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/15/dados/arq15.res">Saída</a></p>
+<pre><code>A = {}
+B = {}
+verdadeiro
+verdadeiro
+A = {1, 2, 3}
+B = {2, 3, 4}
+falso
+falso
+verdadeiro
+falso
+falso
+verdadeiro
+A = {0, 1, 2, 3}
+B = {1, 2, 3, 4}
+A = {0, 1, 2}
+B = {1, 2, 3}
+A = {0, 1, 2}
+B = {1, 2, 3}
+A = {0, 1, 2}
+B = {1, 2, 3}
+A u B = {0, 1, 2, 3}
+B u A = {0, 1, 2, 3}
+A ^ B = {1, 2}
+B ^ A = {1, 2}
+A \ B = {0}
+B \ A = {3}
+A = {0, 2}
+falso
+A = {2}
+verdadeiro
+B = {}
+verdadeiro
+falso
+A = {}
+verdadeiro
+verdadeiro
+A \ B u B \ A = {}
+</code></pre>
+<p>Para mais exemplos, consulte os
+<a href="https://susy.ic.unicamp.br:9999/mc102wy/15/dados/testes.html">testes abertos no Susy</a>.</p>
+<h2>
+<a id="user-content-observações" class="anchor" href="#observa%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Observações</h2>
+<ul>
+<li>Você <strong>não deve</strong> submeter o arquivo <code>lab15_main.py</code> para o <em>SuSy</em>, somente o arquivo <code>lab15.py</code> .</li><li>O número máximo de submissões é <strong>10</strong>.</li><li>Para a realização dos testes do SuSy, a execução do código em Python se dará da seguinte forma: (Linux e OSX)<br>
+<code>python3 lab15_main.py</code>.</li><li>Você deve incluir, no início
+ do seu programa, uma breve descrição dos objetivos do programa, da 
+entrada e da saída, além do seu nome e do seu RA.</li>
+<li>Indente corretamente o seu código e inclua comentários no decorrer do seu programa.</li>
+</ul>
+
+    </article>
+
+
+</body></html>

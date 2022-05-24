@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html><div id="tenten-safe-area-provider" style="all: initial;"></div><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>MC102 - Lab03</title>
+
+    <link rel="stylesheet" type="text/css" href="MC102%20-%20Lab03_files/2s2018-mc102.css">
+    <style>
+    table#tab_desenho td {
+       vertical-align: top;
+       text-align: left;
+    }
+    table#tab_desenho pre {
+       margin:2px;
+    }
+    </style>    
+</head>
+
+<body>
+
+<header>
+    MC102 - Algoritmos e Programação de Computadores
+</header>
+
+<div class="topnav">
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/index.html"><b>MC102</b></a>
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-1s2018"><b>Oferecimento anterior</b></a>
+</div>
+
+<h1>
+<code style="font-size:35%; color:black"><pre style="margin:10px;">      .o.        .ooooooo.    .oooooo. ooooo ooooo         .o.       ooooooooo.   oooooooo        
+     .ooo.      .ooo'   ooo  .ooo  ooo  .oo   .oo         .ooo.       .oo   ooo.  o .oo  o
+    .ooooo.     .oooo.      .ooo        .oo   .oo        .ooooo.      .oo  'ooo.    .oo
+   .oo  ooo.      .ooo.     .ooo        .oo   .oo       .oo  ooo.     .ooooooo.     .oo
+  .ooooooooo.       .oooo.  .ooo        .oo   .oo      .ooooooooo.    .oo.oo.       .oo
+ .oo      ooo.  ooo   'ooo.  .ooo  ooo  .oo   .oo     .oo      ooo.   .oo   ooo.    .oo
+oooo     oooooo  .ooooooo.    .oooooo. ooooo ooooo   oooo     oooooo ooooo  ooooo  ooooo
+</pre></code>Tarefa de laboratório 03</h1>
+
+<p>Nesta tarefa, vamos praticar comandos repetitivos fazendo desenhos
+  com caracteres ASCII. As formas irão variar de acordo com as
+  dimensões estabelecidas e o caractere especificado para
+  contorno. Observe os exemplos.</p>
+
+<p><b>Quadrado:</b> Deve ser desenhado o contorno de um quadrado, a
+partir da medida, em termos de número de caracteres, do <code>lado</code>
+deste quadradado.</p>
+
+<table id="tab_desenho">
+  <tbody><tr>
+    <th =="" colspan="3">Quadrado</th>
+  </tr>
+  <tr>
+    <td><code>lado</code> = 3</td>    
+    <td><code>lado</code> = 5</td>
+    <td><code>lado</code> = 7</td>
+  </tr>
+  <tr>
+    <td><code></code><pre><code>***
+* *
+***</code></pre></td>
+    <td><code></code><pre><code>XXXXX
+X   X
+X   X
+X   X
+XXXXX</code></pre></td>
+    <td><code><pre>&amp;&amp;&amp;&amp;&amp;&amp;&amp;
+&amp;     &amp;
+&amp;     &amp;
+&amp;     &amp;
+&amp;     &amp;
+&amp;     &amp;
+&amp;&amp;&amp;&amp;&amp;&amp;&amp;</pre></code>
+  </td></tr>
+</tbody></table>
+
+<p><b>Retângulo:</b> Deve ser escrito o contorno de um retângulo
+a partir da medida em número de caracteres da
+<code>largura</code> e <code>altura</code> deste retângulo.
+
+</p><table id="tab_desenho">
+  <tbody><tr>
+    <th =="" colspan="4">
+      Retângulo</th>
+  </tr>
+  <tr>
+    <td><code>largura</code> = 4<br><code>altura</code> = 3</td>    
+    <td><code>largura</code> = 10<br><code>altura</code> = 5</td>    
+    <td><code>largura</code> = 3<br><code>altura</code> = 7</td>
+    <td><code>largura</code> = 5<br><code>altura</code> = 5</td>        
+  </tr>
+  <tr>
+    <td><code></code><pre><code>****
+*  *
+****</code></pre></td>
+    <td><code></code><pre><code>oooooooooo
+o        o
+o        o
+o        o
+oooooooooo</code></pre></td>
+    <td><code><pre>&amp;&amp;&amp;
+&amp; &amp;
+&amp; &amp;
+&amp; &amp;
+&amp; &amp;
+&amp; &amp;
+&amp;&amp;&amp;</pre></code>
+</td><td><code><pre>XXXXX
+X   X
+X   X
+X   X
+XXXXX</pre></code>
+  </td></tr>
+</tbody></table>
+
+<p><b>Paralelogramo:</b> Deve ser escrito o contorno de um
+paralelogramo a partir da medida em número de caracteres da
+<code>largura</code> e <code>altura</code> deste
+paralelogramo. Observe que a inclinação da lateral do paralelogramo é
+de 1 caractere à direita por linha.</p><p>
+
+</p><table id="tab_desenho">
+  <tbody><tr>
+    <th =="" colspan="4">
+      Paralelogramo</th>
+  </tr>
+  <tr>
+    <td><code>largura</code> = 4<br><code>altura</code> = 3</td>    
+    <td><code>largura</code> = 8<br><code>altura</code> = 4</td>    
+    <td><code>largura</code> = 4<br><code>altura</code> = 8</td>
+    <td><code>largura</code> = 5<br><code>altura</code> = 5</td>        
+  </tr>
+  <tr>
+    <td><code></code><pre><code>****
+ *  *
+  ****</code></pre></td>
+    <td><code><pre>########
+ #      #
+  #      #
+   ########</pre></code>
+</td><td><code></code><pre><code>%%%%
+ %  %
+  %  %
+   %  %
+    %  %
+     %  %
+      %  %
+       %%%%</code></pre></td>
+<td><code><pre>ooooo
+ o   o
+  o   o
+   o   o
+    ooooo</pre></code>
+  </td></tr>
+</tbody></table>
+
+<p><b>Losango:</b> Deve ser escrito o contorno de um losango a partir da medida em número de caracteres do <code>lado</code> deste losango.</p>
+
+
+<table id="tab_desenho">
+  <tbody><tr>
+    <th =="" colspan="3">
+      Losango</th>
+  </tr>
+  <tr>
+    <td><code>lado</code> = 3</td>    
+    <td><code>lado</code> = 5</td>
+    <td><code>lado</code> = 6</td>    
+  </tr>
+  <tr>
+    <td><code></code><pre><code>  *
+ * *
+*   *
+ * *
+  * </code></pre></td>
+    <td><code></code><pre><code>    &amp;
+   &amp; &amp;
+  &amp;   &amp;
+ &amp;     &amp;
+&amp;       &amp;
+ &amp;     &amp;
+  &amp;   &amp;
+   &amp; &amp;
+    &amp;</code></pre></td>
+    <td><code><pre>     @
+    @ @
+   @   @
+  @     @
+ @       @
+@         @
+ @       @
+  @     @
+   @   @
+    @ @
+     @</pre></code>
+  </td></tr>
+</tbody></table>
+
+<p><b>Cruz:</b> Desenha uma cruz formada pela junção de
+5 contornos de quadrados de mesmo tamanho de <code>lado</code>.</p>
+
+<table id="tab_desenho">
+  <tbody><tr>
+    <th =="" colspan="3">Cruz</th>
+  </tr>
+  <tr>
+    <td><code>lado</code> = 3</td>    
+    <td><code>lado</code> = 4</td>
+    <td><code>lado</code> = 5</td>
+  </tr>
+  <tr>
+    <td><code></code><pre><code>   ***
+   * *
+*********
+* ** ** *
+*********
+   * *
+   ***</code></pre></td>
+    <td><code><pre>    ++++
+    +  +
+    +  +
+++++++++++++
++  ++  ++  +
++  ++  ++  +
+++++++++++++
+    +  +
+    +  +
+    ++++</pre></code>   
+    </td><td><code></code><pre><code>     XXXXX
+     X   X
+     X   X
+     X   X
+XXXXXXXXXXXXXXX
+X   XX   XX   X
+X   XX   XX   X
+X   XX   XX   X
+XXXXXXXXXXXXXXX
+     X   X
+     X   X
+     X   X
+     XXXXX</code></pre></td>
+  </tr>
+</tbody></table>
+
+<h2>Descrição da entrada</h2>
+
+<p>Para todos os objetos será indicado:</p>
+
+<code>
+<pre>&lt;tipo_do_objeto&gt;
+&lt;caractere&gt; 
+</pre>  
+</code>
+
+<p>As letras que identificarão os tipos dos objetos serão as seguintes:</p>
+
+<ul>
+  <li> <code>Q</code>: Quadrado
+  </li><li> <code>R</code>: Retângulo
+  </li><li> <code>P</code>: Paralelogramo
+  </li><li> <code>L</code>: Losango
+  </li><li> <code>C</code>: Cruz
+</li></ul>
+
+<p>Para os objetos Quadrado, Losango e Cruz deverá ser lida a
+medida do lado.</p> 
+
+<code>
+<pre>&lt;medida_do_lado&gt;
+</pre>  
+</code>
+
+<p>Para os objetos Retângulo e Paralelogramo deverão ser lidas as
+medidas da largura e da altura.</p> 
+
+<code>
+<pre>&lt;medida_da_largura&gt;
+&lt;medida_da_altura&gt;
+</pre>  
+</code>
+
+<p>O valor para as dimensões deverá ser um número
+maior ou igual a 3.</p>
+
+<p>Exemplo:</p>
+
+<code><pre>P
+:
+4
+5
+</pre></code>
+
+<h2>Descrição da saída</h2>
+
+<p>Caso a entrada tenha dados de acordo com a especificação, um desenho 
+como os descritos na primeira seção  deverá ser exibido. Para o exemplo 
+de entrada fornecido, a saída será:</p>
+
+<code><pre>::::
+ :  :
+  :  :
+   :  :
+    ::::</pre></code>
+
+<p><b>Importante:</b>Não acrescente caracteres em branco ao
+final das linhas!</p>
+
+<p>Caso o <code>tipo_do_objeto</code> lido não corresponda a um
+dos elencados acima, deve ser emitida a mensagem <code>Objeto
+incorreto.</code></p>
+
+<p>Caso algum número lido seja menor do que 3, deve ser emitida
+a mensagem <code>Dimensao incorreta.</code> (propositalmente sem
+acentuação). Caso o tipo do objeto seja inválido,
+não é necessário ler ou verificar a validade das
+dimensões.</p>
+
+
+<h2>Testes para o SuSy</h2>
+
+<p>Esta tarefa contém 16 testes abertos que exercitam todas as
+possibilidades com entradas válidas e também
+inválidas. Esta tarefa inclui mais quatro testes fechados, que
+são variações de alguns dos testes abertos.</p>
+
+<h2>Dicas de Python 3 para esta tarefa:</h2>
+
+<ul>
+  <li><p>Você pode escrever vários caracteres iguais utilizando comandos como: 
+      <code>print(5 * "*")</code></p>
+    
+  </li><li><p>Você pode escrever uma cadeia de caracteres sem imprimir uma
+  quebra de linha alterando o finalizador padrão:
+    <code>print("*****", end='')</code></p>
+
+  </li><li><p>Você pode escrever vários elementos sem um
+  caractere em branco entre eles alterando o separador padrão:
+  
+    <code>print("a", "b", sep='')</code></p>
+    
+  </li><li><p>Utilize o gerador de sequências <code>range(inicio, fim,
+  passo)</code>. Veja um exemplo em ordem crescente e outro em ordem
+      decrescente.</p>
+    
+    <code></code><pre><code>&gt;&gt;&gt; for i in range(1,8,2) :
+      print(i)
+1
+3
+5
+7
+
+&gt;&gt;&gt; for i in range(7,0,-2) :
+      print(i)
+7
+5
+3
+1</code></pre>
+
+</li></ul>  
+
+<h2>Orientações para submissão</h2>
+
+<p> Veja <a href="https://susy.ic.unicamp.br:9999/mc102geral/03">aqui</a>
+  a página de submissão da tarefa. Lembre-se que o
+  arquivo a ser submetido deve se chamar <b><tt>lab03.py</tt></b>. No
+  link <a href="https://susy.ic.unicamp.br:9999/mc102geral/03/aux/aux.html">Arquivos
+  auxiliares</a> há um arquivo <code><a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/labs/aux-03.zip">aux-03.zip</a></code> que
+  contém todos os arquivos de testes abertos e seus respectivos
+  resultados compactados. Os arquivos <code>executa-testes.py</code>
+  e <code>executa-testes-windows.py</code> também estão
+  neste pacote.
+  
+</p><p>Observe o limite máximo de 20 submissões.</p> 
+
+<p>A nota final é proporcional ao número de testes que
+  executaram corretamente, desde que o código faça os
+  desenhos solicitados para uma conjunto amplo de possibilidades da
+  entrada. <b>A submissão de um código que não
+  implementa o algoritmo requisitado no enunciado, mas que exibe as
+  saídas esperadas dos testes abertos a partir da
+  comparação de trechos da entrada será
+  considerada fraude e acarretará a atribuição de
+  nota zero à média final da disciplina.</b></p>
+  
+<p>O peso desta tarefa é 3.</p>
+
+<p>O prazo final para submissão é 09/09/2018.</p>
+  
+
+
+</body></html>

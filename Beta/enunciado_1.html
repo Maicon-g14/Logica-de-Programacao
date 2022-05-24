@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 01</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_1_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_1_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h3>
+<a id="user-content-instituto-de-computação---unicamp" class="anchor" href="#instituto-de-computa%C3%A7%C3%A3o---unicamp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Instituto de Computação - Unicamp</h3>
+<h3>
+<a id="user-content-mc102---algoritmos-e-programação-de-computadores" class="anchor" href="#mc102---algoritmos-e-programa%C3%A7%C3%A3o-de-computadores" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MC102 - Algoritmos e Programação de Computadores</h3>
+<h1>
+<a id="user-content-laboratório-id---title" class="anchor" href="#laborat%C3%B3rio-id---title" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Laboratório 01 - Beta</h1><p>Prazo de entrega: <strong>24/03/2018 23:59:59</strong></p><p>Peso: 1</p>
+<p><em>Professor:</em> Eduardo C. Xavier<br>
+<em>Monitor:</em> Alexsandro O. Alexandrino<br>
+<em>Monitor:</em> Ramon Nepomuceno</p>
+<hr>
+<p>Eratóstenes de Cirene (Cirene, 276 a.C. — Alexandria, 194 a.C.) foi 
+um matemático, gramático, poeta, geógrafo, bibliotecário e astrônomo da 
+Grécia Antiga, conhecido por calcular a circunferência da Terra.</p>
+<p>Ele foi diretor da famosa Biblioteca de Alexandria e, lendo um dos 
+manuscritos dessa instituição, tomou conhecimento de que, num 
+determinado dia, num determinado horário, na cidade de Siena, não havia 
+formação de sombra nos objetos, pois o sol estava no ponto mais alto do 
+céu, com seus raios perpendiculares à superfície de Siena (neste caso, 
+dizemos que o Sol está no zênite ou, popularmente, a pino).
+Este fato poderia ter passado desapercebido para a maioria das pessoas, 
+mas, intrigado, Eratóstenes resolveu checar se, neste mesmo dia e 
+horário, o sol estaria a pino em Alexandria.
+Ele percebeu que não estava e a única explicação para tal discrepância 
+seria a Terra ser redonda, pois, caso fosse plana, o sol também estaria 
+no zênite em Alexandria.</p>
+<p>Eratóstenes percebeu que poderia calcular a circunferência da Terra 
+fazendo um experimento em Alexandria no mesmo dia e horário em que o Sol
+ estava no zênite em Siena.
+Para tanto, fincou uma estaca perpendicular ao chão de Alexandria e 
+obteve um triângulo retângulo formado pela estaca, pela sombra no chão e
+ pela reta que liga o fim da sombra ao topo da estaca (hipotenusa).
+O ângulo <strong>A</strong> formado entre a estaca e a hipotenusa é o 
+mesmo que o ângulo entre a reta imaginária de um raio solar ao centro da
+ Terra e a reta estendendo a estaca também ao centro da Terra.
+Caso Eratóstenes soubesse a distância entre Alexandria e Siena, seria 
+possível determinar a circunferência da Terra.
+Ele, então, contratou um itinerante para medir a distância entre as duas
+ cidades e constatou que a distância era de 5.000 estádios; cada estádio
+ mede 176,4 metros.
+O ângulo <strong>A</strong> foi calculado e seu valor era  7,2°; logo, 360° correspondem à 250000 estádios, isto é,  44100km.</p>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/01/Eratosthenes.png" target="_blank"><img src="enunciado_1_files/Eratosthenes.png" alt="Representação do cálculo" style="max-width:100%;"></a></p>
+<p><a href="https://pt.wikipedia.org/wiki/Erat%C3%B3stenes#A_medida_da_circunfer.C3.AAncia_da_Terra" title="Eratóstenes" rel="nofollow">Wikipedia</a></p>
+<h2>
+<a id="user-content-descrição" class="anchor" href="#descri%C3%A7%C3%A3o" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Descrição</h2>
+<p>Escreva um programa que calcule a circunferência <strong>C</strong> de um determinado planeta, com base na observação do ângulo <strong>A</strong>, entre duas localidades <strong>C1</strong> e <strong>C2</strong>, e na distância <strong>D</strong>, em estádios, entre elas.</p>
+<p>Suponha que as localidades estejam no mesmo meridiano de um planeta 
+esférico. O seu programa deverá imprimir a circunferência do planeta em 
+estádios e em quilômetros.</p>
+<h2>
+<a id="user-content-entrada" class="anchor" href="#entrada" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Entrada</h2>
+<p>A entrada do programa será composta da distância <strong>D</strong>, em estádios, e do ângulo <strong>A</strong>, em graus, respectivamente, um número em cada linha.</p>
+<h2>
+<a id="user-content-saída" class="anchor" href="#sa%C3%ADda" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Saída</h2>
+<p>A saída mostra a circunferência <strong>Ce</strong>, em estádios, e <strong>Ckm</strong>, em quilômetros, do planeta seguindo o cálculo feito por Eratóstenes para a Terra com uma casa decimal de precisão.</p>
+<h2>
+<a id="user-content-exemplos" class="anchor" href="#exemplos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Exemplos</h2>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/01/dados/arq01.in">Entrada</a></p>
+<pre><code>5000.0
+7.2
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/01/dados/arq01.res">Saída</a></p>
+<pre><code>250000.0
+44100.0
+</code></pre>
+<h3>
+<a id="user-content-teste-02" class="anchor" href="#teste-02" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 02</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/01/dados/arq02.in">Entrada</a></p>
+<pre><code>1000.0
+1.0
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/01/dados/arq02.res">Saída</a></p>
+<pre><code>360000.0
+63504.0
+</code></pre>
+<h3>
+<a id="user-content-teste-03" class="anchor" href="#teste-03" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 03</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/01/dados/arq03.in">Entrada</a></p>
+<pre><code>1500.0
+360.0
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/01/dados/arq03.res">Saída</a></p>
+<pre><code>1500.0
+264.6
+</code></pre>
+<p>Para mais exemplos, consulte os <a href="https://susy.ic.unicamp.br:9999/mc102wy/01/dados/testes.html">testes abertos no Susy</a>.</p>
+<h2>
+<a id="user-content-observações" class="anchor" href="#observa%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Observações</h2>
+<ul>
+<li>O número máximo de submissões é <strong>10</strong>;</li><li>O seu programa deve estar completamente contido em um único arquivo denominado <code>lab01.py</code>;</li><li>Para a realização dos testes do SuSy, a execução do código em Python se dará da seguinte forma: (Linux e OSX)<br>
+<code>python3 lab01.py</code>;</li><li>Você deve incluir, no início do 
+seu programa, uma breve descrição dos objetivos do programa, da entrada e
+ da saída, além do seu nome e do seu RA;</li>
+<li>Indente corretamente o seu código e inclua comentários no decorrer do seu programa.</li>
+</ul>
+<h2>
+<a id="user-content-critérios-importantes" class="anchor" href="#crit%C3%A9rios-importantes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Critérios importantes</h2>
+<p>Independentemente dos resultados dos testes do SuSy, o não 
+cumprimento dos critérios abaixo implicará em nota zero nesta tarefa de 
+laboratório.</p>
+
+    </article>
+
+
+</body></html>

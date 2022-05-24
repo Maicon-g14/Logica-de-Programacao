@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 16</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_16_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_16_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h3>
+<a id="user-content-instituto-de-computação---unicamp" class="anchor" href="#instituto-de-computa%C3%A7%C3%A3o---unicamp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Instituto de Computação - Unicamp</h3>
+<h3>
+<a id="user-content-mc102---algoritmos-e-programação-de-computadores" class="anchor" href="#mc102---algoritmos-e-programa%C3%A7%C3%A3o-de-computadores" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MC102 - Algoritmos e Programação de Computadores</h3>
+<h1>
+<a id="user-content-laboratório-id---title" class="anchor" href="#laborat%C3%B3rio-id---title" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Laboratório 16 - Pesquisas</h1><p>Prazo de entrega: <strong>03/06/2018 23:59:59</strong></p><p>Peso: <strong>2</strong></p>
+<p><em>Professor:</em> Eduardo C. Xavier</p>
+<p><em>Monitor:</em> Alexsandro Alexandrino<br>
+<em>Monitor:</em> Ramon Nepomuceno</p>
+<hr>
+<p>Mecanismos de busca como o Google e Bing tentam encontrar conteúdo que
+seja relevante para um determinado conjunto de termos de busca fornecido por um usuário.
+Para isso, tais mecanismos levam em
+consideração diversos aspectos, tais como conteúdo pesquisado, perfil do
+usuário e importância de uma página. Um dos critérios para
+se estabelecer a importância de uma página é o número de links de
+outras páginas que apontam para esta.</p>
+<p>Neste laboratório você deverá implementar um sistema de busca
+simplificado, para o qual são fornecidos <strong>(i)</strong> um conjunto de páginas da
+internet (cada página é uma string que contém letras minúsculas sem
+acento e espaços), <strong>(ii)</strong> os links entre essas páginas (representados por
+uma matriz binária), e <strong>(iii)</strong> um conjunto de termos de busca (cada termo
+é uma string que contém apenas letras minúsculas sem acento). O sistema
+então deve apresentar as páginas <strong>que possuem todos os termos de busca</strong> e,
+para cada página p, apresentar <strong>a quantidade de links de outras páginas</strong>
+que contêm os mesmos termos de busca e que apontam para p.</p>
+<p>Por exemplo, suponha que existam 3 páginas:</p>
+<pre><code>Página 0: "marco mes da mulher final do verao"
+Página 1: "as flores que enfeitam esse o mes de marco amor perfeito boca de leao e aste"
+Página 2: "e um espinho na mao e um corte no pe sao as aguas de marco fechando o verao"
+</code></pre>
+<p>A representação dos links entre as páginas é feita com uma matriz
+binária na qual cada posição <strong>(i,j)</strong> possui o valor <strong>1</strong>, caso exista um link da
+página <strong>i</strong> para a página <strong>j</strong>, ou <strong>0</strong>, caso contrário.
+No exemplo acima suponha existir links das páginas 0 e 1 para a 2, e
+da página 1 para a página 0. A matriz que representa estes links está
+abaixo:</p>
+<pre><code>0 0 1
+1 0 1
+0 0 0
+</code></pre>
+<p>Agora suponha que o usuário forneça o seguinte conjunto de termos de busca:</p>
+<pre><code>"verao em marco"
+</code></pre>
+<p>As etapas de processamento do nosso sistema de busca são:</p>
+<p><strong>1)</strong> Remover do conjunto de termos de busca as chamadas <em>stop words</em>,
+que são os artigos, preposições, etc. A lista completa de <em>stop words</em>
+será dada pelo programa. No exemplo, o termo <strong>em</strong> será removido.</p>
+<p><strong>2)</strong> Selecionar as <strong>páginas resposta</strong>, que são aquelas que contêm
+todos os termos de busca. No exemplo, apenas as páginas 0 e 2 são páginas
+resposta, já que só elas possuem todos os termos de busca sem <em>stop words</em>,
+que são os termos <strong>verao</strong> e <strong>marco</strong>.</p>
+<p><strong>3)</strong> Determinar, para cada página resposta <em>p</em>, a <strong>importância</strong> de <em>p</em>,
+que é o número de links das outras páginas resposta para <em>p</em>.
+No exemplo, a página 0 tem importância <strong>0</strong> (pois, dentre as páginas
+resposta 0 e 2, nenhuma tem link para ela),
+enquanto que a página 2 tem importância <strong>1</strong>
+(pois, dentre as páginas resposta 0 e 2, a página 0 tem link para ela).</p>
+<p>O programa deverá então indicar se as páginas contêm ou não o conjunto
+de termos busca (no exemplo, página 0 contém, página 1 não contém e página
+2 contém) e a importância de cada página resposta (no exemplo, a página 0 tem
+importância 0, a página 1 não tem importância pois não é página resposta,
+e a página 2 tem importância 1).</p>
+<p>O objetivo deste laboratório é implementar algumas funções
+para encontrar as possíveis páginas de interesse do usuário.
+A função <code>main</code> já foi implementada e você deverá implementar
+outras funções para obter o resultado.
+As funções a serem implementadas são as seguintes:</p>
+<p><strong>1) Remoção de palavras:</strong> dada uma string <code>s</code> correspondente a um texto
+e um vetor de strings <code>vs</code> que corresponde a um conjunto de palavras,
+deve-se remover de <code>s</code> todas as ocorrências de cada palavra de <code>vs</code>.
+Além disso, <code>s</code> deve ficar sem espaços extras (use a primeira função
+para remover os espaços extras, se for necessário). Por exemplo, se os
+conteúdos de <code>s</code> e <code>vs</code> forem</p>
+<div class="highlight highlight-source-python"><pre>  s <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>as flores de plastico nao morrem as flores vao curar esta<span class="pl-pds">"</span></span>
+  vs <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">"</span>as<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>nao<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>esta<span class="pl-pds">"</span></span>]</pre></div>
+<p>então após a execução desta função o conteúdo de <code>s</code> deve ser</p>
+<div class="highlight highlight-source-python"><pre><span class="pl-s"><span class="pl-pds">"</span>flores de plastico morrem flores vao curar<span class="pl-pds">"</span></span></pre></div>
+<p><strong>2) Determinação de páginas resposta:</strong> dado um vetor de strings <code>paginas</code>,
+de tamanho <code>numPag</code>, no qual cada posição é uma string com o texto
+de uma página, e um vetor de strings <code>termosBusca</code>, de tamanho <code>numTer</code>,
+no qual cada posição é uma string com um termo do conjunto de termos de busca,
+deve-se preencher
+um vetor de inteiros <code>resp</code>, de tamanho <code>numPag</code>, da seguinte maneira:
+se todas as palavras em <code>termosBusca</code> estiverem presentes na página <code>i</code>,
+então <code>resp[i]</code> deve ser atualizado com valor 1, caso contrário deve ser atualizado com valor 0.
+Por exemplo, se a entrada for</p>
+<div class="highlight highlight-source-python"><pre>  numPag <span class="pl-k">=</span> <span class="pl-c1">3</span>
+  paginas <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">"</span>cartao postal azul<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>carta postal<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>azul e a cor do postal<span class="pl-pds">"</span></span>]
+  numTer <span class="pl-k">=</span> <span class="pl-c1">2</span>
+  termosBusca <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">"</span>azul<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>postal<span class="pl-pds">"</span></span>]</pre></div>
+<p>então após a execução desta função o conteúdo de <code>resp</code> deve ser</p>
+<div class="highlight highlight-source-python"><pre> resp <span class="pl-k">=</span> [<span class="pl-c1">1</span>, <span class="pl-c1">0</span>, <span class="pl-c1">1</span>]</pre></div>
+<p><strong>3) Número de <em>links</em> das páginas resposta:</strong> dada uma matriz
+quadrada de <code>links</code>
+com dimensões <code>numPag</code> e uma lista <code>resp</code> com tamanho <code>numPag</code> obtido
+como saída da função anterior,  deve-se preencher
+uma lista <code>numLinks</code> de tamanho <code>numPag</code>da seguinte maneira:
+dada uma página <code>i</code>, se <code>resp[i] == 1</code>, então <code>numLinks[i]</code>
+deve ser atualizado com o número de links de outras páginas resposta para
+<code>i</code>. Se <code>resp[i] == 0</code>,  então <code>numLinks[i]</code> deve ser atualizado com -1.</p>
+<p>Assim, se <code>links</code> for</p>
+<pre><code>0 1 1
+1 0 1
+0 1 0
+</code></pre>
+<p>e</p>
+<div class="highlight highlight-source-python"><pre>  numPag <span class="pl-k">=</span> <span class="pl-c1">3</span>
+  resp <span class="pl-k">=</span> [<span class="pl-c1">1</span>, <span class="pl-c1">0</span>, <span class="pl-c1">1</span>]</pre></div>
+<p>então após a execução desta função o conteúdo de <code>numLinks</code> deve ser</p>
+<pre><code>numLinks =  [0, -1, 1]
+</code></pre>
+<p>Para esse laboratório você só deverá implementar as funções descritas
+acima em um arquivo chamado <a href="https://susy.ic.unicamp.br:9999/mc102wy/16/aux/lab16.py">lab16.py</a>, que está
+parcialmente implementado com as assinaturas dessas funções.
+A função principal (main) será fornecida em um arquivo separado,
+chamado <a href="https://susy.ic.unicamp.br:9999/mc102wy/16/aux/lab16_main.py">lab16_main.py</a>.
+Links para ambos os arquivos estão disponíveis na página do laboratório.
+A descrição geral dos parâmetros de entrada e saída das funções encontra-se nos
+comentários das assinaturas das funções, que são fornecidas a seguir:</p>
+<div class="highlight highlight-source-python"><pre><span class="pl-c"><span class="pl-c">#</span>  Funcao: removePalavras</span>
+<span class="pl-c"><span class="pl-c">#</span> </span>
+<span class="pl-c"><span class="pl-c">#</span>  Parametros:</span>
+<span class="pl-c"><span class="pl-c">#</span>    s: string contendo o texto de entrada</span>
+<span class="pl-c"><span class="pl-c">#</span>    vs: vetor de strings com as palavras a serem removidas</span>
+<span class="pl-c"><span class="pl-c">#</span> </span>
+<span class="pl-c"><span class="pl-c">#</span>  Descricao:</span>
+<span class="pl-c"><span class="pl-c">#</span>    Deve-se remover as palavras de s que estiverem listadas em vs.</span>
+<span class="pl-c"><span class="pl-c">#</span>    Ao final, s nao deve conter espacos extras.</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-c"><span class="pl-c">#</span> Retorno:</span>
+<span class="pl-c"><span class="pl-c">#</span>   string s sem as palavras de vs.</span>
+
+<span class="pl-k">def</span> <span class="pl-en">removePalavras</span>(<span class="pl-smi">s</span>, <span class="pl-smi">vs</span>):
+
+
+<span class="pl-c"><span class="pl-c">#</span> Parametros:</span>
+<span class="pl-c"><span class="pl-c">#</span>   paginas: lista de strings cada uma representando uma pagina</span>
+<span class="pl-c"><span class="pl-c">#</span>   termosBusca: lista de strings com os termos a serem buscados</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-c"><span class="pl-c">#</span> Descricao:</span>
+<span class="pl-c"><span class="pl-c">#</span>	Deve verificar se cada página em paginas contém todos os termos</span>
+<span class="pl-c"><span class="pl-c">#</span>	de busca em termosBusca. Se a paginas[i] contiver todos os termos</span>
+<span class="pl-c"><span class="pl-c">#</span>	então deve-se atribuir 1 para resp[i] e 0 caso não contenha pelo</span>
+<span class="pl-c"><span class="pl-c">#</span>	menus um dos termos de busca.</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-c"><span class="pl-c">#</span> Retorno:</span>
+<span class="pl-c"><span class="pl-c">#</span>   lista a ser preenchida como resposta, de dimensao numPag.</span>
+
+<span class="pl-k">def</span> <span class="pl-en">pagsResposta</span>(<span class="pl-smi">paginas</span>, <span class="pl-smi">termosBusca</span>):
+
+
+<span class="pl-c"><span class="pl-c">#</span> Parametros:</span>
+<span class="pl-c"><span class="pl-c">#</span>   links: matriz quadrada binária representando links entre as paginas </span>
+<span class="pl-c"><span class="pl-c">#</span>   resp: vetor obtido apos execucao de pagsResposta</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-c"><span class="pl-c">#</span> Descricao:</span>
+<span class="pl-c"><span class="pl-c">#</span>   Deve-se preencher uma lista numLinks da seguinte maneira: para cada</span>
+<span class="pl-c"><span class="pl-c">#</span>   posicao i (0 &lt;= i &lt; numPags), se resp[i] == 1, então numLinks[i] deve conter</span>
+<span class="pl-c"><span class="pl-c">#</span>   o numero de links de outras paginas resposta para i. Caso resp[i] == 0,</span>
+<span class="pl-c"><span class="pl-c">#</span>   entao numLinks[i] deve ser -1.</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-c"><span class="pl-c">#</span> Retorno</span>
+<span class="pl-c"><span class="pl-c">#</span>   lista numLinks a ser preenchida como resposta, de tamanho numPag</span>
+
+<span class="pl-k">def</span> <span class="pl-en">linksResposta</span>(<span class="pl-smi">links</span>,<span class="pl-smi">resp</span>):
+</pre></div>
+<h2>
+<a id="user-content-reforçando" class="anchor" href="#refor%C3%A7ando" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reforçando</h2>
+<p>Neste laboratório você não precisará se preocupar em ler a
+entrada a partir da entrada padrão, nem em escrever a saída.
+Seu trabalho é apenas implementar as funções descritas. A
+função <code>(main)</code> que é fornecida no arquivo <code>lab16_main.py</code>se encarrega dessa parte.</p>
+<p>Você também <strong>não deve</strong> submeter o arquivo <code>lab16_main.py</code>para o <em>SuSy</em>, somente o arquivo <code>lab16.py</code>.</p><p>As sessões abaixo, de <a href="#entrada">Entrada</a> e <a href="#sa%C3%ADda">Saída</a>,
+descrevem os formatos de entrada e saída, mas você
+não precisa se preocupar com eles.</p>
+<h2>
+<a id="user-content-entrada" class="anchor" href="#entrada" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Entrada</h2>
+<p>As entradas do programa são as seguintes, nessa ordem:</p>
+<ul>
+<li>Uma linha com as palavras do termo de busca. Esta linha tem um número
+variável de palavras separadas por espaço.</li>
+<li>Uma linha com as <em>stop words</em>. Esta linha tem um número
+variável de palavras separadas por espaço.</li>
+<li>Uma linha com um número N (2 &lt;= N &lt;= 100) de páginas.</li>
+<li>N linhas com o texto de cada página. Cada linha tem um número
+variável de palavras separadas por espaço.</li>
+<li>Uma linha com um número M de links entre as páginas;</li>
+<li>M linhas no formato <code>"i j"</code>  (<em>i</em> e <em>j</em> entre <em>0</em> e <em>N-1</em>), sendo que cada linha
+representa um link da página <em>i</em> para a página <em>j</em>.</li>
+</ul>
+<h2>
+<a id="user-content-saída" class="anchor" href="#sa%C3%ADda" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Saída</h2>
+<p>Nenhuma operação de saída deverá ser feita pelas funções
+escritas por você. O programa imprimirá as seguintes saídas
+na tela baseado no processamento feito pelas funções que foram
+implementadas:</p>
+<ul>
+<li>Uma linha com o conjunto de termos de busca original.</li>
+<li>Uma linha com o conjunto de termos de busca processado sem <em>stop
+words</em> e sem espaços extras.</li>
+<li>N linhas indicando se o conjunto de termos de busca aparece em cada
+página e, em caso positivo, quantos links há para aquela página.</li>
+</ul>
+<h2>
+<a id="user-content-exemplos" class="anchor" href="#exemplos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Exemplos</h2>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/16/dados/arq01.in">Entrada</a></p>
+<pre><code>verao em marco
+o a os as de do da dos das por para um uma uns umas em
+3
+marco mes da mulher final do verao
+as flores que enfeitam esse o mes de marco amor perfeito boca de leao e aste
+e um espinho na mao e um corte no pe sao as aguas de marco fechando o verao
+3
+0 2
+1 0
+1 2
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/16/dados/arq01.res">Saída</a></p>
+<pre><code>Termo a ser buscado: verao em marco
+Termo a ser buscado processado: verao marco
+Pagina 0: encontrado/0 links
+Pagina 1: nao encontrado
+Pagina 2: encontrado/1 links
+</code></pre>
+<h3>
+<a id="user-content-teste-02" class="anchor" href="#teste-02" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 02</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/16/dados/arq02.in">Entrada</a></p>
+<pre><code>os melhores
+o a os as de do da dos das por para um uma uns umas em
+3
+melhores produtos
+melhores universidades
+melhores amigos
+6
+0 1
+0 2
+1 0
+1 2
+2 0
+2 1
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/16/dados/arq02.res">Saída</a></p>
+<pre><code>Termo a ser buscado: os melhores
+Termo a ser buscado processado: melhores
+Pagina 0: encontrado/2 links
+Pagina 1: encontrado/2 links
+Pagina 2: encontrado/2 links
+</code></pre>
+<h3>
+<a id="user-content-teste-03" class="anchor" href="#teste-03" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 03</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/16/dados/arq03.in">Entrada</a></p>
+<pre><code>ursos
+o a os as de do da dos das por para um uma uns umas em
+3
+compre computadores
+moveis pronta entrega
+entrega comida
+4
+1 2
+0 1
+0 2
+2 1
+
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/16/dados/arq03.res">Saída</a></p>
+<pre><code>Termo a ser buscado: ursos
+Termo a ser buscado processado: ursos
+Pagina 0: nao encontrado
+Pagina 1: nao encontrado
+Pagina 2: nao encontrado
+</code></pre>
+<h3>
+<a id="user-content-teste-04" class="anchor" href="#teste-04" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 04</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/16/dados/arq04.in">Entrada</a></p>
+<pre><code>a unicamp de uma campinas os
+o a os as de do da dos das por para um uma uns umas em
+3
+melhor negocio aqui
+universidade estadual unicamp campinas sao paulo
+instituto computacao unicamp campinas
+4
+0 0
+0 1
+0 2
+2 1
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/16/dados/arq04.res">Saída</a></p>
+<pre><code>Termo a ser buscado: a unicamp de uma campinas os
+Termo a ser buscado processado: unicamp campinas
+Pagina 0: nao encontrado
+Pagina 1: encontrado/1 links
+Pagina 2: encontrado/0 links
+</code></pre>
+<p>Para mais exemplos, consulte os <a href="https://susy.ic.unicamp.br:9999/mc102wy/16/dados/testes.html">testes abertos no Susy</a>.</p>
+<h2>
+<a id="user-content-observações" class="anchor" href="#observa%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Observações</h2>
+<ul>
+<li>O número máximo de submissões é <strong>10</strong>;</li><li>As funções devem ser implementadas em um único arquivo denominado <code>lab16.py</code>;</li><li>Para a realização dos testes do SuSy, a compilação se dará da seguinte forma:<br>
+<code>python3 lab16_main.py</code>;</li><li>Você deve incluir, no início
+ do seu programa, uma breve descrição dos objetivos do programa, da 
+entrada e da saída, além do seu nome e do seu RA;</li>
+<li>Indente corretamente o seu código e inclua comentários no decorrer do seu programa.</li>
+</ul>
+
+    </article>
+
+
+</body></html>

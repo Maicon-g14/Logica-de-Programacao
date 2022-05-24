@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html><div id="tenten-safe-area-provider" style="all: initial;"></div><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>MC102 - Lab12</title>
+
+    <link rel="stylesheet" type="text/css" href="MC102%20-%20Lab12_files/2s2018-mc102.css">
+
+    <style>
+      table#tab_saida td {
+	  vertical-align:top;
+      }
+    </style>
+</head>
+  
+<body>
+
+<header>
+    MC102 - Algoritmos e Programação de Computadores
+</header>
+
+<div class="topnav">
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/index.html"><b>MC102</b></a>
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-1s2018"><b>Oferecimento anterior</b></a>
+</div>
+
+<h1>Tarefa de laboratório 12 - Opcional</h1>
+
+<p>Nesta tarefa, analisaremos detalhadamente as trocas executadas pelo
+algoritmo de ordenação <b>Bubble Sort</b>. Para nosso
+estudo, utilizaremos um visualizador para listas de inteiros
+contruído a partir de barras feitas com caracteres
+<code>|</code> de altura proporcional ao valor dos inteiros
+representados. Veja, como exemplo, o visualizador para uma lista com
+os inteiros <code>[3, 1, 12, 4, 10, 7, 2, 11, 9, 8, 5, 6]</code>,
+adornado com uma moldura feita com pontos.</p>
+  
+<pre><code>..............
+.  |         .
+.  |    |    .
+.  | |  |    .
+.  | |  ||   .
+.  | |  |||  .
+.  | || |||  .
+.  | || ||| |.
+.  | || |||||.
+.  |||| |||||.
+.| |||| |||||.
+.| ||||||||||.
+.||||||||||||.
+..............</code></pre>
+
+<p>A ideia básica do Bubble Sort baseia-se em comparar
+elementos adjacentes do vetor e, se estiverem fora de ordem,
+trocá-los. Ao final da primeira passada no vetor, o elemento de
+maior valor estará posicionado corretamente na última
+posição, ao final da segunda passada o segundo maior
+valor na penúltima posição e assim
+sucessivamente. Abaixo, ilustramos o comportamento do algoritmo para
+a lista <code>[5, 4, 3, 2, 1]</code>.</p>
+
+<pre><code>.......
+.|    .
+.||   .
+.|||  .
+.|||| .
+.|||||.
+.......
+.......
+. |   .
+.||   .
+.|||  .
+.|||| .
+.|||||.
+.......
+.......
+.  |  .
+.| |  .
+.|||  .
+.|||| .
+.|||||.
+.......
+.......
+.   | .
+.|  | .
+.|| | .
+.|||| .
+.|||||.
+.......
+.......
+.    |.
+.|   |.
+.||  |.
+.||| |.
+.|||||.
+.......
+.......
+.    |.
+. |  |.
+.||  |.
+.||| |.
+.|||||.
+.......
+.......
+.    |.
+.  | |.
+.| | |.
+.||| |.
+.|||||.
+.......
+.......
+.    |.
+.   ||.
+.|  ||.
+.|| ||.
+.|||||.
+.......
+.......
+.    |.
+.   ||.
+. | ||.
+.|| ||.
+.|||||.
+.......
+.......
+.    |.
+.   ||.
+.  |||.
+.| |||.
+.|||||.
+.......
+.......
+.    |.
+.   ||.
+.  |||.
+. ||||.
+.|||||.
+.......</code></pre>
+
+<p>O algoritmo Bubble Sort é simples de entender, mas
+  não é muito eficiente... Para mais
+  informações sobre algoritmos de
+  ordenação em Python
+  consulte <a href="https://interactivepython.org/courselib/static/pythonds/SortSearch/sorting.html">interactivepython.org
+  --- sorting.</a>
+
+  
+</p><h2>Descrição da entrada</h2>
+
+<p>A entrada conterá uma única linha com uma lista de
+inteiros com valores entre 1 e 15.</p>
+
+<h2>Descrição da saída</h2>
+
+<p>A saída conterá um quadro com o estado inicial da
+lista e um quadro ilustrando cada uma das trocas executadas pelo
+algoritmo. O último quadro deve conter a lista ordenada. Em
+caso de dúvidas, reveja o exemplo da primeira
+seção.</p>
+
+<h2>Testes para o SuSy</h2>
+
+<p>Esta tarefa contém 4 testes abertos e 1 teste fechado.</p>
+  
+<h2>Orientações para submissão</h2>
+
+<p>
+  Veja <a href="https://susy.ic.unicamp.br:9999/mc102geral/12">aqui</a>
+  a página de submissão da tarefa. Lembre-se que o
+  arquivo a ser submetido deve se
+  chamar <b><tt>lab12.py</tt></b>. </p>
+
+<p>No
+  link <a href="https://susy.ic.unicamp.br:9999/mc102geral/12/aux/aux.html">Arquivos auxiliares</a> há um arquivo <code><a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/labs/aux-12.zip">aux-12.zip</a></code> que contém todos os arquivos de testes abertos e seus respectivos resultados compactados. Os arquivos <code>executa-testes.py</code> e <code>executa-testes-windows.py</code> também estão neste pacote.</p>
+
+<p>Observe o limite máximo de 20 submissões.</p> 
+
+<p>A nota final é proporcional ao número de testes que 
+executaram corretamente, desde que o código esteja coerente com
+o enunciado. <b>A submissão de um código que não
+implementa o algoritmo requisitado, mas que exibe as saídas
+esperadas dos testes abertos a partir da comparação de
+trechos da entrada será considerada fraude e acarretará
+a atribuição de nota zero à média final da
+disciplina.</b></p>
+  
+<p>O peso desta tarefa é 2. Como é uma tarefa <b>opcional</b>,
+esta nota entrará com peso 2 para o numerador do cálculo da média de
+tarefas de laboratório. O denominador será dado pela soma dos pesos
+das tarefas de número 0 a 10.</p>
+
+<p>O prazo final para submissão é 01/12/2018 (último dia para o 
+cumprimento da carga horária/programa das disciplinas). Recomenda-se a 
+realização desta tarefa antes da Prova 2.</p>
+
+<hr>
+
+
+</body></html>

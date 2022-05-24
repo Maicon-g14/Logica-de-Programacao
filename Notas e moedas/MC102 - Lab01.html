@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html><div id="tenten-safe-area-provider" style="all: initial;"></div><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>MC102 - Lab01</title>
+
+    <link rel="stylesheet" type="text/css" href="MC102%20-%20Lab01_files/2s2018-mc102.css">
+</head>
+
+<body>
+
+<header>
+    MC102 - Algoritmos e Programação de Computadores
+</header>
+
+<div class="topnav">
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/index.html"><b>MC102</b></a>
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-1s2018"><b>Oferecimento anterior</b></a>
+</div>
+
+<h1>Tarefa de laboratório 01</h1>
+
+<p><img src="MC102%20-%20Lab01_files/moeda-um-real.jpg" alt="Moeda de um real" class="left" padding="10px" width="100px">
+ O objetivo deste exercício é fazer a divisão em notas e moedas de um 
+valor expresso em centavos de real, dando preferência para as notas ou 
+moedas de maior valor. Utilizaremos notas de R$ 100,00, R$ 50,00, R$ 
+20,00, R$ 10,00, R$ 5,00 e R$ 2,00 e moedas de R$ 1,00, R$ 0.50, R$ 
+0.25, R$ 0.10 e R$ 0.05.</p>
+
+<p>Como exemplo, o valor 12.830 centavos pode ser dividido em uma nota 
+de R$ 100,00, uma nota de R$ 20,00, uma nota de R$ 5,00, uma nota de R$ 
+2,00, uma moeda de R$ 1,00, uma moeda de R$ 0.25 e uma moeda de R$ 0.05.</p>
+
+<h2>Entrada</h2>
+
+<p>O seu programa deverá ler um número inteiro. Este número deverá estar
+ expresso apenas por dígitos, ou seja, sem pontos extras para separar 
+grupos de três dígitos. Os valores serão mútiplos de 5. Observe o 
+exemplo:</p>
+
+<code>
+34185  
+</code>
+
+<h2>Saída</h2>
+
+<p>Para cada tipo de nota ou moeda enumerados anteriormente,
+será emitida uma linha indicando o número de notas ou
+moedas necessárias daquele tipo. Note que alguns valores podem
+ser iguais a zero.</p>
+
+<p>Para o exemplo de entrada acima, a saída será:</p>
+
+<code><pre>3 nota(s) de R$ 100,00.
+0 nota(s) de R$ 50,00.
+2 nota(s) de R$ 20,00.
+0 nota(s) de R$ 10,00.
+0 nota(s) de R$ 5,00.
+0 nota(s) de R$ 2,00.
+1 moeda(s) de R$ 1,00.
+1 moeda(s) de R$ 0,50.
+1 moeda(s) de R$ 0,25.
+1 moeda(s) de R$ 0,10.
+0 moeda(s) de R$ 0,05.</pre></code>
+      
+<h1>Testes com o SuSy</h1>
+
+<p>No SuSy, para cada tarefa, criamos um conjunto de testes com
+arquivos de entrada <code>arq&lt;i&gt;.in</code> e para cada um deles
+temos uma saída esperada <code>arq&lt;i&gt;.res</code>. Para esta
+  tarefa, os testes abertos serão os seguintes:</p>
+  
+<table>
+  <tbody><tr>
+  <th colspan="2">Entrada</th>
+  <th colspan="2">Resultado</th>
+  </tr>
+  <tr>
+  <td>arq1.in</td>
+  <td style="vertical-align:top"><code>40000</code></td>
+  <td style="vertical-align:top"><code>4 nota(s) de R$ 100,00.<br>
+0 nota(s) de R$ 50,00.<br>
+0 nota(s) de R$ 20,00.<br>
+0 nota(s) de R$ 10,00.<br>
+0 nota(s) de R$ 5,00.<br>
+0 nota(s) de R$ 2,00.<br>
+0 moeda(s) de R$ 1,00.<br>
+0 moeda(s) de R$ 0,50.<br>
+0 moeda(s) de R$ 0,25.<br>
+0 moeda(s) de R$ 0,10.<br>
+0 moeda(s) de R$ 0,05.</code></td>
+  <td>arq1.res</td>
+  </tr>
+  <tr>
+  <td>arq2.in</td>
+  <td style="vertical-align:top"><code>7000</code></td>
+  <td style="vertical-align:top"><code>0 nota(s) de R$ 100,00.<br>
+1 nota(s) de R$ 50,00.<br>
+1 nota(s) de R$ 20,00.<br>
+0 nota(s) de R$ 10,00.<br>
+0 nota(s) de R$ 5,00.<br>
+0 nota(s) de R$ 2,00.<br>
+0 moeda(s) de R$ 1,00.<br>
+0 moeda(s) de R$ 0,50.<br>
+0 moeda(s) de R$ 0,25.<br>
+0 moeda(s) de R$ 0,10.<br>
+0 moeda(s) de R$ 0,05.</code></td>
+  <td>arq2.res</td>
+  </tr>
+  <tr>
+  <td>arq3.in</td>
+  <td style="vertical-align:top"><code>1800</code></td>
+  <td style="vertical-align:top"><code>0 nota(s) de R$ 100,00.<br>
+0 nota(s) de R$ 50,00.<br>
+0 nota(s) de R$ 20,00.<br>
+1 nota(s) de R$ 10,00.<br>
+1 nota(s) de R$ 5,00.<br>
+1 nota(s) de R$ 2,00.<br>
+1 moeda(s) de R$ 1,00.<br>
+0 moeda(s) de R$ 0,50.<br>
+0 moeda(s) de R$ 0,25.<br>
+0 moeda(s) de R$ 0,10.<br>
+0 moeda(s) de R$ 0,05.<br>
+</code></td>
+  <td>arq3.res</td>
+  </tr>
+  <tr>
+  <td>arq4.in</td>
+  <td style="vertical-align:top"><code>90</code></td>
+  <td style="vertical-align:top"><code>0 nota(s) de R$ 100,00.<br>
+0 nota(s) de R$ 50,00.<br>
+0 nota(s) de R$ 20,00.<br>
+0 nota(s) de R$ 10,00.<br>
+0 nota(s) de R$ 5,00.<br>
+0 nota(s) de R$ 2,00.<br>
+0 moeda(s) de R$ 1,00.<br>
+1 moeda(s) de R$ 0,50.<br>
+1 moeda(s) de R$ 0,25.<br>
+1 moeda(s) de R$ 0,10.<br>
+1 moeda(s) de R$ 0,05.</code></td>
+  <td>arq4.res</td>
+  </tr>
+  <tr>
+  <td>arq5.in</td>
+  <td style="vertical-align:top"><code>24630</code></td>
+  <td style="vertical-align:top"><code>2 nota(s) de R$ 100,00.<br>
+0 nota(s) de R$ 50,00.<br>
+2 nota(s) de R$ 20,00.<br>
+0 nota(s) de R$ 10,00.<br>
+1 nota(s) de R$ 5,00.<br>
+0 nota(s) de R$ 2,00.<br>
+1 moeda(s) de R$ 1,00.<br>
+0 moeda(s) de R$ 0,50.<br>
+1 moeda(s) de R$ 0,25.<br>
+0 moeda(s) de R$ 0,10.<br>
+1 moeda(s) de R$ 0,05.</code></td>
+  <td>arq5.res</td>
+  </tr>
+  <tr>
+  <td>arq6.in</td>
+  <td style="vertical-align:top"><code>6260</code></td>
+  <td style="vertical-align:top"><code>0 nota(s) de R$ 100,00.<br>
+1 nota(s) de R$ 50,00.<br>
+0 nota(s) de R$ 20,00.<br>
+1 nota(s) de R$ 10,00.<br>
+0 nota(s) de R$ 5,00.<br>
+1 nota(s) de R$ 2,00.<br>
+0 moeda(s) de R$ 1,00.<br>
+1 moeda(s) de R$ 0,50.<br>
+0 moeda(s) de R$ 0,25.<br>
+1 moeda(s) de R$ 0,10.<br>
+0 moeda(s) de R$ 0,05.</code></td>
+  <td>arq6.res</td>
+  </tr>
+  <tr>
+  <td>arq7.in</td>
+  <td style="vertical-align:top"><code>18890</code></td>
+  <td style="vertical-align:top"><code>1 nota(s) de R$ 100,00.<br>
+1 nota(s) de R$ 50,00.<br>
+1 nota(s) de R$ 20,00.<br>
+1 nota(s) de R$ 10,00.<br>
+1 nota(s) de R$ 5,00.<br>
+1 nota(s) de R$ 2,00.<br>
+1 moeda(s) de R$ 1,00.<br>
+1 moeda(s) de R$ 0,50.<br>
+1 moeda(s) de R$ 0,25.<br>
+1 moeda(s) de R$ 0,10.<br>
+1 moeda(s) de R$ 0,05.<br>
+</code></td>
+  <td>arq7.res</td>
+  </tr>
+  <tr>
+  <td>arq8.in</td>
+  <td style="vertical-align:top"><code>51545</code></td>
+  <td style="vertical-align:top"><code>5 nota(s) de R$ 100,00.<br>
+0 nota(s) de R$ 50,00.<br>
+0 nota(s) de R$ 20,00.<br>
+1 nota(s) de R$ 10,00.<br>
+1 nota(s) de R$ 5,00.<br>
+0 nota(s) de R$ 2,00.<br>
+0 moeda(s) de R$ 1,00.<br>
+0 moeda(s) de R$ 0,50.<br>
+1 moeda(s) de R$ 0,25.<br>
+2 moeda(s) de R$ 0,10.<br>
+0 moeda(s) de R$ 0,05.<br>
+</code></td>
+  <td>arq8.res</td>
+  </tr>
+</tbody></table>
+
+<p>Esta tarefa possui mais dois testes fechados, que são variações de alguns dos testes já apresentados.</p>
+
+<h2>Como utilizar os testes no seu computador</h2>
+
+<p>Dado um dos arquivos <code>arq&lt;i&gt;.in</code>, você pode utilizá-lo como entrada na linha de comando da seguinte forma:</p>
+
+<code><pre>$ python3 main.py &lt; arq1.in</pre>    
+</code>
+
+<p>Você pode redirecionar a saída para um arquivo <code>arq&lt;i&gt;.out</code> da seguinte maneira:</p>
+
+<code><pre>$ python3 main.py &lt; arq1.in &gt; arq1.out</pre>    
+</code>
+
+<p>O SuSy está configurado para comparar a saída do seu programa
+com o arquivo <code>arq&lt;i&gt;.res</code> utilizando o comando <code>diff</code>:
+
+<code></code></p><pre><code>$ diff arq1.out arq1.res</code></pre><code>    
+</code>
+
+<p>Uma saída vazia indicará que o programa executou corretamente no seu 
+computador. Caso contrário, observe as diferenças apontadas e depure seu
+ programa.</p>
+
+<p>Estão disponíveis dois scripts Python para ajudar a fazer todos os 
+testes abertos, sendo um para ambiente GNU/Linux e o outro para ambiente
+ Windows. Os scripts supõem que o arquivo <code>lab01.py</code>, os arquivos de entrada <code>arq&lt;i&gt;.in</code> e os arquivos com resultado <code>arq&lt;i&gt;.res</code> estão todos no mesmo diretório.</p>
+
+<h2>Dicas de Python 3 para esta tarefa:</h2>
+
+<ul>
+  <li><p>Para ler um valor e armazená-lo como inteiro na variável <code>x</code> utilize os comandos <code>input()</code> e <code>int()</code>:</p>
+    <code>x = int(input())</code>
+
+  </li><li><p>Para obter o resultado da divisáo inteira de um número por outro utilize o operador <code>//</code>:</p>
+    <code>res_int = x // 100</code>    
+
+  </li><li><p>Para obter o resto da divisáo inteira de um número por outro utilize o operador <code>%</code>:</p>
+    <code>res_int = x % 100</code>    
+</li></ul>
+
+<p><b>Observação:</b> uma versão desta tarefa que
+lesse um número com duas casas decimais e operasse
+com <code>floats</code> seria mais complexa e teria de lidar com as
+limitações de armazenamento e aritmética de ponto
+flutuante. Veja os exemplos abaixo:
+  <code></code></p><pre><code>&gt;&gt;&gt; 48590 % 100
+90
+&gt;&gt;&gt; 485.90 % 100
+85.8999999999998
+</code></pre>
+
+<p>Para saber mais, veja a seção <a href="https://docs.python.org/3.6/tutorial/floatingpoint.html">15. Floating Point Arithmetic: Issues and Limitations</a> da documentação de Python 3.</p>
+  
+<h2>Orientações para submissão</h2>
+
+<p> Veja <a href="https://susy.ic.unicamp.br:9999/mc102geral/01">aqui</a> a página de submissão da tarefa. Lembre-se que o arquivo a ser submetido deve se chamar <code>lab01.py</code>. No link <a href="https://susy.ic.unicamp.br:9999/mc102geral/01/aux/aux.html">Arquivos auxiliares</a> há um arquivo <code><a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/labs/aux-01.zip">aux-01.zip</a></code> que contém todos os arquivos de testes abertos e seus respectivos resultados compactados. Os arquivos <code>executa-testes.py</code> e <code>executa-testes-windows.py</code> também estão neste pacote.</p>
+
+<p>O limite máximo de submissões é 20.</p>
+
+<p>O peso desta tarefa é 2.</p>
+
+<p>O prazo final para submissão é 26/08/2018.</p>
+
+<hr>
+
+
+
+</body></html>

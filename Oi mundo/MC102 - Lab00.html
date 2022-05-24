@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html><div id="tenten-safe-area-provider" style="all: initial;"></div><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>MC102 - Lab00</title>
+
+    <link rel="stylesheet" type="text/css" href="MC102%20-%20Lab00_files/2s2018-mc102.css">
+</head>
+
+<body>
+
+<header>
+    MC102 - Algoritmos e Programação de Computadores
+</header>
+
+<div class="topnav">
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/index.html"><b>MC102</b></a>
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-1s2018"><b>Oferecimento anterior</b></a>
+</div>
+
+<h1> Tarefa de laboratório 00 </h1>
+
+<p> O objetivo deste exercício é propiciar a
+familiarização com o interpretador Python e a ferramenta
+de submissão e testes automáticos SuSy. Teste as
+opções corretas e todos os erros documentados. Esta
+experiência poderá facilitar muito o seu processo de
+desenvolvimento e depuração das próximas
+tarefas.</p>
+  
+<p> <img src="MC102%20-%20Lab00_files/128px-Python3-powered_hello-world.png" alt="Python
+     powered Hello World" class="left" padding="10px"> Em muitos
+     tutoriais, o primeiro programa ensinado é o que escreve a
+     mensagem <i>Hello, world!</i>. Adotaremos esta abordagem e
+     escreveremos:</p>
+
+<p style="font-size:150%"><b>Oi, mundo!</b></p>
+
+<p>Veja o código abaixo: </p>
+
+<code>
+  <pre>print("Oi, mundo!")</pre>
+</code>  
+  
+  
+
+<h1>Testes com a shell</h1>
+
+Abra um terminal e o programa python3: 
+
+<code>
+  <pre>$ python3
+Python 3.6.6 (default, Jul 19 2018, 14:25:17)
+[GCC 8.1.1 20180712 (Red Hat 8.1.1-5)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt;  </pre>
+</code>
+
+A partir deste ponto, você pode testar comandos em Python de
+forma interativa. Vamos lá!
+
+<code>
+  <pre>&gt;&gt;&gt; print("Oi, mundo!")
+Oi, mundo!</pre>
+</code>
+
+Muitas vezes não escrevemos exatamente como o interpretador
+esperava. São erros de sintaxe ou de definição de
+nomes. Veja os exemplos abaixo:
+
+<ul>
+<li><p><b font-size="150%">Falta de parênteses</b></p>  
+
+<code>
+  <pre>&gt;&gt;&gt; print "Oi, mundo!"
+  File "<stdin>", line 1
+    print "Oi, mundo!"
+                     ^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print("Oi, mundo!")? </stdin></pre>
+</code>  
+
+<p>Neste caso, o interpretador teve facilidade para identificar nosso
+erro e nos apresentou uma mensagem bem amigável, nos
+direcionando para a solução.</p>
+
+</li><li><p><b font-size="150%">Função com nome inválido</b></p>
+  
+<p>Outro erro comum é não digitarmos corretamente o nome de
+uma função.</p>
+
+<code>
+  <pre>&gt;&gt;&gt; prit ("Oi, mundo!")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'prit' is not defined
+&gt;&gt;&gt; </module></stdin></pre>
+</code>
+
+Às vezes o nome está correto, mas o interpretador
+precisa de ajuda para encontrar a função. Estudaremos isso
+mais para a frente na disciplina.
+
+</li><li><p><b font-size="150%">String sem delimitador final</b></p>
+  
+    Às vezes, a mensagem pode ser um pouco mais difícil de
+entender. Abaixo, o interpretador está indicando que a linha
+acabou (EOL = end of line) enquanto tentava processar a string.<p></p>
+
+<code>
+  <pre>&gt;&gt;&gt; print("Oi, mundo!)
+  File "<stdin>", line 1
+    print("Oi, mundo!)
+                      ^
+SyntaxError: EOL while scanning string literal</stdin></pre>
+</code>
+
+</li><li><p><b font-size="150%">String sem delimitador inicial</b></p>
+  
+<p>Um erro semelhante leva a uma mensagem bem diferente. Neste caso,
+como não havia aspas demarcando o início da string, o
+interpretador tentou avaliar o seu conteúdo como código
+Python e indicou que a sintaxe está inválida.</p>
+
+<code>
+  <pre>&gt;&gt;&gt; print(Oi, mundo!")
+  File "<stdin>", line 1
+    print(Oi, mundo!")
+                    ^
+SyntaxError: invalid syntax</stdin></pre>
+</code>
+
+</li></ul>
+
+<h1>Testes com arquivo lab00.py</h1>
+
+<p>Outra forma de usar a linguagem Python é criarmos um arquivo
+com o programa para execução posterior. Abra um editor
+de textos como o <code>gedit</code> e crie um arquivo chamado <code>lab00.py</code> com o conteúdo abaixo:</p>  
+
+<code>
+  <pre>print("Oi, mundo!")</pre>
+</code>
+
+<p>e depois execute da seguinte forma:</p>
+
+<code>
+<pre>$ python3 lab00.py
+Oi, mundo!  
+</pre>
+</code>
+
+<p>Altere o arquivo introduzindo erros de sintaxe semelhantes aos
+anteriores e observe as mensagens retornadas.</p>
+
+<h1>Testes com o SuSy</h1>
+
+<p>No SuSy, para cada tarefa, criamos um conjunto de testes com
+arquivos de entrada <code>arq1.in, arq2.in,
+arq3.in,..., arqN.in</code>. A cada um deles corresponde um arquivo de
+saída <code>arq1.res, arq2.res, arq3.res,..., arqN.res</code>. O seu
+programa passará em um teste <code>i</code> apenas se a
+saída for exatamente igual a do arquivo de
+resposta <code>arq&lt;i&gt;.res</code>. Este é o desafio!</p>
+
+<p>No caso desta tarefa, teremos apenas um arquivo de
+  teste <code>arq1.in</code>, sem conteúdo. O arquivo de saída
+<code>arq1.res</code> contém <code>Oi, mundo!</code>.</p>
+
+<p>Se você submeter arquivos que não respeitam a sintaxe
+de Python como os exemplificados na seção anterior,
+receberá respostas parecidas às documentadas. Agora,
+observe os comandos abaixo:
+
+<code>
+  </code></p><pre><code>print("Hello, world")    
+print("Hallo, Welt!")
+print("Oi, mundo!!!")    
+print("Oiiii, mundooo!")
+</code></pre><code>
+</code>
+
+<p>Todos executam sem emissão de mensagem de erro pelo
+interpretador e cumprem a missão de cumprimentar nosso
+mundo. No entanto, não seguem exatamente a
+especificação inicial do enunciado e implicarão
+em um resultado <b>incorreto</b> para o SuSy. Observe os exemplos
+abaixo:</p>
+
+<ul>
+  
+<li> <p><b font-size="150%">String com diferenças visíveis</b></p>
+
+    <p><b>Código submetido:</b></p>
+
+<code>print("Oi, mundo!!!!")</code>
+
+<p><b>Resultado:</b></p>
+<code>
+  <pre>Teste 1: resultado incorreto
+
+    1c1
+    &lt; Oi, mundo!!!!  
+    ---
+    &gt; Oi, mundo!</pre>    
+</code>  
+
+<p>O texto precedido por <code>&lt;</code> é a primeira e
+  única linha de saída do seu programa e o texto
+  precedido por <code>&gt;</code> é a linha da saída
+  esperada. Fica fácil identificar a diferença!</p>
+
+  </li><li><p><b font-size="150%">String com espaço extra ao final</b></p>
+    
+<p><b>Código submetido:</b></p>
+
+<code>print("Oi, mundo!  ")</code>
+
+<p><b>Resultado:</b></p>
+<code>
+  <pre>Teste 1: resultado incorreto
+
+    1c1
+    &lt; Oi, mundo!  
+    ---
+    &gt; Oi, mundo!</pre>    
+</code>
+
+<p>A saída do seu programa parece idêntica à esperada, mas, se selecionarmos o texto do resultado, a diferença ficará evidente:</p>
+  
+<code>
+  <pre><tt style="background-color:black; color:white">Teste 1: resultado incorreto</tt>
+
+    <tt style="background-color:black; color:white">1c1</tt>
+    <tt style="background-color:black; color:white">&lt; Oi, mundo!&nbsp;&nbsp;</tt>  
+    <tt style="background-color:black; color:white">---</tt>
+    <tt style="background-color:black; color:white">&gt; Oi, mundo!</tt></pre>
+</code>  
+
+</li><li> <p><b font-size="150%">Linha extra com caracteres visíveis</b></p>
+  
+<p>Suponha que o nosso código tentou ser um pouco mais
+amigável com o mundo:</p>
+
+<p><b>Código submetido:</b></p>
+
+<code><pre>print("Oi, mundo!")
+print("Tudo bem?")</pre>
+</code>
+
+<p><b>Resultado:</b></p>
+<code>
+  <pre>Teste 1: resultado incorreto
+
+    2d1
+    &lt; Tudo bem?</pre>    
+</code>
+
+<p>Se o seu arquivo apresentar a saída esperada seguida de
+linha(s) extra(s), apenas esta diferença será exibida no
+resultado.</p>
+
+</li><li> <p><b font-size="150%">Linha extra vazia</b></p>
+
+<p><b>Código submetido:</b></p>
+<code><pre>print("Oi, mundo!")
+print()</pre>
+</code>
+
+<p><b>Resultado:</b></p>
+<code>
+  <pre>Teste 1: resultado incorreto
+
+    2d1
+    &lt; </pre>    
+</code>
+
+<p>Aqui, apenas o caractere <code>&lt;</code> é exibido, visto que a última linha está vazia.</p>
+
+</li></ul>
+
+<h1>Orientações para submissão</h1>
+
+<p>
+  Veja <a href="https://susy.ic.unicamp.br:9999/mc102geral/00">aqui</a>
+  a página de submissão da tarefa. O arquivo a ser
+  submetido deve se chamar <b><tt>lab00.py</tt></b>.
+</p> 
+
+<p> Para ganhar nota integral nesta tarefa você deve submeter
+pelo menos um código incorreto e um correto. A última
+submissão deve ser correta.</p>
+  
+<p>O limite máximo será de 10 submissões.</p>
+
+<p>Se você não estiver inscrito corretamente, envie email
+  para <img src="MC102%20-%20Lab00_files/addr-coord.png">.
+  
+</p><p>O peso desta tarefa é 1.</p>
+
+<p>O prazo final para submissão é 26/08/2018.</p>
+  
+<hr>
+
+
+
+</body></html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 10</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_10_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_10_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h3>
+<a id="user-content-instituto-de-computação---unicamp" class="anchor" href="#instituto-de-computa%C3%A7%C3%A3o---unicamp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Instituto de Computação - Unicamp</h3>
+<h3>
+<a id="user-content-mc102---algoritmos-e-programação-de-computadores" class="anchor" href="#mc102---algoritmos-e-programa%C3%A7%C3%A3o-de-computadores" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MC102 - Algoritmos e Programação de Computadores</h3>
+<h1>
+<a id="user-content-laboratório-id---title" class="anchor" href="#laborat%C3%B3rio-id---title" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Laboratório 10 - Editor de Discursos da Aliança Rebelde</h1><p>Prazo de entrega: <strong>22/04/2018 23:59:59</strong></p><p>Peso: <strong>1</strong></p>
+<p><em>Professor:</em> Eduardo C. Xavier</p>
+<p><em>Monitor:</em> Alexsandro Alexandrino<br>
+<em>Monitor:</em> Ramon Nepomuceno</p>
+<hr>
+<h2>
+<a id="user-content-descrição" class="anchor" href="#descri%C3%A7%C3%A3o" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Descrição</h2>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/10/discurso.jpg" target="_blank"><img src="enunciado_10_files/discurso.jpg" alt="Discurso" style="max-width:100%;"></a></p>
+<p>Os políticos da Aliança Rebelde realizam muitos discursos pela 
+galáxia, e o processo de criação dos discursos demanda muito tempo, 
+principalmente a parte de escrevê-los. Os redatores dos discursos 
+notaram que as operações mais utilizadas por eles durante a escrita 
+eram: apagar, substituir e inverter uma palavra. Para agilizar o 
+processo de criação dos seus discursos, os políticos da Aliança Rebelde 
+precisam de um editor de texto com estas três funções.</p>
+<h2>
+<a id="user-content-objetivo" class="anchor" href="#objetivo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Objetivo</h2>
+<p>Como programador da Aliança Rebelde, você deve criar um programa que,
+ dado um texto, um identificador de uma operação e seus parâmetros, 
+realiza as modificações necessárias no texto.
+Os identificadores de cada operação são representados por uma letra, 
+sendo elas:</p>
+<ul>
+<li>D - Apagar</li>
+<li>I - Inverter</li>
+<li>R - Substituir</li>
+<li>Q - Sair do programa</li>
+</ul>
+<p>Os parâmetros de cada identificador são informados imediatamente depois do mesmo, sendo que os parâmetros são:</p>
+<ul>
+<li>O identificador D é seguido de uma palavra que denotamos por <code>palavra_deletar</code> com tamanho máximo de 50 caracteres. TODAS as ocorrências da palavra no texto devem ser removidas.</li>
+<li>O identificador I é seguido de uma palavra que denotamos por <code>palavra_inverter</code> com tamanho máximo de 50 caracteres. TODAS as ocorrências da palavra no texto devem ser invertidas.</li>
+<li>O identificador R é seguido de duas palavras denotadas por <code>palavra_velha</code> e <code>palavra_nova</code>, ambas com tamanho máximo de 50 caracteres. TODAS as ocorrências da palavra <code>palavra_velha</code> no texto devem ser substituídas por <code>palavra_nova</code>.</li>
+</ul>
+<p>OBSERVAÇÃO:</p>
+<ul>
+<li>Note que uma mesma palavra pode estar escrita utilizando letras 
+maiúsculas e/ou minúsculas, por exemplo, "Rebeldes" e "rebeldes" são 
+palavras escritas utilizando caracteres diferentes, mas são a mesma 
+palavra (Seu editor deverá ser CASE INSENSITIVE).</li>
+<li>O texto deve sempre conter um único espaço separando palavras. Desta forma, se por exemplo for substituida <code>bananada</code>
+por <code>dado</code> no texto <code>bananada de marmelo</code>, o resultado final deve ser<br>
+<b>dado de marmelo</b><br>
+e não<br>
+<b>dado &nbsp;&nbsp;&nbsp;&nbsp; de marmelo</b>.</li>
+<li>Ao inverter ou substituir uma palavra seguida por uma pontuação, a 
+pontuação deverá permanecer após a nova palavra. Por exemplo,  se a 
+palavra <code>oi</code> for substituida por <code>ola</code> no texto <code>oi, tudo bom?</code>, o resultado final deve ser:<br>
+<b>ola, tudo bom?</b><br>
+Ao remover uma palavra seguida de uma pontuação, a pontuação também deverá ser removida. Por exemplo, para deletar a palavra <code>bom</code> no texto <code>oi, tudo bom?</code>, o resultado final deve ser:<br>
+<b>oi, tudo</b>
+</li>
+<li>Os possíveis caracteres de pontuação são: <code>,</code> <code>.</code> <code>?</code> <code>!</code> <code>:</code>.</li>
+</ul>
+<h2>
+<a id="user-content-entrada" class="anchor" href="#entrada" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Entrada</h2>
+<p>A entrada consiste de um texto de no máximo 1000 caracteres, e uma 
+série de identificadores de operações e seus respectivos parâmetros.</p>
+<h2>
+<a id="user-content-saída" class="anchor" href="#sa%C3%ADda" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Saída</h2>
+<p>Deverá ser impresso o texto lido como entrada e, para cada operação 
+realizada sobre o texto, deve ser impresso o texto com a modificação 
+decorrente da operação e o programa deve ler outra operação.</p>
+<p>Quando o programa ler o operador <code>Q</code>, que representa a operação de sair, o programa deve encerrar a execução.</p>
+<h2>
+<a id="user-content-exemplos" class="anchor" href="#exemplos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Exemplos</h2>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/10/dados/arq01.in">Entrada</a></p>
+<pre><code>PMACINU: Casa Vermelha de Madeira, e Barro.
+D
+madeira
+D
+E
+R
+vermelha
+Estadual
+R
+casa
+Universidade
+R
+barro
+Campinas
+I
+PMACINU
+Q
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/10/dados/arq01.res">Saída</a></p>
+<pre><code>PMACINU: Casa Vermelha de Madeira, e Barro.
+PMACINU: Casa Vermelha de e Barro.
+PMACINU: Casa Vermelha de Barro.
+PMACINU: Casa Estadual de Barro.
+PMACINU: Universidade Estadual de Barro.
+PMACINU: Universidade Estadual de Campinas.
+UNICAMP: Universidade Estadual de Campinas.
+</code></pre>
+<h3>
+<a id="user-content-teste-02" class="anchor" href="#teste-02" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 02</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/10/dados/arq02.in">Entrada</a></p>
+<pre><code>idIOMaTIco charcUTaRiA ChARCutAria debaTIdO InteGRo MEDALHAO
+R
+idiomatico
+cOmItIva
+R
+debatido
+PALACIO
+R
+medalhao
+EnteAdO
+D
+charcutaria
+R
+enteado
+TeoCraTICO
+I
+palacio
+I
+integro
+D
+oicalap
+D
+orgetni
+Q
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/10/dados/arq02.res">Saída</a></p>
+<pre><code>idIOMaTIco charcUTaRiA ChARCutAria debaTIdO InteGRo MEDALHAO
+cOmItIva charcUTaRiA ChARCutAria debaTIdO InteGRo MEDALHAO
+cOmItIva charcUTaRiA ChARCutAria PALACIO InteGRo MEDALHAO
+cOmItIva charcUTaRiA ChARCutAria PALACIO InteGRo EnteAdO
+cOmItIva PALACIO InteGRo EnteAdO
+cOmItIva PALACIO InteGRo TeoCraTICO
+cOmItIva OICALAP InteGRo TeoCraTICO
+cOmItIva OICALAP oRGetnI TeoCraTICO
+cOmItIva oRGetnI TeoCraTICO
+cOmItIva TeoCraTICO
+</code></pre>
+<h3>
+<a id="user-content-teste-03" class="anchor" href="#teste-03" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 03</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/10/dados/arq03.in">Entrada</a></p>
+<pre><code>inVoCaR PEsTanEjar tribUtaCAo matErnO EpIstoLAR amOViVEl, eQUino?
+D
+amovivel
+R
+invocar
+GERaDoR
+D
+materno
+D
+tributacao
+Q
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/10/dados/arq03.res">Saída</a></p>
+<pre><code>inVoCaR PEsTanEjar tribUtaCAo matErnO EpIstoLAR amOViVEl, eQUino?
+inVoCaR PEsTanEjar tribUtaCAo matErnO EpIstoLAR eQUino?
+GERaDoR PEsTanEjar tribUtaCAo matErnO EpIstoLAR eQUino?
+GERaDoR PEsTanEjar tribUtaCAo EpIstoLAR eQUino?
+GERaDoR PEsTanEjar EpIstoLAR eQUino?
+</code></pre>
+<p>Para mais exemplos, consulte os
+<a href="https://susy.ic.unicamp.br:9999/mc102wy/10/dados/testes.html">testes abertos no Susy</a>.</p>
+<h2>
+<a id="user-content-observações" class="anchor" href="#observa%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Observações</h2>
+<ul>
+<li>O número máximo de submissões é <strong>10</strong>;</li><li>O seu programa deve estar completamente contido em um único arquivo denominado <code>lab10.py</code>.</li><li>Para a realização dos testes do SuSy, a compilação dos programas desenvolvidos em C irá considerar o comando:<br>
+<code>python3 lab10.py</code>;</li><li>Você deve incluir, no início do 
+seu programa, uma breve descrição dos objetivos do programa, da entrada e
+ da saída, além do seu nome e do seu RA;</li>
+<li>Indente corretamente o seu código e inclua comentários no decorrer do seu programa.</li>
+</ul>
+
+    </article>
+
+
+</body></html>

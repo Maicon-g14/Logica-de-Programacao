@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 03</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_3_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_3_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h3>
+<a id="user-content-instituto-de-computação---unicamp" class="anchor" href="#instituto-de-computa%C3%A7%C3%A3o---unicamp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Instituto de Computação - Unicamp</h3>
+<h3>
+<a id="user-content-mc102---algoritmos-e-programação-de-computadores" class="anchor" href="#mc102---algoritmos-e-programa%C3%A7%C3%A3o-de-computadores" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MC102 - Algoritmos e Programação de Computadores</h3>
+<h1>
+<a id="user-content-laboratório-id---title" class="anchor" href="#laborat%C3%B3rio-id---title" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Laboratório 03 - Média de MC102</h1><p>Prazo de entrega: <strong>31/03/2018 23:59:59</strong></p><p>Peso: 1</p>
+<p><em>Professor:</em> Eduardo C. Xavier<br>
+<em>Monitor:</em> Alexsandro O. Alexandrino<br>
+<em>Monitor:</em> Ramon Nepomuceno</p>
+<hr>
+<h2>
+<a id="user-content-descrição" class="anchor" href="#descri%C3%A7%C3%A3o" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Descrição</h2>
+<p>O objetivo deste laboratório é criar um programa que calcula a média final (<code>F</code>) de um aluno em MC102 conforme as regras estabelecidas na <a href="https://drive.google.com/file/d/1v0cff0yTBLu_0FL2vWhCspLY03qqEuIn/view" rel="nofollow">página</a> da disciplina.</p>
+<p>O programa também deve calcular e apresentar a média das provas (<code>M<sub>p</sub></code>), a média preliminar (<code>M<sub>pre</sub></code>) e a média antes do exame (<code>M</code>). Para tanto, serão dadas como entrada para o programa as notas da Prova 1 (<code>P<sub>1</sub></code>) e Prova 2 (<code>P<sub>2</sub></code>), a média ponderada dos laboratórios (<code>M<sub>l</sub></code>) e a nota do Exame (<code>E</code>).</p>
+<h2>
+<a id="user-content-entrada" class="anchor" href="#entrada" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Entrada</h2>
+<p>A entrada do programa será composta das notas obtidas pelo aluno: <code>P<sub>1</sub></code>, <code>P<sub>2</sub></code>, <code>M<sub>l</sub></code>, e se realizar exame, <code>E</code>. Se a média <code>M</code> do aluno é maior ou igual a <code>2.5</code> e menor que <code>5</code>, assuma que ele realizará o exame final.</p>
+<h2>
+<a id="user-content-saída" class="anchor" href="#sa%C3%ADda" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Saída</h2>
+<p>A saída é composta dos componentes parciais <code>M<sub>p</sub></code>, <code>M<sub>pre</sub></code> e <code>M</code>, além da nota final <code>F</code>.
+Todas notas devem ser exibidas com uma casa decimal de precisão.</p>
+<h2>
+<a id="user-content-exemplos" class="anchor" href="#exemplos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Exemplos</h2>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/03/dados/arq01.in">Entrada</a></p>
+<pre><code>4.0
+7.0
+8.0
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/03/dados/arq01.res">Saída</a></p>
+<pre><code>5.8
+6.7
+6.7
+6.7
+</code></pre>
+<h3>
+<a id="user-content-teste-02" class="anchor" href="#teste-02" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 02</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/03/dados/arq02.in">Entrada</a></p>
+<pre><code>0.0
+6.0
+10.0
+7.0
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/03/dados/arq02.res">Saída</a></p>
+<pre><code>3.6
+6.2
+4.9
+5.0
+</code></pre>
+<h3>
+<a id="user-content-teste-03" class="anchor" href="#teste-03" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 03</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/03/dados/arq03.in">Entrada</a></p>
+<pre><code>10.0
+10.0
+10.0
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102wy/03/dados/arq03.res">Saída</a></p>
+<pre><code>10.0
+10.0
+10.0
+10.0
+</code></pre>
+<p>Para mais exemplos, consulte os <a href="https://susy.ic.unicamp.br:9999/mc102wy/03/dados/testes.html">testes abertos no Susy</a>.</p>
+<h2>
+<a id="user-content-observações" class="anchor" href="#observa%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Observações</h2>
+<ul>
+<li>O número máximo de submissões é <strong>10</strong>;</li><li>O seu programa deve estar completamente contido em um único arquivo denominado <code>lab03.py</code> para programas em Python 3;</li><li>Para a realização dos testes do SuSy, a execução do código em Python se dará da seguinte forma: (Linux e OSX)<br>
+<code>python3 lab03.py</code>;</li><li>Você deve incluir, no início do 
+seu programa, uma breve descrição dos objetivos do programa, da entrada e
+ da saída, além do seu nome e do seu RA;</li>
+<li>Indente corretamente o seu código e inclua comentários no decorrer do seu programa.</li>
+</ul>
+
+    </article>
+
+
+</body></html>

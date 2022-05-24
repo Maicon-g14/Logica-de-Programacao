@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html><div id="tenten-safe-area-provider" style="all: initial;"></div><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>MC102 - Lab10</title>
+
+    <link rel="stylesheet" type="text/css" href="MC102%20-%20Lab10_files/2s2018-mc102.css">
+
+    <style>
+      table#tab_saida td {
+	  vertical-align:top;
+      }
+    </style>
+</head>
+  
+<body>
+
+<header>
+    MC102 - Algoritmos e Programação de Computadores
+</header>
+
+<div class="topnav">
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/index.html"><b>MC102</b></a>
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-1s2018"><b>Oferecimento anterior</b></a>
+</div>
+
+<h1><code style="font-size:80%">MULTIBINGO!</code> Tarefa de laboratório 10</h1>
+
+<p>Esta tarefa é uma extensão da <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/labs/roteiro-lab09.html"> tarefa anterior</a>,
+ em que será simulada a participação com múltiplas cartelas em um jogo 
+de Bingo. A ideia é que você trabalhe agora com listas tridimensionais e
+ veja a importância do uso de funções para estruturar o seu programa.</p>
+
+<pre><code>+----------------+ +----------------+
+| B  I  N  G  O  | | B  I  N  G  O  |
++================+ +================+
+| 01 19 43 59 63 | | 09 18 39 59 69 |
+| 10 24 34 55 75 | | 08 27 33 47 64 |
+| 07 29 XX 49 67 | | 14 28 XX 46 70 |
+| 09 27 36 51 70 | | 06 16 36 50 72 |
+| 12 30 45 53 73 | | 12 26 45 58 63 |
++----------------+ +----------------+</code></pre>    
+
+<p>Os números sorteados durante o jogo deverão ser procurados e 
+marcados, se for o caso, em todas as cartelas em que forem encontrados.</p>
+
+<pre><code>B-06
++----------------+ +----------------+
+| B  I  N  G  O  | | B  I  N  G  O  |
++================+ +================+
+| 01 19 43 59 63 | | 09 18 39 59 69 |
+| 10 24 34 55 75 | | 08 27 33 47 64 |
+| 07 29 XX 49 67 | | 14 28 XX 46 70 |
+| 09 27 36 51 70 | | XX 16 36 50 72 |
+| 12 30 45 53 73 | | 12 26 45 58 63 |
++----------------+ +----------------+
+I-27
++----------------+ +----------------+
+| B  I  N  G  O  | | B  I  N  G  O  |
++================+ +================+
+| 01 19 43 59 63 | | 09 18 39 59 69 |
+| 10 24 34 55 75 | | 08 XX 33 47 64 |
+| 07 29 XX 49 67 | | 14 28 XX 46 70 |
+| 09 XX 36 51 70 | | XX 16 36 50 72 |
+| 12 30 45 53 73 | | 12 26 45 58 63 |
++----------------+ +----------------+</code></pre>
+
+<p>Em caso da formação de um padrão de Bingo em uma das cartelas, a 
+mensagem BINGO! deverá ser emitida e o processamento dos números 
+sorteados deverá ser encerrado.</p>
+
+<h2>Descrição da entrada</h2>
+
+<p>A primeira linha conterá o número de cartelas. Em seguida, a entrada conterá cinco linhas para a descrição de cada cartela.</p>
+
+<code></code><pre><code>&lt;n_cartelas&gt;
+&lt; descrição_cartela<sub>0</sub>&gt;    
+...
+&lt; descrição_cartela<sub>n-1</sub>&gt;</code></pre>
+
+<p>A próxima linha conterá a quantidade de números sorteados que deverão
+ ser processados. Em seguida, os números virão um por linha no padrão <code>&lt;letra&gt;-&lt;numero&gt;</code>.</p>
+
+<code></code><pre><code>&lt;m_numeros_sorteados&gt;
+&lt;letra<sub>0</sub>&gt;-&lt;numero<sub>0</sub>&gt;
+...
+&lt;letra<sub>m-1</sub>&gt;-&lt;numero<sub>m-1</sub>&gt;</code></pre>
+
+<h2>Descrição da saída</h2>
+
+<p>Inicialmente, você deverá escrever as cartelas com a mesma moldura da
+ tarefa anterior, uma ao lado da outra, como já ilustrado na primeira 
+seção. Deve haver um espaço em branco entre cada cartela e não há espaço
+ em branco após a última cartela.</p>
+
+<p>Em seguida, deverá processar os números sorteados. Todo número lido 
+deve ser escrito na saída e, caso tenha sido encontrado em alguma 
+cartela, todas as cartelas deverão ser reescritas com XX no lugar da(s) 
+ocorrência(s) do elemento sorteado. Caso uma linha, coluna ou diagonal 
+tenha sido completada, a palavra BINGO é emitida e processamento 
+termina, mesmo que existam mais números na entrada.</p>
+
+<h2>Testes para o SuSy</h2>
+
+<p>Esta tarefa contém 8 testes abertos e 2 testes fechados. Não será necessário fazer a validação dos dados da entrada.</p>
+  
+<h2>Orientações para submissão</h2>
+
+<p>
+  Veja <a href="https://susy.ic.unicamp.br:9999/mc102geral/10">aqui</a>
+  a página de submissão da tarefa. Lembre-se que o
+  arquivo a ser submetido deve se
+  chamar <b><tt>lab10.py</tt></b>. </p>
+
+<p>No
+  link <a href="https://susy.ic.unicamp.br:9999/mc102geral/10/aux/aux.html">Arquivos auxiliares</a> há um arquivo <code><a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/labs/aux-10.zip">aux-10.zip</a></code> que contém todos os arquivos de testes abertos e seus respectivos resultados compactados. Os arquivos <code>executa-testes.py</code> e <code>executa-testes-windows.py</code> também estão neste pacote.</p>
+
+<p>Observe o limite máximo de 20 submissões.</p> 
+
+<p>A nota final é proporcional ao número de testes que 
+executaram corretamente, desde que o código esteja coerente com
+o enunciado. <b>A submissão de um código que não
+implementa o algoritmo requisitado, mas que exibe as saídas
+esperadas dos testes abertos a partir da comparação de
+trechos da entrada será considerada fraude e acarretará
+a atribuição de nota zero à média final da
+disciplina.</b></p>
+  
+<p>O peso desta tarefa é 3.</p>
+
+<p>O prazo final para submissão é 01/12/2018 (último dia para o 
+cumprimento da carga horária/programa das disciplinas). Recomenda-se a 
+realização desta tarefa antes da Prova 2.</p>
+
+<hr>
+
+
+</body></html>

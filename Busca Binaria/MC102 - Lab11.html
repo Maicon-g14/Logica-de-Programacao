@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html><div id="tenten-safe-area-provider" style="all: initial;"></div><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>MC102 - Lab11</title>
+
+    <link rel="stylesheet" type="text/css" href="MC102%20-%20Lab11_files/2s2018-mc102.css">
+
+    <style>
+      table#tab_saida td {
+	  vertical-align:top;
+      }
+    </style>
+</head>
+  
+<body>
+
+<header>
+    MC102 - Algoritmos e Programação de Computadores
+</header>
+
+<div class="topnav">
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/index.html"><b>MC102</b></a>
+  <a href="https://www.ic.unicamp.br/~mc102/mc102-1s2018"><b>Oferecimento anterior</b></a>
+</div>
+
+<h1>Tarefa de laboratório 11 - Opcional</h1>
+
+<p>Nesta tarefa, construiremos um visualizador ASCII para o algoritmo
+de <a href="https://interactivepython.org/runestone/static/pythonds/SortSearch/TheBinarySearch.html">busca
+binária</a>. Dado um vetor ordenado, a busca binária é feita da
+seguinte forma:</p>
+
+<ul>
+  <li> Compara-se o valor do elemento procurado com o que está na
+  posição central da lista.
+  </li><li> Se for igual, indica-se esta posição.
+  </li><li> Se for menor, o processo é repetido, considerando-se apenas os
+  elementos da lista que estão à esquerda da posição central.
+  </li><li> Se for maior, o processo é repetido, considerando-se apenas os
+    elementos da lista que estão à direita  da posição central.
+  </li><li> Caso não haja mais elementos para percorrer, conclui-se que o
+  elemento procurado não está na lista.
+</li></ul>  
+
+<p>Suponha que temos o vetor abaixo e estamos procurando o elemento 11.</p>
+
+<code></code><pre><code>+-----+-----+-----+-----+-----+-----+-----+
+| 002 | 003 | 004 | 008 | 011 | 015 | 017 |
++-----+-----+-----+-----+-----+-----+-----+</code></pre>
+
+<p>Para ilustrar o processo, iremos marcar inicialmente o elemento
+central, cujo valor é 8. Como 8 é menor do que 11, prosseguiremos com
+os valores à direita da posição central, marcando o elemento
+15. Finalmente, ficaremos apenas com o elemento 11, que é a chave
+procurada.</p>
+
+<code></code><pre><code>+-----+-----+-----+=====+-----+-----+-----+
+| 002 | 003 | 004 ||008|| 011 | 015 | 017 |
++-----+-----+-----+=====+-----+-----+-----+
+                        +-----+=====+-----+
+                        | 011 ||015|| 017 |
+                        +-----+=====+-----+
+                        +=====+
+                        ||011||
+                        +=====+</code></pre>
+
+<p>Note que em caso de um número par de chaves, temos duas chaves
+centrais. Iremos trabalhar com a de menor índice.</p>
+
+<code></code><pre><code>+-----+-----+-----+=====+-----+-----+-----+-----+
+| 002 | 003 | 004 ||008|| 011 | 015 | 017 | 020 |
++-----+-----+-----+=====+-----+-----+-----+-----+</code></pre>
+
+  
+<h2>Descrição da entrada</h2>
+
+<p>A primeira linha da entrada conterá um inteiro a ser procurado e a
+segunda linha um vetor de inteiros. Uma de suas tarefas será verificar
+se este vetor está ordenado. Veja o exemplo abaixo:</p>
+
+<code></code><pre><code>4
+2 3 4 8 11 15 17 
+</code></pre>
+
+<h2>Descrição da saída</h2>
+
+<p>A primeira linha da saída conterá uma linha descrevendo o valor a
+ser procurado.</p>
+
+<code></code><pre><code>Elemento procurado: &lt;elem&gt;</code></pre>
+
+<p>Em seguida, o vetor lido deverá ser representado, com inteiros com
+  três dígitos e a moldura formada por
+  caracteres <code>+</code>, <code>|</code> e <code>-</code>conforme
+  os exemplos dados.</p>
+
+<code></code><pre><code>+-----+-----+-----+-----+-----+-----+-----+
+| 002 | 003 | 004 | 008 | 011 | 015 | 017 |
++-----+-----+-----+-----+-----+-----+-----+</code></pre>
+
+<p>Utilizaremos um número fixo de dígitos para facilitar a escrita e a
+comparação caso você prefira armazenar as strings e não inteiros (Veja
+  as <a href="#dicas">dicas</a>).</p>
+
+<p>Caso o vetor não esteja ordenado, você deve emitir a
+  mensagem <code>"Vetor nao estah ordenado"</code> e interromper
+  o processo.
+  
+</p><p>Os passos dos algoritmos serão ilustrados como no exemplo da
+  primeira seção. A moldura do elemento central conterá
+  caracteres <code>=</code> na parte de cima e na parte de baixo. Nas
+  laterais, teremos duas barras, sem espaço em branco.</p>
+
+<code></code><pre><code>+=====+
+||008||
++=====+</code></pre>
+
+<p>O visualizador irá mostrar apenas os elementos que estão
+participando da busca em cada passo. Note que precisaremos imprimir
+espaços em branco à esquerda, mas não haverá espaços em branco após o
+último elemento. Observe os passos da busca do elemento 4 no vetor fornecido.</p>
+
+<code></code><pre><code>Elemento procurado: 004
++-----+-----+-----+-----+-----+-----+-----+
+| 002 | 003 | 004 | 008 | 011 | 015 | 017 |
++-----+-----+-----+-----+-----+-----+-----+
++-----+-----+-----+=====+-----+-----+-----+
+| 002 | 003 | 004 ||008|| 011 | 015 | 017 |
++-----+-----+-----+=====+-----+-----+-----+
++-----+=====+-----+
+| 002 ||003|| 004 |
++-----+=====+-----+
+            +=====+
+            ||004||
+            +=====+</code></pre>
+
+<p>A última parte da saída será indicar a posição do elemento, caso encontrado, com a string
+<code>"O elemento estah na posicao &lt;pos&gt;"</code>. Caso o elemento
+não esteja no vetor, a string final será <code>"O elemento nao foi encontrado"</code>.
+  
+</p><h2 id="dicas">Dicas de Python 3 para esta tarefa:</h2>
+
+<ul>
+  <li> Para escrever um inteiro com um número fixo de casas decimais, você pode
+  usar a função <code>zfill</code> Veja o exemplo:
+<code></code><pre><code>&gt;&gt;&gt; str(9).zfill(3)
+'009'</code></pre>
+
+  </li><li> Você já deve ter visto que a comparação de strings contendo
+    números nem sempre retorna um resultado coerente com o esperado na
+    matemática. 
+<code></code><pre><code>&gt;&gt;&gt; '20' &lt; '100'
+False</code></pre>
+    No entanto, se estivermos trabalhando com o mesmo número de casas decimais, o resultado será sempre coerente. 
+<code></code><pre><code>&gt;&gt;&gt; '020' &lt; '100'
+True</code></pre>
+    Você sabe explicar a razão?		      
+</li></ul>    
+    
+<h2>Testes para o SuSy</h2>
+
+<p>Esta tarefa contém 13 testes abertos, exercitando vários
+caminhos de busca. Contém também um teste fechado em que uma chave
+está no vetor e outro em que não está.</p>
+
+<h2>Orientações para submissão</h2>
+
+<p>
+  Veja <a href="https://susy.ic.unicamp.br:9999/mc102geral/11">aqui</a>
+  a página de submissão da tarefa. Lembre-se que o
+  arquivo a ser submetido deve se
+  chamar <b><tt>lab11.py</tt></b>. </p>
+
+<p>No
+  link <a href="https://susy.ic.unicamp.br:9999/mc102geral/11/aux/aux.html">Arquivos auxiliares</a> há um arquivo <code><a href="https://www.ic.unicamp.br/~mc102/mc102-2s2018/labs/aux-11.zip">aux-11.zip</a></code> que contém todos os arquivos de testes abertos e seus respectivos resultados compactados. Os arquivos <code>executa-testes.py</code> e <code>executa-testes-windows.py</code> também estão neste pacote.</p>
+
+<p>Observe o limite máximo de 20 submissões.</p> 
+
+<p>A nota final é proporcional ao número de testes que 
+executaram corretamente, desde que o código esteja coerente com
+o enunciado. <b>A submissão de um código que não
+implementa o algoritmo requisitado, mas que exibe as saídas
+esperadas dos testes abertos a partir da comparação de
+trechos da entrada será considerada fraude e acarretará
+a atribuição de nota zero à média final da
+disciplina.</b></p>
+  
+<p>O peso desta tarefa é 2. Como é uma tarefa <b>opcional</b>,
+esta nota entrará com peso 2 para o numerador do cálculo da média de
+tarefas de laboratório. O denominador será dado pela soma dos pesos
+das tarefas de número 0 a 10.</p>
+
+<p>O prazo final para submissão é 01/12/2018 (último dia para o 
+cumprimento da carga horária/programa das disciplinas). Recomenda-se a 
+realização desta tarefa antes da Prova 2.</p>
+
+<hr>
+
+
+</body></html>
